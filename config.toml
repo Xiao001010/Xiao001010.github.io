@@ -1,5 +1,5 @@
-baseurl = "https://zhaohuabing.com"
-title = "Huabing Blog"
+baseurl = "https://xiao00101010.github.io/"
+title = "Hao Xu Blog"
 theme = "hugo-theme-cleanwhite"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
@@ -14,11 +14,11 @@ home = ["HTML", "RSS", "Algolia"]
 
 [params]
   header_image = "img/home-bg-jeep.jpg"
-  SEOTitle = "赵化冰的博客 | Zhaohuabing Blog"
-  description = "赵化冰，程序员, 开源爱好者，生活探险家 | 这里是 赵化冰 的博客，与你一起发现更大的世界。"
-  keyword = "赵化冰, zhaohuabing, Zhaohuabing, , 赵化冰的网络日志, 赵化冰的博客, Zhaohuabing Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice"
-  slogan = "路在脚下，心向远方"
-  upstreamAttribution = true
+  SEOTitle = "徐浩的博客 | Hao Xu Blog"
+  description = "徐浩, 程序员, 新手炼丹师, 生活探险家 | 这里是 徐浩 的博客, 与你一起发现更大的世界。"
+  keyword = "徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP"
+  slogan = "回首向来萧瑟处, 也无风雨也无晴"
+  upstreamAttribution = false
 
   image_404 = "img/404-bg.jpg"
   title_404 = "你来到了没有知识的荒原 :("
@@ -36,9 +36,9 @@ home = ["HTML", "RSS", "Algolia"]
   algolia_apiKey = ""
 
   # Sidebar settings
-  sidebar_about_description = "Software Developer, Open Source Enthusiast and Life Adventurer"
+  sidebar_about_description = "Software Developer, AI Engineer and Life Adventurer"
   #sidebar_avatar = "img/avatar-zhaohuabing.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
-  sidebar_avatar = "img/zhaohuabing.png"      # use absolute URL, seeing it's used in both `/` and `/about/`
+  sidebar_avatar = "img/favicon/web-app-manifest-512x512.png"      # use absolute URL, seeing it's used in both `/` and `/about/`
 
   featured_tags = true 
   featured_condition_size = 1 
@@ -63,10 +63,11 @@ home = ["HTML", "RSS", "Algolia"]
 
   #Enable wechat pay & alipay to allow readers send reward money if they like the articles 
   reward = true 
-  # reward_guide = "如果这篇文章对你有用,请随意打赏" 
+  reward_guide = "如果这篇文章对你有用,请随意打赏" 
 
-  friends = true
+  friends = false
   bookmarks = false
+  # show my info in the sidebar
   about_me = true
 
   # Include any custom CSS and/or JS files, url or relative to /static folder
@@ -75,15 +76,15 @@ home = ["HTML", "RSS", "Algolia"]
 
   [params.social]
   rss            = true 
-  email          = "youremail@gmail.com"
+  email          = "haoxu1010@outlook.com"
   #facebook      = "full profile url in facebook"
   #googleplus    = "full profile url in googleplus"
   #twitter       = "full profile url in twitter"
-  linkedin       = "https://www.linkedin.com/in/yourlinkedinid"
-  stackoverflow  = "https://stackoverflow.com/users/yourstackoverflowid"
+  # linkedin       = "https://www.linkedin.com/in/yourlinkedinid"
+  # stackoverflow  = "https://stackoverflow.com/users/yourstackoverflowid"
   #instagram     = "full profile url in instagram"
-  github         = "https://github.com/yourgithub"
-  wechat         = "your wechat qr code image"
+  github         = "https://github.com/Xiao001010"
+  wechat         = "img/wechat_qrcode.jpg"
   #medium        = "full profile url in medium"
   #slack         = "full workspace url in slack"
   #pinterest     = "full profile url in pinterest"
@@ -94,9 +95,9 @@ home = ["HTML", "RSS", "Algolia"]
   #xing          = "https://www.xing.com/profile/yourxingid"
   #git           = "full profile url for git user"
   
-  [[params.friend_link]]
-  title = "Linda的博客"
-  href =  "https://zhaozhihan.com"
+  # [[params.friend_link]]
+  # title = "Linda的博客"
+  # href =  "https://zhaozhihan.com"
 
   [[params.bookmark_link]]
   title =  "Martin Fowler"
