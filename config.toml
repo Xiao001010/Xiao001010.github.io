@@ -17,7 +17,7 @@ home = ["HTML", "RSS", "Algolia"]
   SEOTitle = "徐浩的博客 | Hao Xu Blog"
   description = "徐浩, 程序员, 新手炼丹师, 生活探险家 | 这里是 徐浩 的博客, 与你一起发现更大的世界。"
   keyword = "徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP"
-  slogan = "回首向来萧瑟处, 也无风雨也无晴"
+  slogan = "回首向来萧瑟处, 归去, 也无风雨也无晴"
   upstreamAttribution = false
 
   image_404 = "img/404-bg.jpg"
@@ -114,13 +114,13 @@ home = ["HTML", "RSS", "Algolia"]
   
   [[params.addtional_menus]]
   title =  "ARCHIVE"
-  href =  "/archive/"
+  href =  "/archive"
   [[params.addtional_menus]]
   title =  "NOTES"
-  href =  "/notes/"
+  href =  "/notes"
   [[params.addtional_menus]]
   title =  "ABOUT"
-  href =  "/about/"
+  href =  "/about"
 
 [outputFormats.Algolia]
 baseName = "algolia"
