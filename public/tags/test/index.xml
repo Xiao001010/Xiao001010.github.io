@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tech on Hao Xu Blog</title>
-    <link>http://localhost:1313/categories/tech/</link>
-    <description>Recent content in Tech on Hao Xu Blog</description>
+    <title>Test on Hao Xu Blog</title>
+    <link>http://localhost:1313/tags/test/</link>
+    <description>Recent content in Test on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 13 Oct 2024 00:51:17 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/test/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TestAuthorGen</title>
       <link>http://localhost:1313/post/testauthorgen/</link>

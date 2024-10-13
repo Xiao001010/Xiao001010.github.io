@@ -19,6 +19,7 @@ home = ["HTML", "RSS", "Algolia"]
   keyword = "徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP"
   slogan = "回首向来萧瑟处, 归去, 也无风雨也无晴"
   upstreamAttribution = false
+  author = "Hao Xu"
 
   image_404 = "img/404-bg.jpg"
   title_404 = "你来到了没有知识的荒原 :("
