@@ -36,5 +36,12 @@
       <guid>http://localhost:1313/about/</guid>
       <description>&lt;h1 id=&#34;about-me&#34;&gt;About Me&lt;/h1&gt;&#xA;&lt;p&gt;Hi, I&amp;rsquo;m Hao Xu, a master student majoring in High Performance Computing with Data Science at the University of Edinburgh. I&amp;rsquo;m interested in data science, machine learning, and high performance computing. I&amp;rsquo;m also a fan of open-source software and I&amp;rsquo;m always looking for opportunities to contribute to the community.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Posts Archive</title>
+      <link>http://localhost:1313/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/archive/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

@@ -20,7 +20,7 @@
       <link>http://localhost:1313/post/test2/</link>
       <pubDate>Sun, 13 Oct 2024 00:33:57 +0100</pubDate>
       <guid>http://localhost:1313/post/test2/</guid>
-      <description>&lt;p&gt;Description answer:&lt;/p&gt;&#xA;&lt;p&gt;If the description in front matter is not provided, it will display top lines above the &amp;lt;!&amp;ndash;more&amp;ndash;&amp;gt; tag. If the description is provided, it will display the description in front matter.&lt;/p&gt;&#xA;&lt;p&gt;Using the tag &lt;code&gt;\&amp;lt;!--more--\&amp;gt;&lt;/code&gt; to separate the content. The content above the tag will be displayed in the list view. The content below the tag will be displayed in the detail view.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Description answer:&lt;/p&gt;&#xA;&lt;p&gt;If the description in front matter is not provided, it will display top lines above the &amp;lt;!&amp;ndash;more&amp;ndash;&amp;gt; tag. If the description is provided, it will display the description in front matter.&lt;/p&gt;&#xA;&lt;p&gt;Using the tag &amp;lt;!&amp;ndash;more&amp;ndash;&amp;gt; to separate the content. The content above the tag will be displayed in the list view. The content below the tag will be displayed in the detail view.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Test</title>
