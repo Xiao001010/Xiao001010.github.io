@@ -13,7 +13,7 @@ Description answer:
 
 If the description in front matter is not provided, it will display top lines above the \<!--more--\> tag. If the description is provided, it will display the description in front matter. 
 
-Using the tag `<!--more-->` to separate the content. The content above the tag will be displayed in the list view. The content below the tag will be displayed in the detail view. 
+Using the tag &lt;!--more--&gt; to separate the content. The content above the tag will be displayed in the list view. The content below the tag will be displayed in the detail view. 
 
 <!--more-->
 What if first line is not a header and with out description?
