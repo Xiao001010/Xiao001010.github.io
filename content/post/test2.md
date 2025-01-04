@@ -5,7 +5,7 @@ description: ""
 date:        "2024-10-13T00:33:57+01:00"
 author:      ""
 image:       ""
-tags:        ["Vim", "Test"]
+tags:        ["Test", "Vim"]
 categories:  ["Tech" ]
 draft:       false
 ---

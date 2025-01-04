@@ -5,7 +5,7 @@ description: "A test for life category and new category Diary"
 date:        "2024-10-13T02:05:56+01:00"
 author:      "Hao Xu"
 image:       ""
-tags:        ["tag1", "tag2"]
+tags:        ["Test"]
 categories:  ["Life", "Diary" ]
 draft:       false
 ---

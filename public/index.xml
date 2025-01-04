@@ -6,8 +6,36 @@
     <description>Recent content on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Oct 2024 02:05:56 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jan 2025 21:59:30 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>U-Net</title>
+      <link>http://localhost:1313/post/2025-01-04-u-net/</link>
+      <pubDate>Sat, 04 Jan 2025 21:59:30 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-04-u-net/</guid>
+      <description>&lt;h1 id=&#34;u-net复现&#34;&gt;U-Net复现&lt;/h1&gt;&#xA;&lt;p&gt;本篇内容是通过PyTorch来复现U-Net.&lt;/p&gt;&#xA;&lt;h1 id=&#34;模型总览&#34;&gt;模型总览&lt;/h1&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/2025-01-04-U-Net/Untitled.png&#34; alt=&#34;Source U-Net&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;Source &lt;a href=&#34;https://arxiv.org/abs/1505.04597&#34;&gt;U-Net&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;如上图（蓝色方块上方显示的是通道数，左下角显示的是数据的高宽）所示，U-Net 的模型结构符合我们前面说的 &lt;strong&gt;编码器/解码器结构 (Encoder/Decoder structure)&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Image Segmentation Basic Methods</title>
+      <link>http://localhost:1313/post/2025-01-04-image-segmentation-basic-methods/</link>
+      <pubDate>Sat, 04 Jan 2025 17:26:33 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-04-image-segmentation-basic-methods/</guid>
+      <description>&lt;h1 id=&#34;图像分割基本方法&#34;&gt;图像分割基本方法&lt;/h1&gt;&#xA;&lt;h1 id=&#34;输入输出&#34;&gt;输入输出&lt;/h1&gt;&#xA;&lt;p&gt;下面讲解一下模型的输入与输出的形式。尤其是输出。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;输入 (Input)&lt;/strong&gt;：RGB图像 (height, width, 3) 或者灰度图 (height, width, 1) 。第三个维度是通道数，RGB图像有三个通道，而灰度图只有一个通道。在第一维再加一个batch size 就是 RGB 图像 (batch_size, height, width, 3) / 灰度图 (batch_size, height, width, 1)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Image Segmentation Basic Concepts</title>
+      <link>http://localhost:1313/post/2025-01-04-image-segmentation-basic-concepts/</link>
+      <pubDate>Sat, 04 Jan 2025 16:36:37 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-04-image-segmentation-basic-concepts/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;人类对计算机视觉感兴趣的最重要的问题是&lt;strong&gt;图像分类 (Image Classification)、目标检测 (Object Detection) 和图像分割 (Image Segmentation)&lt;/strong&gt;，同时它们的难度也是依次递增。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hugo Quick Start</title>
+      <link>http://localhost:1313/post/2025-01-04-hugo-quick-start/</link>
+      <pubDate>Sat, 04 Jan 2025 16:35:35 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-04-hugo-quick-start/</guid>
+      <description>&lt;h1 id=&#34;create-the-directory-structure-for-your-project-in-the-quickstart-directory&#34;&gt;Create the directory structure for your project in the quickstart directory.&lt;/h1&gt;&#xA;&lt;p&gt;在quickstart目录中为您的项目创建目录结构。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new site quickstart&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;start-hugos-development-server-to-view-the-site&#34;&gt;Start Hugo’s development server to view the site.&lt;/h1&gt;&#xA;&lt;p&gt;启动Hugo的开发服务器来查看站点。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Life Test</title>
       <link>http://localhost:1313/post/life-test/</link>

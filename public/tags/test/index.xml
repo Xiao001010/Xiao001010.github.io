@@ -6,8 +6,15 @@
     <description>Recent content in Test on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Oct 2024 00:51:17 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2024 02:05:56 +0100</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Life Test</title>
+      <link>http://localhost:1313/post/life-test/</link>
+      <pubDate>Sun, 13 Oct 2024 02:05:56 +0100</pubDate>
+      <guid>http://localhost:1313/post/life-test/</guid>
+      <description>&lt;h1 id=&#34;life-test&#34;&gt;Life Test&lt;/h1&gt;&#xA;&lt;p&gt;Boring life, nothing to say.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>TestAuthorGen</title>
       <link>http://localhost:1313/post/testauthorgen/</link>

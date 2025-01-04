@@ -6,7 +6,8 @@ languageCode = "en-us"
 disqusShortname = ""
 googleAnalytics = ""
 preserveTaxonomyNames = true
-paginate = 5 #frontpage pagination
+# paginate = 5 #frontpage pagination
+paginattion.pagerSize = 5
 hasCJKLanguage = true
 
 [outputs]
@@ -70,6 +71,9 @@ home = ["HTML", "RSS", "Algolia"]
   bookmarks = false
   # show my info in the sidebar
   about_me = true
+
+  # Support KaTeX for math typesetting
+  math = true
 
   # Include any custom CSS and/or JS files, url or relative to /static folder
   #custom_css = ["css/lightbox.css", "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css", "css/main.css"]

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Hao Xu Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//img/home-bg-jeep.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-bg-jeep.jpg" />
+    
+
+    
+    <meta name="title" content="U-Net" />
+    <meta property="og:title" content="U-Net" />
+    <meta property="twitter:title" content="U-Net" />
+    
+
+    
+    <meta name="description" content="Introduction to U-Net and its implementation in PyTorch.">
+    <meta property="og:description" content="Introduction to U-Net and its implementation in PyTorch." />
+    <meta property="twitter:description" content="Introduction to U-Net and its implementation in PyTorch." />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>U-Net | 徐浩的博客 | Hao Xu Blog</title>
+
+    <link rel="canonical" href="/post/2025-01-04-u-net/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});">
+    </script>
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hao Xu Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/diary/">diary</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive/">ARCHIVE</a></li>
+                    
+                        <li><a href="/about/">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-jeep.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/ai" title="AI">
+                            AI
+                        </a>
+                        
+                        <a class="tag" href="/tags/deep-learning" title="Deep Learning">
+                            Deep Learning
+                        </a>
+                        
+                        <a class="tag" href="/tags/computer-vision" title="Computer Vision">
+                            Computer Vision
+                        </a>
+                        
+                        <a class="tag" href="/tags/image-segmentation" title="Image Segmentation">
+                            Image Segmentation
+                        </a>
+                        
+                        <a class="tag" href="/tags/u-net" title="U-Net">
+                            U-Net
+                        </a>
+                        
+                    </div>
+                    <h1>U-Net</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                     &#34;Hao Xu&#34;
+                             
+                            on 
+                            Saturday, January 4, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="u-net复现">U-Net复现</h1>
+<p>本篇内容是通过PyTorch来复现U-Net.</p>
+<h1 id="模型总览">模型总览</h1>
+<p>
+  <img src="/img/2025-01-04-U-Net/Untitled.png" alt="Source U-Net">
+
+</p>
+<p>Source <a href="https://arxiv.org/abs/1505.04597">U-Net</a></p>
+<p>如上图（蓝色方块上方显示的是通道数，左下角显示的是数据的高宽）所示，U-Net 的模型结构符合我们前面说的 <strong>编码器/解码器结构 (Encoder/Decoder structure)</strong></p>
+<p>左边的 contracting path 就是编码器，从图片提取出特征；右边的 expansive path 就是解码器。</p>
+<h2 id="编码器结构">编码器结构</h2>
+<p>左边的编码器和典型的卷积网络结构相似，它由两个 <strong>3×3</strong> <strong>没有填充</strong>的<strong>卷积</strong>操作和 <strong>2×2</strong> <strong>步长为2</strong>的 <strong>max pooling</strong> 不断重复组成。并且每个卷积操作后面都有一个 <strong>ReLU</strong> 激活函数。</p>
+<p>由于 3×3 卷积操作没有进行 padding，所以每次卷积操作之后数据的<strong>宽高都会减少 (k-1)</strong>，k 是卷积核的大小。如图，最初是的输入数据的宽高为 572×572，经过一次 3×3 没有填充的卷积之后变成了 570×570 。</p>
+<p>在每次 max pooling 的下采样中，数据的<strong>通道数会翻倍</strong>，但是宽高变为 $\frac {i - k} {s} +1$ 。$i$ 表示输入形状，$k$ 是卷积核大小，$s$ 是步长。将 $k$ 与 $s$ 带入，可以知道，每次下采样数据的<strong>高宽都会减半</strong>。</p>
+<h2 id="解码器结构">解码器结构</h2>
+<p>右边的解码器与编码器相比有两点差异。</p>
+<p>其一，编码器中max pooling的下采样改成了<strong>步长为2</strong>的 <strong>2×2</strong> 的<strong>转置卷积</strong>来进行上采样。这里数据的<strong>通道数会减半</strong>，同时数据的宽高都会变为 $s(i-1)+k$ 。这里 $s$ 步长，$i$ 表示输入形状，$k$是卷积核大小。将 $k$ 与 $s$ 带入，可以得知，每次上采样数据的<strong>高宽都会翻倍</strong> 。</p>
+<p>其二，在每次上采样之后有一个名为 <strong>skip connection</strong> 的操作，即图中的 copy and crop 。即将左侧对应的特征图与上采样的输出进行 concatenation 。</p>
+<p><strong>注意：<strong>这里由于 padding、stride与 kernel size 的选择，每次卷积操作，边界像素都会有损失。所以左侧的特征图高宽是大于右侧对应特征图的，所以这里论文中对左侧特征图</strong>先进行了 crop</strong>，然后再与右侧特征图进行连接。而最后输出结果的形状远小于输入数据形状的原因也是因为卷积操作中边界像素的损失。</p>
+<p>[同时，你也可以考虑对解码器的特征图做线性插值或者padding操作后再进行concatenation 。或者在每次卷积操作中加入为1 的padding，即可使卷积操作不损失边界且左右编码器解码器对应的特征图高宽一致（但是由于四次下采样每次数据高宽都减半，所以使用这种方法需要确保模型输入数据高宽是 $2^4$ 的倍数）]</p>
+<h2 id="输入与输出">输入与输出</h2>
+<p>U-Net论文中的数据是单通道的灰度图，所以输入数据的通道数为1（如果是RGB图像即为3）输入后经过第一个卷积操作直接转换成了64通道的特征图，与后面的通道数翻倍增加不同。</p>
+<p>最后得到的输出会经过 1×1 的卷积操作将 64 通道的特征图映射成所需的类别数。</p>
+<h1 id="代码复现">代码复现</h1>
+<p>如图所示，U-Net主要由连续的两个 conv 3×3 + ReLu，copy and crop，max pool 下采样，up-conv 转置卷积上采样和conv 1×1组成。</p>
+<p>下面我们将分别实现连续的两个 conv 3×3 + ReLu，下采样和上采样。</p>
+<p>首先，我们导入必要的库</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn <span style="color:#ff79c6">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn.functional <span style="color:#ff79c6">as</span> F
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torchvision
+</span></span></code></pre></div><h2 id="conv-block">Conv Block</h2>
+<p>这里实现连续的两个 conv 3×3 + ReLu。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">conv_block</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, in_channels, out_channels, padding<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>conv <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Conv2d(in_channels, out_channels, kernel_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3</span>,stride<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>,padding<span style="color:#ff79c6">=</span>padding),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>BatchNorm2d(out_channels),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>ReLU(inplace<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Conv2d(out_channels, out_channels, kernel_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3</span>,stride<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>,padding<span style="color:#ff79c6">=</span>padding),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>BatchNorm2d(out_channels),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>ReLU(inplace<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>conv(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> x
+</span></span></code></pre></div><h2 id="downsample">DownSample</h2>
+<p>这里的下采样包括 max pool 下采样和连续的两个 conv 3×3 + ReLu 。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">DownSample</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, in_channels, out_channels, padding<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>maxpool_conv <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>MaxPool2d(kernel_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>, stride<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>),
+</span></span><span style="display:flex;"><span>            conv_block(in_channels, out_channels, padding<span style="color:#ff79c6">=</span>padding)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>maxpool_conv(x)
+</span></span></code></pre></div><h2 id="upsample">UpSample</h2>
+<p>这里的上采样包括转置卷积上采样，并与左侧对应编码器的特征图 concatenation 。之后进行连续的两个 conv 3×3 + ReLu 。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">UpSample</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, in_channels, out_channels, concat<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        concat=0 -&gt; do center crop
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        concat=1 -&gt; padding decoder feature map
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        concat=2 -&gt; padding=1 in conv_block
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>concat <span style="color:#ff79c6">=</span> concat
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>concat <span style="color:#ff79c6">not</span> <span style="color:#ff79c6">in</span> [<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>]:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">raise</span> Exception(<span style="color:#f1fa8c">&#39;concat not in list of [0, 1, 2]&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>concat <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">2</span>:
+</span></span><span style="display:flex;"><span>            padding <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>up <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>ConvTranspose2d(in_channels, in_channels <span style="color:#ff79c6">//</span> <span style="color:#bd93f9">2</span>, kernel_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>, stride<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>conv <span style="color:#ff79c6">=</span> conv_block(in_channels, out_channels, padding<span style="color:#ff79c6">=</span>padding)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, x, x_copy):
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>up(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>concat <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>:
+</span></span><span style="display:flex;"><span>            B, C, H, W <span style="color:#ff79c6">=</span> x<span style="color:#ff79c6">.</span>shape
+</span></span><span style="display:flex;"><span>            x_copy <span style="color:#ff79c6">=</span> torchvision<span style="color:#ff79c6">.</span>transforms<span style="color:#ff79c6">.</span>CenterCrop([H, W])(x_copy)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">elif</span> self<span style="color:#ff79c6">.</span>concat <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span>:
+</span></span><span style="display:flex;"><span>            diffY <span style="color:#ff79c6">=</span> x_copy<span style="color:#ff79c6">.</span>size()[<span style="color:#bd93f9">2</span>] <span style="color:#ff79c6">-</span> x<span style="color:#ff79c6">.</span>size()[<span style="color:#bd93f9">2</span>]
+</span></span><span style="display:flex;"><span>            diffX <span style="color:#ff79c6">=</span> x_copy<span style="color:#ff79c6">.</span>size()[<span style="color:#bd93f9">3</span>] <span style="color:#ff79c6">-</span> x<span style="color:#ff79c6">.</span>size()[<span style="color:#bd93f9">3</span>]
+</span></span><span style="display:flex;"><span>            x <span style="color:#ff79c6">=</span> F<span style="color:#ff79c6">.</span>pad(x, [
+</span></span><span style="display:flex;"><span>                diffX <span style="color:#ff79c6">//</span> <span style="color:#bd93f9">2</span>, diffX <span style="color:#ff79c6">-</span> diffX <span style="color:#ff79c6">//</span> <span style="color:#bd93f9">2</span>, 
+</span></span><span style="display:flex;"><span>                diffY <span style="color:#ff79c6">//</span> <span style="color:#bd93f9">2</span>, diffY <span style="color:#ff79c6">-</span> diffY <span style="color:#ff79c6">//</span> <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>                ])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>cat([x_copy, x], dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>conv(x)
+</span></span></code></pre></div><h2 id="u-net模型">U-Net模型</h2>
+<p>前面通过 PyTorch 构造了 U-Net 模型编码器与解码器的各个模块，现在只需要将其拼接在一起就可以组成 U-Net 模型了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">UNet</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, n_channels, n_classes, concat<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>n_channels <span style="color:#ff79c6">=</span> n_channels
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>n_classes <span style="color:#ff79c6">=</span> n_classes
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>concat <span style="color:#ff79c6">=</span> concat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> concat <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">2</span>:
+</span></span><span style="display:flex;"><span>            padding <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>            padding <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        expansion <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>        inplanes <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">64</span>
+</span></span><span style="display:flex;"><span>        chns <span style="color:#ff79c6">=</span> [inplanes, inplanes<span style="color:#ff79c6">*</span>expansion, inplanes<span style="color:#ff79c6">*</span>expansion<span style="color:#ff79c6">**</span><span style="color:#bd93f9">2</span>, inplanes<span style="color:#ff79c6">*</span>expansion<span style="color:#ff79c6">**</span><span style="color:#bd93f9">3</span>, inplanes<span style="color:#ff79c6">*</span>expansion<span style="color:#ff79c6">**</span><span style="color:#bd93f9">4</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>inc <span style="color:#ff79c6">=</span> conv_block(n_channels, chns[<span style="color:#bd93f9">0</span>], padding)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>down1 <span style="color:#ff79c6">=</span> DownSample(chns[<span style="color:#bd93f9">0</span>], chns[<span style="color:#bd93f9">1</span>], padding)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>down2 <span style="color:#ff79c6">=</span> DownSample(chns[<span style="color:#bd93f9">1</span>], chns[<span style="color:#bd93f9">2</span>], padding)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>down3 <span style="color:#ff79c6">=</span> DownSample(chns[<span style="color:#bd93f9">2</span>], chns[<span style="color:#bd93f9">3</span>], padding)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>down4 <span style="color:#ff79c6">=</span> DownSample(chns[<span style="color:#bd93f9">3</span>], chns[<span style="color:#bd93f9">4</span>], padding)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>up1 <span style="color:#ff79c6">=</span> UpSample(chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>], chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>], concat)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>up2 <span style="color:#ff79c6">=</span> UpSample(chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>], chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">3</span>], concat)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>up3 <span style="color:#ff79c6">=</span> UpSample(chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">3</span>], chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">4</span>], concat)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>up4 <span style="color:#ff79c6">=</span> UpSample(chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">4</span>], chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">5</span>], concat)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>outc <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Conv2d(chns[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">5</span>], n_classes, kernel_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        e1 <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>inc(x)
+</span></span><span style="display:flex;"><span>        e2 <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>down1(e1)
+</span></span><span style="display:flex;"><span>        e3 <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>down2(e2)
+</span></span><span style="display:flex;"><span>        e4 <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>down3(e3)
+</span></span><span style="display:flex;"><span>        e5 <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>down4(e4)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>up1(e5, e4)
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>up2(x, e3)
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>up3(x, e2)
+</span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>up4(x, e1)
+</span></span><span style="display:flex;"><span>        logits <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>outc(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> logits
+</span></span></code></pre></div><p>以上就是U-Net模型PyTorch的实现。</p>
+<h1 id="reference">Reference</h1>
+<ol>
+<li>Ronneberger, Olaf, Philipp Fischer, and Thomas Brox. &ldquo;U-net: Convolutional networks for biomedical image segmentation.&rdquo; <em>International Conference on Medical image computing and computer-assisted intervention</em>. Springer, Cham, 2015.APA</li>
+<li>Milesial. “U-Net: Semantic segmentation with PyTorch” <a href="https://github.com/milesial/Pytorch-UNet">https://github.com/milesial/Pytorch-UNet</a></li>
+</ol>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p> 「如果这篇文章对你有用,请随意打赏」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="http://localhost:1313/"><img src="/img/favicon.png" />Hao Xu Blog</a></span>
+        
+	        <p class="tip"><i></i><span>如果这篇文章对你有用,请随意打赏</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2025-01-04-image-segmentation-basic-methods/" data-toggle="tooltip" data-placement="top" title="Image Segmentation Basic Methods">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-04-u-net\/',
+        pageTitle: 'U-Net',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/computer-vision" title="computer vision">
+                            computer vision
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/deep-learning" title="deep learning">
+                            deep learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/image-segmentation" title="image segmentation">
+                            image segmentation
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/test" title="test">
+                            test
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:haoxu1010@outlook.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat_qrcode.jpg">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Xiao001010">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Hao Xu Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Hao Xu Blog 2025
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
