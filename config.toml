@@ -143,3 +143,15 @@ params = ["categories", "tags"]
     startLevel = 1
   [markup.highlight]
     style = "dracula"
+
+[params.giscus]
+data_repo="Xiao001010/Xiao001010.github.io"
+data_repo_id="R_kgDOM-aRvQ"
+data_category="Announcements"
+data_category_id="DIC_kwDOM-aRvc4ClvEj"
+data_mapping="pathname"
+data_reactions_enabled="1"
+data_emit_metadata="0"
+data_theme="light"
+data_lang="zh-CN"
+crossorigin="anonymous"

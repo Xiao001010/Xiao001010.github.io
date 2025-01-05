@@ -13,7 +13,7 @@
       <link>http://localhost:1313/post/2025-01-05-neovim-tips/</link>
       <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
       <guid>http://localhost:1313/post/2025-01-05-neovim-tips/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.lazyvim.org/keymaps&#34;&gt;https://www.lazyvim.org/keymaps&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Leader Key: &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;&#xA;&lt;p&gt;全部退出nvim：&lt;!-- raw HTML omitted --&gt;qq&lt;/p&gt;&#xA;&lt;h1 id=&#34;普通模式&#34;&gt;普通模式&lt;/h1&gt;&#xA;&lt;p&gt;重复上一步命令：.&lt;/p&gt;&#xA;&lt;h2 id=&#34;光标移动&#34;&gt;光标移动&lt;/h2&gt;&#xA;&lt;p&gt;显示行号：:set number&#xA;普通模式左下上右移动：h、j(jump)、k(climb)、l(left)&#xA;向左下上右移动5个单位：5h、5j、5k、5l&lt;/p&gt;</description>
+      <description>&lt;p&gt;Leader Key: &amp;lt;space&amp;gt;&lt;/p&gt;&#xA;&lt;p&gt;全部退出nvim：&amp;lt;leader&amp;gt;qq&lt;/p&gt;&#xA;&lt;h1 id=&#34;普通模式&#34;&gt;普通模式&lt;/h1&gt;&#xA;&lt;p&gt;重复上一步命令：.&lt;/p&gt;&#xA;&lt;h2 id=&#34;光标移动&#34;&gt;光标移动&lt;/h2&gt;&#xA;&lt;p&gt;显示行号：:set number&lt;/p&gt;&#xA;&lt;p&gt;普通模式左下上右移动：h、j(jump)、k(climb)、l(left)&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
