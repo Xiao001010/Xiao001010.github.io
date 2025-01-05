@@ -261,7 +261,7 @@
 <p>其一，编码器中max pooling的下采样改成了<strong>步长为2</strong>的 <strong>2×2</strong> 的<strong>转置卷积</strong>来进行上采样。这里数据的<strong>通道数会减半</strong>，同时数据的宽高都会变为 $s(i-1)+k$ 。这里 $s$ 步长，$i$ 表示输入形状，$k$是卷积核大小。将 $k$ 与 $s$ 带入，可以得知，每次上采样数据的<strong>高宽都会翻倍</strong> 。</p>
 <p>其二，在每次上采样之后有一个名为 <strong>skip connection</strong> 的操作，即图中的 copy and crop 。即将左侧对应的特征图与上采样的输出进行 concatenation 。</p>
 <p><strong>注意：<strong>这里由于 padding、stride与 kernel size 的选择，每次卷积操作，边界像素都会有损失。所以左侧的特征图高宽是大于右侧对应特征图的，所以这里论文中对左侧特征图</strong>先进行了 crop</strong>，然后再与右侧特征图进行连接。而最后输出结果的形状远小于输入数据形状的原因也是因为卷积操作中边界像素的损失。</p>
-<p>[同时，你也可以考虑对解码器的特征图做线性插值或者padding操作后再进行concatenation 。或者在每次卷积操作中加入为1 的padding，即可使卷积操作不损失边界且左右编码器解码器对应的特征图高宽一致（但是由于四次下采样每次数据高宽都减半，所以使用这种方法需要确保模型输入数据高宽是 $2^4$ 的倍数）]</p>
+<p>[同时，也可以考虑对解码器的特征图做线性插值或者padding操作后再进行concatenation 。或者在每次卷积操作中加入为1 的padding，即可使卷积操作不损失边界且左右编码器解码器对应的特征图高宽一致（但是由于四次下采样每次数据高宽都减半，所以使用这种方法需要确保模型输入数据高宽是 $2^4$ 的倍数）]</p>
 <h2 id="输入与输出">输入与输出</h2>
 <p>U-Net论文中的数据是单通道的灰度图，所以输入数据的通道数为1（如果是RGB图像即为3）输入后经过第一个卷积操作直接转换成了64通道的特征图，与后面的通道数翻倍增加不同。</p>
 <p>最后得到的输出会经过 1×1 的卷积操作将 64 通道的特征图映射成所需的类别数。</p>
@@ -339,7 +339,7 @@
 </span></span><span style="display:flex;"><span>        x <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>cat([x_copy, x], dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>conv(x)
 </span></span></code></pre></div><h2 id="u-net模型">U-Net模型</h2>
-<p>前面通过 PyTorch 构造了 U-Net 模型编码器与解码器的各个模块，现在只需要将其拼接在一起就可以组成 U-Net 模型了。</p>
+<p>前面通过 PyTorch 构造了 U-Net 模型编码器与解码器的各个模块，只需要将其拼接在一起就可以组成 U-Net 模型了。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">UNet</span>(nn<span style="color:#ff79c6">.</span>Module):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, n_channels, n_classes, concat<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>):
 </span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
@@ -442,6 +442,11 @@
                     </li>
                     
                     
+                    <li class="next">
+                        <a href="/post/2025-01-05-neovim-tips/" data-toggle="tooltip" data-placement="top" title="Neovim Tips">Next
+                            Post &rarr;</a>
+                    </li>
+                    
                 </ul>
                 
 
@@ -507,9 +512,13 @@
                         
                         
                         
+                        
+                        
                         <a href="/tags/computer-vision" title="computer vision">
                             computer vision
                         </a>
+                        
+                        
                         
                         
                         
@@ -527,6 +536,10 @@
                         
                         
                         
+                        
+                        
+                        
+                        
                         <a href="/tags/test" title="test">
                             test
                         </a>
@@ -534,6 +547,12 @@
                         
                         
                         
+                        
+                        
+                        
+                        <a href="/tags/vim" title="vim">
+                            vim
+                        </a>
                         
                         
                         

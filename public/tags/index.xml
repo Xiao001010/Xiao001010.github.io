@@ -6,8 +6,22 @@
     <description>Recent content in Tags on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Jan 2025 21:59:30 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jan 2025 10:46:42 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tag1</title>
+      <link>http://localhost:1313/tags/tag1/</link>
+      <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
+      <guid>http://localhost:1313/tags/tag1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tag2</title>
+      <link>http://localhost:1313/tags/tag2/</link>
+      <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
+      <guid>http://localhost:1313/tags/tag2/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI</title>
       <link>http://localhost:1313/tags/ai/</link>

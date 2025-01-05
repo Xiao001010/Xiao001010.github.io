@@ -202,6 +202,18 @@
                             Image Segmentation
                         </a>
                         
+                        <a class="tag" href="/tags/cnn" title="CNN">
+                            CNN
+                        </a>
+                        
+                        <a class="tag" href="/tags/convolution-matrix" title="Convolution Matrix">
+                            Convolution Matrix
+                        </a>
+                        
+                        <a class="tag" href="/tags/transposed-convolution" title="Transposed Convolution">
+                            Transposed Convolution
+                        </a>
+                        
                     </div>
                     <h1>Image Segmentation Basic Methods</h1>
                     <h2 class="subheading"></h2>
@@ -242,32 +254,32 @@
 <h1 id="输入输出">输入输出</h1>
 <p>下面讲解一下模型的输入与输出的形式。尤其是输出。</p>
 <p><strong>输入 (Input)</strong>：RGB图像 (height, width, 3) 或者灰度图 (height, width, 1) 。第三个维度是通道数，RGB图像有三个通道，而灰度图只有一个通道。在第一维再加一个batch size 就是 RGB 图像 (batch_size, height, width, 3) / 灰度图 (batch_size, height, width, 1)</p>
-<p><strong>输出 (Output)</strong> ：和我们处理分类任务的时候类似，我们通过为每个可能的类别创建一个输出通道，并one-hot来编码类别标签，来表示target。如下图所示。</p>
+<p><strong>输出 (Output)</strong> ：和处理分类任务的时候类似，通过为每个可能的类别创建一个输出通道，并one-hot来编码类别标签，来表示target。如下图所示。</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled.png" alt="Source An overview of semantic image segmentation.">
 
 </p>
 <p>Source <a href="https://www.jeremyjordan.me/semantic-segmentation/">An overview of semantic image segmentation.</a></p>
 <p>通过采用每个深度方向像素向量的 $argmax$，可以将预测折叠到一张分割图中（如下图所示）</p>
-<p>注意：对于视觉清晰度，我标记了一个低分辨率预测图。 实际上，分段标签分辨率应匹配原始输入的分辨率。</p>
+<p>注意：对于视觉清晰度，这里标记了一个低分辨率预测图。 实际上，分段标签分辨率应匹配原始输入的分辨率。</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%201.png" alt="Source An overview of semantic image segmentation.">
 
 </p>
 <p>Source <a href="https://www.jeremyjordan.me/semantic-segmentation/">An overview of semantic image segmentation.</a></p>
-<p>我们可以很容易地检查一个目标，把它覆盖到观察。</p>
+<p>可以很容易地检查一个目标，把它覆盖到观察。</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%202.png" alt="Source An overview of semantic image segmentation.">
 
 </p>
 <p>Source <a href="https://www.jeremyjordan.me/semantic-segmentation/">An overview of semantic image segmentation.</a></p>
-<p>当我们覆盖我们的target（或预测）的单个频道时，我们将此称为 mask，该 mask 照亮存在特定类的图像的区域。</p>
-<p>当我们不做 $argmax$ 直接输出target的时候，输出的形状应该是 (batch_size, num_class, height, width)，每张图片的每个通道的里是非0即1的one-hot向量 。</p>
-<p>而当我们对target进行 $argmax$ 后，输出的形状应该是跟输入同一形状 (batch_size, height, width)。</p>
+<p>当覆盖target（或预测）的单个通道时，将此称为 mask，该 mask 照亮存在特定类的图像的区域。</p>
+<p>当不做 $argmax$ 直接输出target的时候，输出的形状应该是 (batch_size, num_class, height, width)，每张图片的每个通道的里是非0即1的one-hot向量 。</p>
+<p>而当对target进行 $argmax$ 后，输出的形状应该是跟输入同一形状 (batch_size, height, width)。</p>
 <h1 id="模型结构">模型结构</h1>
-<p>这一节我们来简要地了解一下用于图像分割的最经典的深度学习模型结构：<strong>编码器/解码器结构 (Encoder/Decoder structure)</strong></p>
+<p>这一节将简要地介绍用于图像分割的最经典的深度学习模型结构：<strong>编码器/解码器结构 (Encoder/Decoder structure)</strong></p>
 <h2 id="全连接到11卷积">全连接到1×1卷积</h2>
-<p>回想一下在分类任务当中的CNN网络都是几个卷积层和池化层组成，最后是几个全连接层。然而一张图片经全连接层之后的输出是个一维的向量。这对分类任务中，我们只需要知道图片的内容，而不关心其位置十分适用。如果想得到上面我我们想要的二维的输出，那么我们就不能采用全连接层。在2014年发表的 Fully Convolutional Network 的论文认为，最终的全连接层可以被认为是做一个覆盖整个区域的1x1卷积。即如下图所示。</p>
+<p>回想一下在分类任务当中的CNN网络都是几个卷积层和池化层组成，最后是几个全连接层。然而一张图片经全连接层之后的输出是个一维的向量。这对分类任务中，只需要知道图片的内容，而不关心其位置十分适用。如果想得到上面的二维的输出，那么就不能采用全连接层。在2014年发表的 Fully Convolutional Network 的论文认为，最终的全连接层可以被认为是做一个覆盖整个区域的1x1卷积。即如下图所示。</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/Transforming_fully_connected_layers_into_convolution_layers_enables_a_classification_net_to_output_a_heatmap.png" alt="Source Fully Convolutional Networks for Semantic Segmentation">
 
@@ -276,15 +288,15 @@
 <p>这里使用1×1的卷积替代全连接层还有一个好处：那就是输入的图片形状不在固定了。由于全连接层的输入必须固定形状的，所以输入模型的图片一般都要先resize到固定的shape，而使用1×1卷积代替全连接层之后变不在存在这一问题。在推理的时候，不需要再对图片进行resize，从而最好可能会导致输出的图片的失真。</p>
 <p>这么一个不断加深网络并不断增加通道数来提取浅层信息和深层特征的过程就是<strong>编码器 (Encoder)</strong>。</p>
 <h2 id="上采样">上采样</h2>
-<p>很明显上方编码器的输出与我们想要的输出还是存在一定的差距。我们想要的一个与原输入同尺寸的输出。如果我们直接用双线性插值来进行上采样，讲encoder的输出直接resize到原图的大小，这可能会有一定的效果，但一定不是最理想的。</p>
+<p>很明显上方编码器的输出与想要的输出还是存在一定的差距。想要的是一个与原输入同尺寸的输出。如果直接用双线性插值来进行上采样，将encoder的输出直接resize到原图的大小，这可能会有一定的效果，但一定不是最理想的。</p>
 <p>那么还有一张方法，每层我们设置一定数量的padding，只是用卷积层，取消所有池化层。这样堆叠多个卷积层最后得到的输出变能够跟原图保持同尺寸，输出对应像素点的类别了。就如下图所示一样。</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/stack_a_number_of_convolutional_layers.png" alt="Source CS231n: Deep Learning for Computer Vision(2017) Lecture 11">
 
 </p>
 <p>Source <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf">CS231n: Deep Learning for Computer Vision(2017) Lecture 11</a></p>
-<p>然而，我们知道，要想抽取出深层的特征，那么这个网络就需要足够的深，通道数足够多。而由于所有的层都保留了原尺寸，所以他的计算量是极其巨大的。所以这种方法也没有被广泛使用。</p>
-<p>最终我们还是采用了先通过编码器将图像的特征映射到高维空间，这之后再通过解码器上采样，将特征恢复到图片的原尺寸。我们将上采样的这一部分网络叫做<strong>解码器 (Decoder)</strong> 。</p>
+<p>然而，要想抽取出深层的特征，那么这个网络就需要足够的深，通道数足够多。而由于所有的层都保留了原尺寸，所以他的计算量是极其巨大的。所以这种方法也没有被广泛使用。</p>
+<p>最终还是采用了先通过编码器将图像的特征映射到高维空间，这之后再通过解码器上采样，将特征恢复到图片的原尺寸。上采样的这一部分网络叫做<strong>解码器 (Decoder)</strong> 。</p>
 <p>而上采样主要采用的是一种可以学习参数的<strong>转置卷积 (Transposed Convolution) /反卷积 (Deconvolution)</strong> 的非线性上采样。</p>
 <p>所以整个模型结构可以理解为是一个先下采样再上采样的过程，如下图所示。</p>
 <p>
@@ -293,11 +305,11 @@
 </p>
 <p>Source <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf">CS231n: Deep Learning for Computer Vision(2017) Lecture 11</a></p>
 <h1 id="几种上采样-upsample方法">几种上采样 (upsample)方法</h1>
-<p>上采样的几种方法的名字很容易混淆，下面让我们来一一滤清。</p>
+<p>上采样的几种方法的名字很容易混淆，下面将一一捋清。</p>
 <p>上采样 (upsample) 主要有三种方法：<strong>转置卷积 (Transpose Convolution)</strong>、<strong>上采样 (unsampling)</strong> 和 <strong>反池化 (unpooling)</strong>。讲到这里有两个地方需要提前解释清楚。</p>
 <ol>
 <li>上采样 (upsample) 是这些方法的总称，而上采样 (unsampling) 是一种具体的方法。主要一个是 ”up”，一个是 ”un”，所以这样要将英文给写出来。</li>
-<li>这里的的转置卷积 (Transpose Convolution) 还有很多名称：反卷积 (Deconvolution)、逆卷积 (Inverse Convolution)、Upconvolution、Fractionally strided convolution、Backward strided convolution。最常用的是转置卷积和反卷积这两个名称。这里我们主要使用转置卷积这个名称。</li>
+<li>这里的的转置卷积 (Transpose Convolution) 还有很多名称：反卷积 (Deconvolution)、逆卷积 (Inverse Convolution)、Upconvolution、Fractionally strided convolution、Backward strided convolution。最常用的是转置卷积和反卷积这两个名称。这里主要使用转置卷积这个名称。</li>
 </ol>
 <p>这一节将简单介绍三种方法的区别，然后主要讲解转置卷积的原理，和输出形状的计算公式。</p>
 <h2 id="三种方法对比">三种方法对比</h2>
@@ -310,7 +322,7 @@
 <p>再对比图 (b)，反池化和上采样很明显的差别就是没有Pooling Indices这个输入，而是直接将输入特征扩充到feature map中</p>
 <p>图 (c) 是转置卷积，通过有参数的卷积核将输入特征映射到feature上，重复的地方会进行叠加。</p>
 <h1 id="转置卷积原理">转置卷积原理</h1>
-<p>在这之前我们要先引入卷积矩阵 (Convolution Matrix) 这一概念。</p>
+<p>在这之前要先引入卷积矩阵 (Convolution Matrix) 这一概念。</p>
 <h2 id="卷积矩阵">卷积矩阵</h2>
 <p>首先让我们来回顾一下卷积的操作过程。</p>
 <p>给定输入$i=
@@ -355,8 +367,8 @@ w_{11}x_{21}+w_{12}x_{22}+w_{13}x_{23}\hphantom{00000} &amp; w_{11}x_{22}+w_{12}
 +w_{31}x_{41}+w_{32}x_{42}+w_{33}x_{43}, \hphantom{00000} &amp; +w_{31}x_{42}+w_{32}x_{43}+w_{33}x_{44} \newline
 \end{bmatrix}
 $$</p>
-<p>那么卷积矩阵是什么呢？我们用另一种方式来表示卷积操作：</p>
-<p>我们将$3 \times 3$ 的卷积核的卷积运算表示成一个$4 \times 16$的矩阵，如下图所示。</p>
+<p>那么卷积矩阵是什么呢？用另一种方式来表示卷积操作：</p>
+<p>将$3 \times 3$ 的卷积核的卷积运算表示成一个$4 \times 16$的矩阵，如下图所示。</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%205.png" alt="Source XuHao">
 
@@ -374,7 +386,7 @@ $$</p>
 </p>
 <p>Source XuHao</p>
 <p>就是由第一次卷积操作时卷积核在输入中的映射拉直而来的。可以看到，没有进行卷积计算的位置被补了零。</p>
-<p>而后我们再将输入拉直成一个列向量，如下图所示，这样通过卷积矩阵$C$与输入向量$I$进行矩阵乘法，就能得到最后的输出$O$了。即$O=C I$</p>
+<p>而后再将输入拉直成一个列向量，如下图所示，这样通过卷积矩阵$C$与输入向量$I$进行矩阵乘法，就能得到最后的输出$O$了。即$O=C I$</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%208.png" alt="Source XuHao">
 
@@ -436,7 +448,7 @@ $$</p>
 <h3 id="zero-padding-unit-strides-transposed">Zero padding, unit strides, transposed</h3>
 <p>前面是最简单的卷积操作没有填充的。那么我们卷积操作再加上padding会是什么样呢？</p>
 <p>如下图，$i = 5, k = 4, s = 1, p = 2$ ，而 $i&rsquo; = 6, k&rsquo; = k = 4, s&rsquo; = s = 1, p&rsquo; = 1$</p>
-<p>这里可以看到，为了让转置卷积的输出与卷积操作的输入形状相同，所以这里我们转置卷积时的padding 减小了。</p>
+<p>这里可以看到，为了让转置卷积的输出与卷积操作的输入形状相同，所以这里转置卷积时的padding 减小了。</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/arbitrary_padding_no_strides.gif" alt="Padding, unit strides. Source Convolution arithmetic">
 
@@ -483,8 +495,8 @@ $$</p>
 o&rsquo; = s(i&rsquo;-1)+k
 $$</p>
 <h3 id="zero-padding-non-unit-strides-transposed">Zero padding, non-unit strides, transposed</h3>
-<p>最后我们来考虑最复杂的情况：卷积输入即使用了 padding，stride 也不是单位步长。</p>
-<p>这样我们就能过得到一个对各种情况较为普适的公式。</p>
+<p>最后再考虑最复杂的情况：卷积输入即使用了 padding，stride 也不是单位步长。</p>
+<p>这样就能过得到一个对各种情况较为普适的公式。</p>
 <p>如下图，$i = 5, k = 3, s = 2, p = 1$ ，而 $i&rsquo; = 3, k&rsquo; = k = 3, s&rsquo; = 1, p&rsquo; = 1, \widetilde{i} = 1$ 。</p>
 <p>
   <img src="/img/2025-01-04-image-segmentation-basic-methods/padding_strides.gif" alt="Padding, strides. Source Convolution arithmetic">
@@ -645,9 +657,13 @@ $$</p>
                         
                         
                         
+                        
+                        
                         <a href="/tags/computer-vision" title="computer vision">
                             computer vision
                         </a>
+                        
+                        
                         
                         
                         
@@ -665,6 +681,10 @@ $$</p>
                         
                         
                         
+                        
+                        
+                        
+                        
                         <a href="/tags/test" title="test">
                             test
                         </a>
@@ -672,6 +692,12 @@ $$</p>
                         
                         
                         
+                        
+                        
+                        
+                        <a href="/tags/vim" title="vim">
+                            vim
+                        </a>
                         
                         
                         
