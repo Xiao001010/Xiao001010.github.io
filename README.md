@@ -1,5 +1,8 @@
 # xiao001010.github.io
 
 # Things to do:
-- Add Analytics
+- Add Baidu Analytics
+- Test Mindmap
+- Test Embedded Video
+- Test Plantuml
 - Add more content
