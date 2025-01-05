@@ -97,6 +97,10 @@
   </url><url>
     <loc>http://localhost:1313/notes/</loc>
   </url><url>
+    <loc>http://localhost:1313/search/placeholder/</loc>
+  </url><url>
     <loc>http://localhost:1313/archive/</loc>
+  </url><url>
+    <loc>http://localhost:1313/search/</loc>
   </url>
 </urlset>
