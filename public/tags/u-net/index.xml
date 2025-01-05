@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>U-Net on Hao Xu Blog</title>
-    <link>http://localhost:1313/tags/u-net/</link>
+    <link>https://xiao00101010.github.io/tags/u-net/</link>
     <description>Recent content in U-Net on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 04 Jan 2025 21:59:30 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/u-net/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://xiao00101010.github.io/tags/u-net/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>U-Net</title>
-      <link>http://localhost:1313/post/2025-01-04-u-net/</link>
+      <link>https://xiao00101010.github.io/post/2025-01-04-u-net/</link>
       <pubDate>Sat, 04 Jan 2025 21:59:30 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025-01-04-u-net/</guid>
-      <description>&lt;h1 id=&#34;u-net复现&#34;&gt;U-Net复现&lt;/h1&gt;&#xA;&lt;p&gt;本篇内容是通过PyTorch来复现U-Net.&lt;/p&gt;&#xA;&lt;h1 id=&#34;模型总览&#34;&gt;模型总览&lt;/h1&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/2025-01-04-U-Net/Untitled.png&#34; alt=&#34;Source U-Net&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;Source &lt;a href=&#34;https://arxiv.org/abs/1505.04597&#34;&gt;U-Net&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;如上图（蓝色方块上方显示的是通道数，左下角显示的是数据的高宽）所示，U-Net 的模型结构符合我们前面说的 &lt;strong&gt;编码器/解码器结构 (Encoder/Decoder structure)&lt;/strong&gt;&lt;/p&gt;</description>
+      <guid>https://xiao00101010.github.io/post/2025-01-04-u-net/</guid>
+      <description>&lt;h1 id=&#34;u-net复现&#34;&gt;U-Net复现&lt;/h1&gt;&#xA;&lt;p&gt;本篇内容是通过PyTorch来复现U-Net.&lt;/p&gt;&#xA;&lt;h1 id=&#34;模型总览&#34;&gt;模型总览&lt;/h1&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://xiao00101010.github.io/img/2025-01-04-U-Net/Untitled.png&#34; alt=&#34;Source U-Net&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;Source &lt;a href=&#34;https://arxiv.org/abs/1505.04597&#34;&gt;U-Net&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;如上图（蓝色方块上方显示的是通道数，左下角显示的是数据的高宽）所示，U-Net 的模型结构符合我们前面说的 &lt;strong&gt;编码器/解码器结构 (Encoder/Decoder structure)&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
