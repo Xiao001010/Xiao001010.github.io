@@ -75,7 +75,15 @@ Reception的震惊
 ![Calton Hill](/img/2025-01-06-1st-semester-Ed/way-to-calton.jpg)
 在去卡尔顿山的路上，我的两个朋友笑的很开心。翻照片的时候才发现这张很好玩的照片，希望他们看不到，哈哈哈哈哈。
 
-后面应该还会放一些白天时候在卡尔顿山拍的照片，但是我现在还没找到。
+后面是一些白天时候在卡尔顿山拍的照片。
+
+{{< vimeo 1044454607 >}}
+
+之后我朋友去了好几次卡尔顿山终于才看到了极光。
+
+![Aurora](/img/2025-01-06-1st-semester-Ed/aurora.jpg)
+
+![Aurora](/img/2025-01-06-1st-semester-Ed/aurora2.jpg)
 
 ## Arthur's Seat
 
@@ -98,6 +106,14 @@ Reception的震惊
 
 ![Timetable](/img/2025-01-06-1st-semester-Ed/timetable.jpg)
 Timetable
+
+还有很值得吐槽的就是领学生卡了，真的排队排的很长。基本上需要一个多小时，在风中站的真的很冷。排到最后，有可能学生卡还没打印，还要再排队。
+
+![Queue](/img/2025-01-06-1st-semester-Ed/student-card-queue.jpg)
+领学生卡的队伍，拍的不是很清楚
+
+![Student Card](/img/2025-01-06-1st-semester-Ed/student-card.jpg)
+终于领到了我的学生卡
 
 # Ludovic
 
