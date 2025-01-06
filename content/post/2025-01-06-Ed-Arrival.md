@@ -1,5 +1,5 @@
 ---
-title:       "Edinburgh Arrival"
+title:       "First Semester in Edinburgh"
 subtitle:    ""
 description: "A brief introduction to my first semester in Edinburgh"
 date:        "2025-01-06T14:25:59Z"
@@ -30,16 +30,16 @@ draft:       false
 
 相关图片如下：
 
-![暖气](/img/2025-01-06-Ed-Arrival/heater.jpg)
+![Heater](/img/2025-01-06-Ed-Arrival/heater.jpg)
 控温暖气
 
-![灶台](/img/2025-01-06-Ed-Arrival/hob.jpg)
+![Hob](/img/2025-01-06-Ed-Arrival/hob.jpg)
 控温灶台
 
-![老鼠的牢笼](/img/2025-01-06-Ed-Arrival/mouse.jpg)
+![Rat box](/img/2025-01-06-Ed-Arrival/mouse.jpg)
 老鼠的牢笼
 
-![Reception的震惊](/img/2025-01-06-Ed-Arrival/mouse-chat.jpg)
+![Shocked Reception](/img/2025-01-06-Ed-Arrival/mouse-chat.jpg)
 Reception的震惊
 
 **记住！我的垃圾宿舍叫做United Student - The Bridge House**
@@ -52,27 +52,53 @@ Reception的震惊
 
 但是总体来说，爱丁堡还是一个很美的城市。除了他的交通和温度，其他都还不错的。下面放几张爱丁堡城市随手拍的几张照片，有的地方我也不知道是哪里。
 
-![城市](/img/2025-01-06-Ed-Arrival/city.jpg)
+![City](/img/2025-01-06-Ed-Arrival/city.jpg)
 
-![城市](/img/2025-01-06-Ed-Arrival/city2.jpg)
+![City](/img/2025-01-06-Ed-Arrival/city2.jpg)
 
-![王子街临近圣诞节时会有的娱乐设施](/img/2025-01-06-Ed-Arrival/city3.jpg)
-王子街临近圣诞节时会有的娱乐设施，挺好玩的，但是上面很冷，风很大。有点像受刑，哈哈哈哈哈。
+![Swing](/img/2025-01-06-Ed-Arrival/city3.jpg)
+王子街临近圣诞节时会有的Swing，挺好玩的，但是上面很冷，风很大。有点像受刑，哈哈哈哈哈。
 
-![城堡](/img/2025-01-06-Ed-Arrival/castle.jpg)
+## Edinburgh Castle
+
+![Castle](/img/2025-01-06-Ed-Arrival/castle.jpg)
 听说考试前去城堡可能会挂科，所以我没去。只敢在外面拍一下。但是没去我可能也要挂科了，哈哈哈哈哈。
 
-![卡尔顿山](/img/2025-01-06-Ed-Arrival/calton-hill-entrance.jpg)
+## Calton Hill
+
+![Calton Hill](/img/2025-01-06-Ed-Arrival/calton-hill-entrance.jpg)
 刚开学的时候，听说那天有极光，我就去了卡尔顿山，结果没看到极光，但是看到了很美的夜景。不过有点冷，哈哈哈哈哈。这张照片是卡尔顿山的入口。
 
-![卡尔顿山](/img/2025-01-06-Ed-Arrival/calton-hill-nightview.jpg)
+![Calton Hill](/img/2025-01-06-Ed-Arrival/calton-hill-nightview.jpg)
 卡尔顿山的夜景
 
-![卡尔顿山](/img/2025-01-06-Ed-Arrival/way-to-calton.jpg)
+![Calton Hill](/img/2025-01-06-Ed-Arrival/way-to-calton.jpg)
 在去卡尔顿山的路上，我的两个朋友笑的很开心。翻照片的时候才发现这张很好玩的照片，希望他们看不到，哈哈哈哈哈。
 
 后面应该还会放一些白天时候在卡尔顿山拍的照片，但是我现在还没找到。
 
-# Snow
+## Arthur's Seat
+
+![Arthur's Seat](/img/2025-01-06-Ed-Arrival/arthurs-seat.jpg)
+
+![Arthur's Seat](/img/2025-01-06-Ed-Arrival/arthurs-seat2.jpg)
+
+# Study Experience
+
+我的专业是High-Performance Computing with Data Science，下面会有我的选课和课表。总体来说，这个专业我还是很喜欢很感兴趣的，除了个别课程体验感较差。
+
+必须要说的是，Practical Software Development 这门课巨垃圾，给分巨低，均分大概也就是45分的样子，一般人都及格不了。文档决定了大部分的分数，此外还要看命，看随机分配的小组组员靠不靠谱。强烈建议以前本科修过软件开发相关课程的人，申请豁免这门课。真的巨垃圾，谁上谁自闭。
+
+还有一门Fundamentals of Data Management，大部分内容感觉还是很有用的，就是内容有点杂，考试前有花些时间多背一背。
+
+另一门叫HPC Architecture，内容也很多，涉及大量计算机组成方面的知识，没有这方面基础的，最好提前补一下，不然上课会有点吃力。考试也有点难，而且占90%。
+
+![Course](/img/2025-01-06-Ed-Arrival/course.jpg)
+选课
+
+![Timetable](/img/2025-01-06-Ed-Arrival/timetable.jpg)
+Timetable
 
 # Ludovic
+
+# Snow
