@@ -4,7 +4,7 @@ subtitle:    ""
 description: "A brief introduction to my first semester in Edinburgh"
 date:        "2025-01-06T14:25:59Z"
 author:      "Hao Xu"
-image:       ""
+image:       "/img/2025-01-06-1st-semester-Ed/castle.jpg"
 tags:        ["Edinburgh", "Accommandation", "snow"]
 categories:  ["Life" ]
 draft:       false
@@ -98,6 +98,8 @@ Reception的震惊
 ![Arthur's Seat](/img/2025-01-06-1st-semester-Ed/arthurs-seat.jpg)
 
 ![Arthur's Seat](/img/2025-01-06-1st-semester-Ed/arthurs-seat2.jpg)
+
+![Arthur's Seat](/img/2025-01-06-1st-semester-Ed/arthurs-seat3.jpg)
 
 # Study Experience
 
