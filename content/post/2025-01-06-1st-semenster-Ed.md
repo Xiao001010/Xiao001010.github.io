@@ -75,15 +75,23 @@ Reception的震惊
 ![Calton Hill](/img/2025-01-06-1st-semester-Ed/way-to-calton.jpg)
 在去卡尔顿山的路上，我的两个朋友笑的很开心。翻照片的时候才发现这张很好玩的照片，希望他们看不到，哈哈哈哈哈。
 
-后面是一些白天时候在卡尔顿山拍的照片。
-
 {{< vimeo 1044454607 >}}
+
+这是朋友航拍的视频，真的非常好看。来自我的专业御用摄影师：杨子逸。
 
 之后我朋友去了好几次卡尔顿山终于才看到了极光。
 
 ![Aurora](/img/2025-01-06-1st-semester-Ed/aurora.jpg)
 
 ![Aurora](/img/2025-01-06-1st-semester-Ed/aurora2.jpg)
+
+下面是别人在爱丁堡别的地方拍的极光。
+
+![Aurora](/img/2025-01-06-1st-semester-Ed/aurora3.jpg)
+
+![Aurora](/img/2025-01-06-1st-semester-Ed/aurora4.jpg)
+
+![Aurora](/img/2025-01-06-1st-semester-Ed/aurora5.jpg)
 
 ## Arthur's Seat
 
@@ -94,6 +102,8 @@ Reception的震惊
 # Study Experience
 
 我的专业是High-Performance Computing with Data Science，下面会有我的选课和课表。总体来说，这个专业我还是很喜欢很感兴趣的，除了个别课程体验感较差。
+
+总体来说，整个项目还是比较忙碌的。上课一定要做足准备，认真听课。作业一定要早点开始，千万千万千万不能拖延。
 
 必须要说的是，Practical Software Development 这门课巨垃圾，给分巨低，均分大概也就是45分的样子，一般人都及格不了。文档决定了大部分的分数，此外还要看命，看随机分配的小组组员靠不靠谱。强烈建议以前本科修过软件开发相关课程的人，申请豁免这门课。真的巨垃圾，谁上谁自闭。
 
@@ -115,6 +125,73 @@ Timetable
 ![Student Card](/img/2025-01-06-1st-semester-Ed/student-card.jpg)
 终于领到了我的学生卡
 
-# Ludovic
+**虽然前面对于爱丁堡的评价过于片面，但是这个城市还是很美的。**
+
+## Old College
+
+刚到学校的时候，和几个新同学碰面，一起去了old college。
+
+![Old College Entrance](/img/2025-01-06-1st-semester-Ed/old-college-entrance.jpg)
+Old College的入口，很多人都喜欢在这里拍照。
+
+![Old College](/img/2025-01-06-1st-semester-Ed/old-college.jpg)
+![Old College](/img/2025-01-06-1st-semester-Ed/old-college2.jpg)
+
+Old College的内部，很有历史感。
+
+## Scottish Museum
+
+刚开学不是很忙，还跟朋友去了趟苏格兰博物馆。逛的比较潦草，下次还要再去仔细看看。
+
+![Museum](/img/2025-01-06-1st-semester-Ed/scot-museum.jpg)
 
 # Snow
+
+爱丁堡初雪的时候，朋友拍的照片真的非常漂亮，这些照片来自朋友圈，那时候忙着赶coursework，没有出门，哈哈哈哈哈。
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow2.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow3.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow4.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow5.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow6.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow7.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow8.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow9.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow10.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow11.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow12.jpg)
+
+# Ludovic
+
+最后的一点内容想用来记录我遇到的一位特别好的老师：Ludovic Capelli。
+
+他是我第一学期的PLHPC的老师，他的课程内容很有趣，他的讲课方式也很有趣。他会给我们很多各种课程的建议，非常关心我们的学习和生活。甚至会花时间记住每个人的名字与名字发音的音调，认识每一个学生。
+
+![welcome](/img/2025-01-06-1st-semester-Ed/welcome-ludovic.jpg)
+
+Welcome Week的时候，Ludovic给我们介绍用Raspberry Pi做的小服务器，非常有趣。
+
+![ludovic](/img/2025-01-06-1st-semester-Ed/11.jpg)
+上街学生毕业典礼的时候，Ludovic穿着学术服在EPCC和大家合照。
+
+![goodbye](/img/2025-01-06-1st-semester-Ed/goodbye-ludovic.jpg)
+![goodbye](/img/2025-01-06-1st-semester-Ed/goodbye-ludovic2.jpg)
+![goodbye](/img/2025-01-06-1st-semester-Ed/goodbye-ludovic3.jpg)
+![goodbye](/img/2025-01-06-1st-semester-Ed/goodbye-ludovic4.jpg)
+![goodbye](/img/2025-01-06-1st-semester-Ed/goodbye-ludovic5.jpg)
+![goodbye](/img/2025-01-06-1st-semester-Ed/goodbye-ludovic6.jpg)
+![goodbye](/img/2025-01-06-1st-semester-Ed/goodbye-ludovic7.jpg)
+
+Ludovic这学期之后就要离开EPCC了，最后他组织了一次聚餐，我们还给他准备了礼物。这是我们在聚餐时拍的照片。
