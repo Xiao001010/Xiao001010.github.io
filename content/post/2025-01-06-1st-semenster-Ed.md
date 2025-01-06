@@ -5,7 +5,7 @@ description: "A brief introduction to my first semester in Edinburgh"
 date:        "2025-01-06T14:25:59Z"
 author:      "Hao Xu"
 image:       "/img/2025-01-06-1st-semester-Ed/castle.jpg"
-tags:        ["Edinburgh", "Accommandation", "snow"]
+tags:        ["Edinburgh", "Accommandation", "snow", "Ludovic"]
 categories:  ["Life" ]
 draft:       false
 ---
