@@ -9,6 +9,5 @@ Link: [Google Analytics](https://analytics.google.com/analytics/web/)
 - Update resume and about page
 - Add Baidu Analytics
 - Test Mindmap
-- Test Embedded Video
 - Test Plantuml
 - Add more content
