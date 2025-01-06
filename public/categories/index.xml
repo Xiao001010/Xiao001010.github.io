@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Hao Xu Blog</title>
-    <link>https://xiao00101010.github.io/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Jan 2025 10:46:42 +0000</lastBuildDate>
-    <atom:link href="https://xiao00101010.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Jan 2025 14:25:59 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Life</title>
+      <link>http://localhost:1313/categories/life/</link>
+      <pubDate>Mon, 06 Jan 2025 14:25:59 +0000</pubDate>
+      <guid>http://localhost:1313/categories/life/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Tech</title>
-      <link>https://xiao00101010.github.io/categories/tech/</link>
+      <link>http://localhost:1313/categories/tech/</link>
       <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/categories/tech/</guid>
+      <guid>http://localhost:1313/categories/tech/</guid>
       <description></description>
     </item>
     <item>
       <title>Diary</title>
-      <link>https://xiao00101010.github.io/categories/diary/</link>
+      <link>http://localhost:1313/categories/diary/</link>
       <pubDate>Sun, 13 Oct 2024 02:05:56 +0100</pubDate>
-      <guid>https://xiao00101010.github.io/categories/diary/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Life</title>
-      <link>https://xiao00101010.github.io/categories/life/</link>
-      <pubDate>Sun, 13 Oct 2024 02:05:56 +0100</pubDate>
-      <guid>https://xiao00101010.github.io/categories/life/</guid>
+      <guid>http://localhost:1313/categories/diary/</guid>
       <description></description>
     </item>
   </channel>

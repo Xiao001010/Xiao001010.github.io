@@ -2,108 +2,129 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Hao Xu Blog</title>
-    <link>https://xiao00101010.github.io/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Jan 2025 10:46:42 +0000</lastBuildDate>
-    <atom:link href="https://xiao00101010.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Jan 2025 14:25:59 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Accommandation</title>
+      <link>http://localhost:1313/tags/accommandation/</link>
+      <pubDate>Mon, 06 Jan 2025 14:25:59 +0000</pubDate>
+      <guid>http://localhost:1313/tags/accommandation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Edinburgh</title>
+      <link>http://localhost:1313/tags/edinburgh/</link>
+      <pubDate>Mon, 06 Jan 2025 14:25:59 +0000</pubDate>
+      <guid>http://localhost:1313/tags/edinburgh/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Snow</title>
+      <link>http://localhost:1313/tags/snow/</link>
+      <pubDate>Mon, 06 Jan 2025 14:25:59 +0000</pubDate>
+      <guid>http://localhost:1313/tags/snow/</guid>
+      <description></description>
+    </item>
     <item>
       <title>LazyVim</title>
-      <link>https://xiao00101010.github.io/tags/lazyvim/</link>
+      <link>http://localhost:1313/tags/lazyvim/</link>
       <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/lazyvim/</guid>
+      <guid>http://localhost:1313/tags/lazyvim/</guid>
       <description></description>
     </item>
     <item>
       <title>NeoVim</title>
-      <link>https://xiao00101010.github.io/tags/neovim/</link>
+      <link>http://localhost:1313/tags/neovim/</link>
       <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/neovim/</guid>
+      <guid>http://localhost:1313/tags/neovim/</guid>
       <description></description>
     </item>
     <item>
       <title>Vim</title>
-      <link>https://xiao00101010.github.io/tags/vim/</link>
+      <link>http://localhost:1313/tags/vim/</link>
       <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/vim/</guid>
+      <guid>http://localhost:1313/tags/vim/</guid>
       <description></description>
     </item>
     <item>
       <title>AI</title>
-      <link>https://xiao00101010.github.io/tags/ai/</link>
+      <link>http://localhost:1313/tags/ai/</link>
       <pubDate>Sat, 04 Jan 2025 21:59:30 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/ai/</guid>
+      <guid>http://localhost:1313/tags/ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Computer Vision</title>
-      <link>https://xiao00101010.github.io/tags/computer-vision/</link>
+      <link>http://localhost:1313/tags/computer-vision/</link>
       <pubDate>Sat, 04 Jan 2025 21:59:30 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/computer-vision/</guid>
+      <guid>http://localhost:1313/tags/computer-vision/</guid>
       <description></description>
     </item>
     <item>
       <title>Deep Learning</title>
-      <link>https://xiao00101010.github.io/tags/deep-learning/</link>
+      <link>http://localhost:1313/tags/deep-learning/</link>
       <pubDate>Sat, 04 Jan 2025 21:59:30 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/deep-learning/</guid>
+      <guid>http://localhost:1313/tags/deep-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Image Segmentation</title>
-      <link>https://xiao00101010.github.io/tags/image-segmentation/</link>
+      <link>http://localhost:1313/tags/image-segmentation/</link>
       <pubDate>Sat, 04 Jan 2025 21:59:30 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/image-segmentation/</guid>
+      <guid>http://localhost:1313/tags/image-segmentation/</guid>
       <description></description>
     </item>
     <item>
       <title>U-Net</title>
-      <link>https://xiao00101010.github.io/tags/u-net/</link>
+      <link>http://localhost:1313/tags/u-net/</link>
       <pubDate>Sat, 04 Jan 2025 21:59:30 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/u-net/</guid>
+      <guid>http://localhost:1313/tags/u-net/</guid>
       <description></description>
     </item>
     <item>
       <title>CNN</title>
-      <link>https://xiao00101010.github.io/tags/cnn/</link>
+      <link>http://localhost:1313/tags/cnn/</link>
       <pubDate>Sat, 04 Jan 2025 17:26:33 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/cnn/</guid>
+      <guid>http://localhost:1313/tags/cnn/</guid>
       <description></description>
     </item>
     <item>
       <title>Convolution Matrix</title>
-      <link>https://xiao00101010.github.io/tags/convolution-matrix/</link>
+      <link>http://localhost:1313/tags/convolution-matrix/</link>
       <pubDate>Sat, 04 Jan 2025 17:26:33 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/convolution-matrix/</guid>
+      <guid>http://localhost:1313/tags/convolution-matrix/</guid>
       <description></description>
     </item>
     <item>
       <title>Transposed Convolution</title>
-      <link>https://xiao00101010.github.io/tags/transposed-convolution/</link>
+      <link>http://localhost:1313/tags/transposed-convolution/</link>
       <pubDate>Sat, 04 Jan 2025 17:26:33 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/transposed-convolution/</guid>
+      <guid>http://localhost:1313/tags/transposed-convolution/</guid>
       <description></description>
     </item>
     <item>
       <title>Hugo</title>
-      <link>https://xiao00101010.github.io/tags/hugo/</link>
+      <link>http://localhost:1313/tags/hugo/</link>
       <pubDate>Sat, 04 Jan 2025 16:35:35 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/hugo/</guid>
+      <guid>http://localhost:1313/tags/hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>Web Development</title>
-      <link>https://xiao00101010.github.io/tags/web-development/</link>
+      <link>http://localhost:1313/tags/web-development/</link>
       <pubDate>Sat, 04 Jan 2025 16:35:35 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/tags/web-development/</guid>
+      <guid>http://localhost:1313/tags/web-development/</guid>
       <description></description>
     </item>
     <item>
       <title>Test</title>
-      <link>https://xiao00101010.github.io/tags/test/</link>
+      <link>http://localhost:1313/tags/test/</link>
       <pubDate>Sun, 13 Oct 2024 02:05:56 +0100</pubDate>
-      <guid>https://xiao00101010.github.io/tags/test/</guid>
+      <guid>http://localhost:1313/tags/test/</guid>
       <description></description>
     </item>
   </channel>
