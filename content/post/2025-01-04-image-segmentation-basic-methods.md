@@ -157,7 +157,6 @@ w_{11}x_{21}+w_{12}x_{22}+w_{13}x_{23}\hphantom{00000} & w_{11}x_{22}+w_{12}x_{2
 \end{bmatrix}
 $$
 
-
 那么卷积矩阵是什么呢？用另一种方式来表示卷积操作：
 
 将$3 \times 3$ 的卷积核的卷积运算表示成一个$4 \times 16$的矩阵，如下图所示。
@@ -194,7 +193,7 @@ Source XuHao
 
 $$
 O = CI \newline
-I = OC^T 
+I = OC^T
 $$
 
 所以我们只需要将卷积矩阵转置一下就可以得到转置卷积矩阵。
@@ -260,7 +259,7 @@ $$
 
 前面是最简单的卷积操作没有填充的。那么我们卷积操作再加上padding会是什么样呢？
 
-如下图，$i = 5, k = 4, s = 1, p = 2$ ，而 $i' = 6, k' = k = 4, s' = s = 1, p' = 1$ 
+如下图，$i = 5, k = 4, s = 1, p = 2$ ，而 $i' = 6, k' = k = 4, s' = s = 1, p' = 1$
 
 这里可以看到，为了让转置卷积的输出与卷积操作的输入形状相同，所以这里转置卷积时的padding 减小了。
 
@@ -347,16 +346,16 @@ $$
 
 有以上公式，基本可以应付转置卷积的大部分的计算。如有任何疑问，欢迎讨论，同时建议参考Dumoulin, Vincent, and Francesco Visin. "A guide to convolution arithmetic for deep learning." *arXiv preprint arXiv:1603.07285* (2016).
 
-此外，转置卷积也有它的弊端：会产生棋盘效应。具体更详细的解释请参考：Odena, et al., "Deconvolution and Checkerboard Artifacts", Distill, 2016. http://doi.org/10.23915/distill.00003
+此外，转置卷积也有它的弊端：会产生棋盘效应。具体更详细的解释请参考：Odena, et al., "Deconvolution and Checkerboard Artifacts", Distill, 2016. <http://doi.org/10.23915/distill.00003>
 
 # Reference
 
-1. Jeremy Jordan. “An overview of semantic image segmentation.” https://www.jeremyjordan.me/semantic-segmentation/
-2. Fei-Fei Li & Justin Johnson & Serena Yeung. “CS231n: Deep Learning for Computer Vision.” (2017). Lecture11. http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf
+1. Jeremy Jordan. “An overview of semantic image segmentation.” <https://www.jeremyjordan.me/semantic-segmentation/>
+2. Fei-Fei Li & Justin Johnson & Serena Yeung. “CS231n: Deep Learning for Computer Vision.” (2017). Lecture11. <http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf>
 3. Sultana, Farhana, Abu Sufian, and Paramartha Dutta. "Evolution of image segmentation using deep convolutional neural network: a survey." *Knowledge-Based Systems* 201 (2020): 106062.
-4. Kirillov, Alexander, et al. "Panoptic segmentation." *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition*. 2019. 
-5. Long, Jonathan, Evan Shelhamer, and Trevor Darrell. "Fully convolutional networks for semantic segmentation." *Proceedings of the IEEE conference on computer vision and pattern recognition*.  2015. 
-6. Naoki, “Up-sampling with Transposed Convolution” https://naokishibuya.medium.com/up-sampling-with-transposed-convolution-9ae4f2df52d0
+4. Kirillov, Alexander, et al. "Panoptic segmentation." *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition*. 2019.
+5. Long, Jonathan, Evan Shelhamer, and Trevor Darrell. "Fully convolutional networks for semantic segmentation." *Proceedings of the IEEE conference on computer vision and pattern recognition*.  2015.
+6. Naoki, “Up-sampling with Transposed Convolution” <https://naokishibuya.medium.com/up-sampling-with-transposed-convolution-9ae4f2df52d0>
 7. Dumoulin, Vincent, and Francesco Visin. "A guide to convolution arithmetic for deep learning." *arXiv preprint arXiv:1603.07285* (2016).
-8. vdumoulin, fvisin. “Convolution arithmetic” https://github.com/vdumoulin/conv_arithmetic
-9. Odena, et al., "Deconvolution and Checkerboard Artifacts", Distill, 2016. http://doi.org/10.23915/distill.00003
+8. vdumoulin, fvisin. “Convolution arithmetic” <https://github.com/vdumoulin/conv_arithmetic>
+9. Odena, et al., "Deconvolution and Checkerboard Artifacts", Distill, 2016. <http://doi.org/10.23915/distill.00003>

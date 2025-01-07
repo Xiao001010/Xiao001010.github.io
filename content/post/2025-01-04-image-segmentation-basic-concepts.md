@@ -4,7 +4,7 @@ subtitle:    ""
 description: "Basic Concepts in Image Segmentation (Semantic Segmentation, Instance Segmentation, Panoptic Segmentation) and its applications. "
 date:        "2025-01-04T16:36:37Z"
 author:      "Hao Xu"
-image:       ""
+image:       "/img/2025-01-04-image-segmentation-basic-concepts/Untitled%202.png"
 tags:        ["AI", "Deep Learning", "Computer Vision", "Image Segmentation"]
 categories:  ["Tech" ]
 draft:       false
@@ -46,7 +46,7 @@ Source [Panoptic Segmentation](https://arxiv.org/abs/1801.00868)
 
 图 (d) 是**全景分割 (panoptic segmentation)**
 
-对于给定图片 (a) 各任务的groundtruth分别是 
+对于给定图片 (a) 各任务的groundtruth分别是
 
 - 图 (b) 的语义分割是逐像素的 class labels；
 - 图 (c) 的实例分割是逐 object 的 mask 和 class label；
@@ -112,10 +112,10 @@ Source [Toward Characteristic-Preserving Image-based Virtual Try-On Network](htt
 
 # Reference
 
-1. Anil Chandra Naidu Matcha. “A 2021 guide to Semantic Segmentation.” https://nanonets.com/blog/semantic-image-segmentation-2020/
-2. Jeremy Jordan. “An overview of semantic image segmentation.” https://www.jeremyjordan.me/semantic-segmentation/
-3. Fei-Fei Li & Justin Johnson & Serena Yeung. “CS231n: Deep Learning for Computer Vision.” (2017). Lecture11. http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf
+1. Anil Chandra Naidu Matcha. “A 2021 guide to Semantic Segmentation.” <https://nanonets.com/blog/semantic-image-segmentation-2020/>
+2. Jeremy Jordan. “An overview of semantic image segmentation.” <https://www.jeremyjordan.me/semantic-segmentation/>
+3. Fei-Fei Li & Justin Johnson & Serena Yeung. “CS231n: Deep Learning for Computer Vision.” (2017). Lecture11. <http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf>
 4. Pham, Dzung L. et al. “A Survey of Current Methods in Medical Image Segmentation.” (1999).
-5. Novikov, Alexey A., et al. "Fully convolutional architectures for multiclass segmentation in chest radiographs." *IEEE transactions on medical imaging,* 37.8 (2018): 1865-1876. 
-6. Dhanoop Karunakaran. “Semantic segmentation — Udaity’s self-driving car engineer nanodegree.” https://medium.com/intro-to-artificial-intelligence/semantic-segmentation-udaitys-self-driving-car-engineer-nanodegree-c01eb6eaf9d
+5. Novikov, Alexey A., et al. "Fully convolutional architectures for multiclass segmentation in chest radiographs." *IEEE transactions on medical imaging,* 37.8 (2018): 1865-1876.
+6. Dhanoop Karunakaran. “Semantic segmentation — Udaity’s self-driving car engineer nanodegree.” <https://medium.com/intro-to-artificial-intelligence/semantic-segmentation-udaitys-self-driving-car-engineer-nanodegree-c01eb6eaf9d>
 7. Wang, Bochao, et al. "Toward characteristic-preserving image-based virtual try-on network." *Proceedings of the European Conference on Computer Vision (ECCV)*. 2018.
