@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Hao Xu Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//img/home-bg-jeep.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-bg-jeep.jpg" />
+    
+
+    
+    <meta name="title" content="Image Segmentation Basic Methods" />
+    <meta property="og:title" content="Image Segmentation Basic Methods" />
+    <meta property="twitter:title" content="Image Segmentation Basic Methods" />
+    
+
+    
+    <meta name="description" content="Image Segmentation Basic Methods: Input and Output, Model Structure, Three Upsample Methods, Transpose Convolution Principle, and Output Shape Calculation">
+    <meta property="og:description" content="Image Segmentation Basic Methods: Input and Output, Model Structure, Three Upsample Methods, Transpose Convolution Principle, and Output Shape Calculation" />
+    <meta property="twitter:description" content="Image Segmentation Basic Methods: Input and Output, Model Structure, Three Upsample Methods, Transpose Convolution Principle, and Output Shape Calculation" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Image Segmentation Basic Methods | 徐浩的博客 | Hao Xu Blog</title>
+
+    <link rel="canonical" href="/post/2025-01-04-image-segmentation-basic-methods/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});">
+    </script>
+
+</head>
+
+
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJW25L51HL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-FJW25L51HL');
+        }
+      </script>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hao Xu Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/diary/">diary</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive/">ARCHIVE</a></li>
+                    
+                        <li><a href="/about/">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-jeep.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/ai" title="AI">
+                            AI
+                        </a>
+                        
+                        <a class="tag" href="/tags/deep-learning" title="Deep Learning">
+                            Deep Learning
+                        </a>
+                        
+                        <a class="tag" href="/tags/computer-vision" title="Computer Vision">
+                            Computer Vision
+                        </a>
+                        
+                        <a class="tag" href="/tags/image-segmentation" title="Image Segmentation">
+                            Image Segmentation
+                        </a>
+                        
+                        <a class="tag" href="/tags/cnn" title="CNN">
+                            CNN
+                        </a>
+                        
+                        <a class="tag" href="/tags/convolution-matrix" title="Convolution Matrix">
+                            Convolution Matrix
+                        </a>
+                        
+                        <a class="tag" href="/tags/transposed-convolution" title="Transposed Convolution">
+                            Transposed Convolution
+                        </a>
+                        
+                    </div>
+                    <h1>Image Segmentation Basic Methods</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                     &#34;Hao Xu&#34;
+                             
+                            on 
+                            Saturday, January 4, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="图像分割基本方法">图像分割基本方法</h1>
+<h1 id="输入输出">输入输出</h1>
+<p>下面讲解一下模型的输入与输出的形式。尤其是输出。</p>
+<p><strong>输入 (Input)</strong>：RGB图像 (height, width, 3) 或者灰度图 (height, width, 1) 。第三个维度是通道数，RGB图像有三个通道，而灰度图只有一个通道。在第一维再加一个batch size 就是 RGB 图像 (batch_size, height, width, 3) / 灰度图 (batch_size, height, width, 1)</p>
+<p><strong>输出 (Output)</strong> ：和处理分类任务的时候类似，通过为每个可能的类别创建一个输出通道，并one-hot来编码类别标签，来表示target。如下图所示。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled.png" alt="Source An overview of semantic image segmentation.">
+
+</p>
+<p>Source <a href="https://www.jeremyjordan.me/semantic-segmentation/">An overview of semantic image segmentation.</a></p>
+<p>通过采用每个深度方向像素向量的 $argmax$，可以将预测折叠到一张分割图中（如下图所示）</p>
+<p>注意：对于视觉清晰度，这里标记了一个低分辨率预测图。 实际上，分段标签分辨率应匹配原始输入的分辨率。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%201.png" alt="Source An overview of semantic image segmentation.">
+
+</p>
+<p>Source <a href="https://www.jeremyjordan.me/semantic-segmentation/">An overview of semantic image segmentation.</a></p>
+<p>可以很容易地检查一个目标，把它覆盖到观察。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%202.png" alt="Source An overview of semantic image segmentation.">
+
+</p>
+<p>Source <a href="https://www.jeremyjordan.me/semantic-segmentation/">An overview of semantic image segmentation.</a></p>
+<p>当覆盖target（或预测）的单个通道时，将此称为 mask，该 mask 照亮存在特定类的图像的区域。</p>
+<p>当不做 $argmax$ 直接输出target的时候，输出的形状应该是 (batch_size, num_class, height, width)，每张图片的每个通道的里是非0即1的one-hot向量 。</p>
+<p>而当对target进行 $argmax$ 后，输出的形状应该是跟输入同一形状 (batch_size, height, width)。</p>
+<h1 id="模型结构">模型结构</h1>
+<p>这一节将简要地介绍用于图像分割的最经典的深度学习模型结构：<strong>编码器/解码器结构 (Encoder/Decoder structure)</strong></p>
+<h2 id="全连接到11卷积">全连接到1×1卷积</h2>
+<p>回想一下在分类任务当中的CNN网络都是几个卷积层和池化层组成，最后是几个全连接层。然而一张图片经全连接层之后的输出是个一维的向量。这对分类任务中，只需要知道图片的内容，而不关心其位置十分适用。如果想得到上面的二维的输出，那么就不能采用全连接层。在2014年发表的 Fully Convolutional Network 的论文认为，最终的全连接层可以被认为是做一个覆盖整个区域的1x1卷积。即如下图所示。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Transforming_fully_connected_layers_into_convolution_layers_enables_a_classification_net_to_output_a_heatmap.png" alt="Source Fully Convolutional Networks for Semantic Segmentation">
+
+</p>
+<p>Source <a href="https://arxiv.org/abs/1411.4038">Fully Convolutional Networks for Semantic Segmentation</a></p>
+<p>这里使用1×1的卷积替代全连接层还有一个好处：那就是输入的图片形状不在固定了。由于全连接层的输入必须固定形状的，所以输入模型的图片一般都要先resize到固定的shape，而使用1×1卷积代替全连接层之后变不在存在这一问题。在推理的时候，不需要再对图片进行resize，从而最好可能会导致输出的图片的失真。</p>
+<p>这么一个不断加深网络并不断增加通道数来提取浅层信息和深层特征的过程就是<strong>编码器 (Encoder)</strong>。</p>
+<h2 id="上采样">上采样</h2>
+<p>很明显上方编码器的输出与想要的输出还是存在一定的差距。想要的是一个与原输入同尺寸的输出。如果直接用双线性插值来进行上采样，将encoder的输出直接resize到原图的大小，这可能会有一定的效果，但一定不是最理想的。</p>
+<p>那么还有一张方法，每层我们设置一定数量的padding，只是用卷积层，取消所有池化层。这样堆叠多个卷积层最后得到的输出变能够跟原图保持同尺寸，输出对应像素点的类别了。就如下图所示一样。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/stack_a_number_of_convolutional_layers.png" alt="Source CS231n: Deep Learning for Computer Vision(2017) Lecture 11">
+
+</p>
+<p>Source <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf">CS231n: Deep Learning for Computer Vision(2017) Lecture 11</a></p>
+<p>然而，要想抽取出深层的特征，那么这个网络就需要足够的深，通道数足够多。而由于所有的层都保留了原尺寸，所以他的计算量是极其巨大的。所以这种方法也没有被广泛使用。</p>
+<p>最终还是采用了先通过编码器将图像的特征映射到高维空间，这之后再通过解码器上采样，将特征恢复到图片的原尺寸。上采样的这一部分网络叫做<strong>解码器 (Decoder)</strong> 。</p>
+<p>而上采样主要采用的是一种可以学习参数的<strong>转置卷积 (Transposed Convolution) /反卷积 (Deconvolution)</strong> 的非线性上采样。</p>
+<p>所以整个模型结构可以理解为是一个先下采样再上采样的过程，如下图所示。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/downupsampling.png" alt="Source CS231n: Deep Learning for Computer Vision(2017) Lecture 11">
+
+</p>
+<p>Source <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf">CS231n: Deep Learning for Computer Vision(2017) Lecture 11</a></p>
+<h1 id="几种上采样-upsample方法">几种上采样 (upsample)方法</h1>
+<p>上采样的几种方法的名字很容易混淆，下面将一一捋清。</p>
+<p>上采样 (upsample) 主要有三种方法：<strong>转置卷积 (Transpose Convolution)</strong>、<strong>上采样 (unsampling)</strong> 和 <strong>反池化 (unpooling)</strong>。讲到这里有两个地方需要提前解释清楚。</p>
+<ol>
+<li>上采样 (upsample) 是这些方法的总称，而上采样 (unsampling) 是一种具体的方法。主要一个是 ”up”，一个是 ”un”，所以这样要将英文给写出来。</li>
+<li>这里的的转置卷积 (Transpose Convolution) 还有很多名称：反卷积 (Deconvolution)、逆卷积 (Inverse Convolution)、Upconvolution、Fractionally strided convolution、Backward strided convolution。最常用的是转置卷积和反卷积这两个名称。这里主要使用转置卷积这个名称。</li>
+</ol>
+<p>这一节将简单介绍三种方法的区别，然后主要讲解转置卷积的原理，和输出形状的计算公式。</p>
+<h2 id="三种方法对比">三种方法对比</h2>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/three_upsample.png" alt="Source 真的没找到 图 (c) 似乎来源于 Learning Deconvolution Network for Semantic Segmentation">
+
+</p>
+<p>Source 真的没找到 图 (c) 似乎来源于 <a href="https://arxiv.org/pdf/1505.04366.pdf">Learning Deconvolution Network for Semantic Segmentation</a></p>
+<p>图 (a) 是反池化。在MaxPooling的时候会保留Pooling使用的最大值的索引，然后UnPooling的时候使用索引将输入映射到feature map中，而其他位置全填0。</p>
+<p>再对比图 (b)，反池化和上采样很明显的差别就是没有Pooling Indices这个输入，而是直接将输入特征扩充到feature map中</p>
+<p>图 (c) 是转置卷积，通过有参数的卷积核将输入特征映射到feature上，重复的地方会进行叠加。</p>
+<h1 id="转置卷积原理">转置卷积原理</h1>
+<p>在这之前要先引入卷积矩阵 (Convolution Matrix) 这一概念。</p>
+<h2 id="卷积矩阵">卷积矩阵</h2>
+<p>首先让我们来回顾一下卷积的操作过程。</p>
+<p>给定输入$i=
+\begin{bmatrix}
+x_{11} &amp; x_{12}  &amp; x_{13}   &amp; x_{14}  \newline
+x_{21} &amp; x_{22}  &amp; x_{23}   &amp; x_{24}  \newline
+x_{31} &amp; x_{32}  &amp; x_{13}   &amp; x_{34}  \newline
+x_{41} &amp; x_{42}  &amp; x_{43}   &amp; x_{44}  \newline
+\end{bmatrix}$，卷积核$K=
+\begin{bmatrix}
+w_{11} &amp; w_{12}  &amp; w_{13}   \newline
+w_{21} &amp; w_{22}  &amp; w_{23}   \newline
+w_{31} &amp; w_{32}  &amp; w_{13}   \newline
+w_{41} &amp; w_{42}  &amp; w_{43}   \newline
+\end{bmatrix}$。大家可以计算一下卷积操作之后的输出是什么。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%203.png" alt="Source XuHao">
+
+</p>
+<p>Source XuHao</p>
+<p>大致是按下图方式进行计算。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%204.png" alt="Source XuHao">
+
+</p>
+<p>Source XuHao</p>
+<p>下图是一个动画演示，3×3 的卷积核在 4×4 的蓝色输入上进行没有 padding 和单位 stride 的卷积操作，得到 2×2 的灰色输出</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/no_padding_no_strides_Conv.gif" alt="Source Convolution arithmetic">
+
+</p>
+<p>Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>最后的卷积计算结果应该是</p>
+<p>$$
+\begin{bmatrix}
+w_{11}x_{11}+w_{12}x_{12}+w_{13}x_{13} \hphantom{00000} &amp; w_{11}x_{12}+w_{12}x_{13}+w_{13}x_{14} \newline
++w_{21}x_{21}+w_{22}x_{22}+w_{23}x_{23}\hphantom{00000} &amp; +w_{21}x_{22}+w_{22}x_{23}+w_{23}x_{24} \newline
++w_{31}x_{31}+w_{32}x_{32}+w_{33}x_{33}, \hphantom{00000} &amp; +w_{31}x_{32}+w_{32}x_{33}+w_{33}x_{34} \newline
+\newline
+w_{11}x_{21}+w_{12}x_{22}+w_{13}x_{23}\hphantom{00000} &amp; w_{11}x_{22}+w_{12}x_{23}+w_{13}x_{24} \newline
++w_{21}x_{31}+w_{22}x_{32}+w_{23}x_{33}\hphantom{00000} &amp; +w_{21}x_{32}+w_{22}x_{33}+w_{23}x_{34} \newline
++w_{31}x_{41}+w_{32}x_{42}+w_{33}x_{43}, \hphantom{00000} &amp; +w_{31}x_{42}+w_{32}x_{43}+w_{33}x_{44} \newline
+\end{bmatrix}
+$$</p>
+<p>那么卷积矩阵是什么呢？用另一种方式来表示卷积操作：</p>
+<p>将$3 \times 3$ 的卷积核的卷积运算表示成一个$4 \times 16$的矩阵，如下图所示。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%205.png" alt="Source XuHao">
+
+</p>
+<p>Source XuHao</p>
+<p>每一行表示一次卷积操作。比如第一行：</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%206.png" alt="Source XuHao">
+
+</p>
+<p>Source XuHao</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%207.png" alt="Source XuHao">
+
+</p>
+<p>Source XuHao</p>
+<p>就是由第一次卷积操作时卷积核在输入中的映射拉直而来的。可以看到，没有进行卷积计算的位置被补了零。</p>
+<p>而后再将输入拉直成一个列向量，如下图所示，这样通过卷积矩阵$C$与输入向量$I$进行矩阵乘法，就能得到最后的输出$O$了。即$O=C I$</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%208.png" alt="Source XuHao">
+
+</p>
+<p>Source XuHao</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%209.png" alt="Source XuHao">
+
+</p>
+<p>Source XuHao</p>
+<p>卷积操作是将卷积矩阵与拉直的输入进行矩阵乘法，即$O=CI$，那么反卷积不就是卷积的反向操作，希望对卷积操作的输出进行反卷积操作，从而得到卷积操作的输入嘛。</p>
+<p>那么我们可以有如下公式推导：</p>
+<p>$$
+O = CI \newline
+I = OC^T
+$$</p>
+<p>所以我们只需要将卷积矩阵转置一下就可以得到转置卷积矩阵。</p>
+<h2 id="转置卷积矩阵">转置卷积矩阵</h2>
+<p>即如下图所示，转置卷积操作即可从转置卷积矩阵与拉直的输入进行举证乘法得到输出。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/Untitled%2010.png" alt="Source XuHao">
+
+</p>
+<p>Source XuHao</p>
+<p><strong>注意</strong>：转置卷积矩阵中的权值不必要来自于原始的卷积矩阵，重要的是这些权值的布局时从卷积矩阵中来的。同时，转置卷积不保证恢复输入卷积操作的输入本身，而只是返回具有相同形状的特征图。</p>
+<p>可以将卷积操作和转置卷积操作理解成一个卷积核使用卷积矩阵$C$进行正向操作或使用转置卷积矩阵$C^T$进行反向操作。</p>
+<h2 id="转置卷积的输出形状计算">转置卷积的输出形状计算</h2>
+<p>我们可以通过卷积来模拟转置卷积。</p>
+<p>如下左图，3×3 的卷积核在 4×4 的蓝色输入上进行没有 padding 和单位 stride 的卷积操作，得到 2×2 的灰色输出。</p>
+<p>当反过来进行转置卷积操作的时候，想由 2×2 的蓝色输入，通过 3×3 的卷积核转置卷积得到 4×4的输出，那么就要对原输入产生 2×2 的padding。这里的卷积核大小和 stride 都是保持不变的。如下右图所示。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/no_padding_no_strides_Conv.gif" alt="No padding, unit strides. Source Convolution arithmetic">
+
+</p>
+<p>No padding, unit strides. Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/no_padding_no_strides_transposed.gif" alt="No padding, unit strides, transposed. Source Convolution arithmetic">
+
+</p>
+<p>No padding, unit strides, transposed. Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>那么到底该如何控制转置卷积输出的形状呢？下面会通过几个栗子，来粗略推导一下转置卷积输出形状的计算。</p>
+<p>首先，$i, k, s, p, o$ 分别表示卷积操作的输入形状、卷积核大小、stride (步长) 大小、padding (填充) 大小、输出形状。</p>
+<p>$i&rsquo;, k&rsquo;, s&rsquo;, p&rsquo;, o&rsquo;$ 分表表示转置卷积操作的输入形状、卷积核大小、stride (步长) 大小、padding (填充) 大小、输出形状。</p>
+<p>这里假设高宽的填充是相等的，不考虑不对称填充情况。</p>
+<h3 id="no-zero-padding-unit-strides-transposed">No zero padding, unit strides, transposed</h3>
+<p>这里的no zero padding指的是卷积操作的时候没有填充的。示意动画在上面给出。</p>
+<p>这里 $i = 4, k = 3, s = 1, p = 0$ ，而 $i&rsquo; = 2, k&rsquo; = k = 3, s&rsquo; = s =  1, p&rsquo; = 2$ 。</p>
+<p>这里的 $i&rsquo;, k&rsquo;, s&rsquo;$ 都是固定的。为了能使转置卷积的输出与原卷积操作的输入保持一致，就需要做 $p&rsquo; = k -1$ 的填充。</p>
+<p>则，当卷积操作是No zero padding, unit strides时，其对应的转置卷积有如下公式：</p>
+<p>$$
+i&rsquo; = o \newline
+k&rsquo;=k \newline
+s&rsquo; = s \newline
+p&rsquo; = k - 1
+$$</p>
+<p>$$
+o&rsquo; = i&rsquo;+(k-1)
+$$</p>
+<h3 id="zero-padding-unit-strides-transposed">Zero padding, unit strides, transposed</h3>
+<p>前面是最简单的卷积操作没有填充的。那么我们卷积操作再加上padding会是什么样呢？</p>
+<p>如下图，$i = 5, k = 4, s = 1, p = 2$ ，而 $i&rsquo; = 6, k&rsquo; = k = 4, s&rsquo; = s = 1, p&rsquo; = 1$</p>
+<p>这里可以看到，为了让转置卷积的输出与卷积操作的输入形状相同，所以这里转置卷积时的padding 减小了。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/arbitrary_padding_no_strides.gif" alt="Padding, unit strides. Source Convolution arithmetic">
+
+</p>
+<p>Padding, unit strides. Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/arbitrary_padding_no_strides_transposed.gif" alt="Padding, unit strides, transposed. Source Convolution arithmetic">
+
+</p>
+<p>Padding, unit strides, transposed. Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>则，有如下公式：</p>
+<p>$$
+i&rsquo; = o \newline
+k&rsquo;=k \newline
+s&rsquo; = s \newline
+p&rsquo; = k - p - 1 \newline
+$$</p>
+<p>$$
+o&rsquo; = i&rsquo;+(k-1)-2p
+$$</p>
+<h3 id="no-zero-padding-non-unit-strides-transposed">No zero padding, non-unit strides, transposed</h3>
+<p>前面的考虑了卷积操作时采用了padding。那么卷积操作没有padding，但不采用单位长度的stride又该怎么计算呢？</p>
+<p>如下图，$i = 5, k = 3, s = 2, p = 0$ ，而 $i&rsquo; = 2, k&rsquo; = k = 3, s&rsquo; = 1, p&rsquo; = 2, \widetilde{i} = 1$ 。</p>
+<p>这里 $\widetilde{i}$ 指的是在转置卷积单位输入之间补零的多少。在单位输入之间插入0是为了使卷积核移动的比单位步长更慢。这里 $\widetilde{i} = s - 1$ 。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/no_padding_strides.gif" alt="No padding, strides. Source Convolution arithmetic">
+
+</p>
+<p>No padding, strides. Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/no_padding_strides_transposed.gif" alt="No padding, strides, transposed. Source Convolution arithmetic">
+
+</p>
+<p>No padding, strides, transposed. Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>假设，$p=0$，且输入 $i$ 满足 $i - k$ 是 $s$ 的倍数。则，有如下公式：</p>
+<p>$$
+i&rsquo; = o \newline
+k&rsquo;= k \newline
+s&rsquo; = 1 \newline
+p&rsquo; = k - 1 \newline
+\widetilde{i} = s - 1
+$$</p>
+<p>$$
+o&rsquo; = s(i&rsquo;-1)+k
+$$</p>
+<h3 id="zero-padding-non-unit-strides-transposed">Zero padding, non-unit strides, transposed</h3>
+<p>最后再考虑最复杂的情况：卷积输入即使用了 padding，stride 也不是单位步长。</p>
+<p>这样就能过得到一个对各种情况较为普适的公式。</p>
+<p>如下图，$i = 5, k = 3, s = 2, p = 1$ ，而 $i&rsquo; = 3, k&rsquo; = k = 3, s&rsquo; = 1, p&rsquo; = 1, \widetilde{i} = 1$ 。</p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/padding_strides.gif" alt="Padding, strides. Source Convolution arithmetic">
+
+</p>
+<p>Padding, strides. Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>
+  <img src="/img/2025-01-04-image-segmentation-basic-methods/padding_strides_transposed.gif" alt="Padding, strides, transposed. Source Convolution arithmetic">
+
+</p>
+<p>Padding, strides, transposed. Source <a href="https://github.com/vdumoulin/conv_arithmetic">Convolution arithmetic</a></p>
+<p>结合前面的两种情况的公式，假设输入 $i$ 满足 $i + 2p - k$ 是 $s$ 的倍数，则有以下公式：</p>
+<p>$$
+i&rsquo; = o \newline
+k&rsquo;= k \newline
+s&rsquo; = 1 \newline
+p&rsquo; = k - p - 1 \newline
+\widetilde{i} = s - 1
+$$</p>
+<p>$$
+o&rsquo; = s(i&rsquo;-1)+k-2p
+$$</p>
+<p>有以上公式，基本可以应付转置卷积的大部分的计算。如有任何疑问，欢迎讨论，同时建议参考Dumoulin, Vincent, and Francesco Visin. &ldquo;A guide to convolution arithmetic for deep learning.&rdquo; <em>arXiv preprint arXiv:1603.07285</em> (2016).</p>
+<p>此外，转置卷积也有它的弊端：会产生棋盘效应。具体更详细的解释请参考：Odena, et al., &ldquo;Deconvolution and Checkerboard Artifacts&rdquo;, Distill, 2016. <a href="http://doi.org/10.23915/distill.00003">http://doi.org/10.23915/distill.00003</a></p>
+<h1 id="reference">Reference</h1>
+<ol>
+<li>Jeremy Jordan. “An overview of semantic image segmentation.” <a href="https://www.jeremyjordan.me/semantic-segmentation/">https://www.jeremyjordan.me/semantic-segmentation/</a></li>
+<li>Fei-Fei Li &amp; Justin Johnson &amp; Serena Yeung. “CS231n: Deep Learning for Computer Vision.” (2017). Lecture11. <a href="http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf">http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf</a></li>
+<li>Sultana, Farhana, Abu Sufian, and Paramartha Dutta. &ldquo;Evolution of image segmentation using deep convolutional neural network: a survey.&rdquo; <em>Knowledge-Based Systems</em> 201 (2020): 106062.</li>
+<li>Kirillov, Alexander, et al. &ldquo;Panoptic segmentation.&rdquo; <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition</em>. 2019.</li>
+<li>Long, Jonathan, Evan Shelhamer, and Trevor Darrell. &ldquo;Fully convolutional networks for semantic segmentation.&rdquo; <em>Proceedings of the IEEE conference on computer vision and pattern recognition</em>.  2015.</li>
+<li>Naoki, “Up-sampling with Transposed Convolution” <a href="https://naokishibuya.medium.com/up-sampling-with-transposed-convolution-9ae4f2df52d0">https://naokishibuya.medium.com/up-sampling-with-transposed-convolution-9ae4f2df52d0</a></li>
+<li>Dumoulin, Vincent, and Francesco Visin. &ldquo;A guide to convolution arithmetic for deep learning.&rdquo; <em>arXiv preprint arXiv:1603.07285</em> (2016).</li>
+<li>vdumoulin, fvisin. “Convolution arithmetic” <a href="https://github.com/vdumoulin/conv_arithmetic">https://github.com/vdumoulin/conv_arithmetic</a></li>
+<li>Odena, et al., &ldquo;Deconvolution and Checkerboard Artifacts&rdquo;, Distill, 2016. <a href="http://doi.org/10.23915/distill.00003">http://doi.org/10.23915/distill.00003</a></li>
+</ol>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p> 「如果这篇文章对你有用,请随意打赏」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="http://localhost:1313/"><img src="/img/favicon.png" />Hao Xu Blog</a></span>
+        
+	        <p class="tip"><i></i><span>如果这篇文章对你有用,请随意打赏</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2025-01-04-image-segmentation-basic-concepts/" data-toggle="tooltip" data-placement="top" title="Image Segmentation Basic Concepts">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2025-01-04-u-net/" data-toggle="tooltip" data-placement="top" title="U-Net">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+<script src="https://giscus.app/client.js"
+        data-repo="Xiao001010/Xiao001010.github.io"
+        data-repo-id="R_kgDOM-aRvQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM-aRvc4ClvEj"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-04-image-segmentation-basic-methods\/',
+        pageTitle: 'Image Segmentation Basic Methods',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/computer-vision" title="computer vision">
+                            computer vision
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/deep-learning" title="deep learning">
+                            deep learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/image-segmentation" title="image segmentation">
+                            image segmentation
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/test" title="test">
+                            test
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/vim" title="vim">
+                            vim
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:haoxu1010@outlook.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat_qrcode.jpg">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Xiao001010">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/hao-xu-xiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Hao Xu Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Hao Xu Blog 2025
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

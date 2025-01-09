@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Hao Xu Blog</title>
+    <link>http://localhost:1313/tags/hugo/</link>
+    <description>Recent content in Hugo on Hao Xu Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Jan 2025 16:35:35 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo Quick Start</title>
+      <link>http://localhost:1313/post/2025-01-04-hugo-quick-start/</link>
+      <pubDate>Sat, 04 Jan 2025 16:35:35 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-04-hugo-quick-start/</guid>
+      <description>&lt;h1 id=&#34;create-the-directory-structure-for-your-project-in-the-quickstart-directory&#34;&gt;Create the directory structure for your project in the quickstart directory.&lt;/h1&gt;&#xA;&lt;p&gt;在quickstart目录中为您的项目创建目录结构。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new site quickstart&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;start-hugos-development-server-to-view-the-site&#34;&gt;Start Hugo’s development server to view the site.&lt;/h1&gt;&#xA;&lt;p&gt;启动Hugo的开发服务器来查看站点。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
