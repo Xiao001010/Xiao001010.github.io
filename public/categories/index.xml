@@ -6,27 +6,27 @@
     <description>Recent content in Categories on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Jan 2025 14:25:59 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jan 2025 16:17:11 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Life</title>
-      <link>http://localhost:1313/categories/life/</link>
-      <pubDate>Mon, 06 Jan 2025 14:25:59 +0000</pubDate>
-      <guid>http://localhost:1313/categories/life/</guid>
+      <title>Diary</title>
+      <link>http://localhost:1313/categories/diary/</link>
+      <pubDate>Thu, 09 Jan 2025 16:17:11 +0000</pubDate>
+      <guid>http://localhost:1313/categories/diary/</guid>
       <description></description>
     </item>
     <item>
       <title>Tech</title>
       <link>http://localhost:1313/categories/tech/</link>
-      <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
+      <pubDate>Thu, 09 Jan 2025 16:17:11 +0000</pubDate>
       <guid>http://localhost:1313/categories/tech/</guid>
       <description></description>
     </item>
     <item>
-      <title>Diary</title>
-      <link>http://localhost:1313/categories/diary/</link>
-      <pubDate>Sun, 13 Oct 2024 02:05:56 +0100</pubDate>
-      <guid>http://localhost:1313/categories/diary/</guid>
+      <title>Life</title>
+      <link>http://localhost:1313/categories/life/</link>
+      <pubDate>Mon, 06 Jan 2025 14:25:59 +0000</pubDate>
+      <guid>http://localhost:1313/categories/life/</guid>
       <description></description>
     </item>
   </channel>
