@@ -103,6 +103,34 @@ Reception的震惊
 
 ![Arthur's Seat](/img/2025-01-06-1st-semester-Ed/arthurs-seat3.jpg)
 
+## Snow
+
+爱丁堡初雪的时候，朋友拍的照片真的非常漂亮，这些照片来自朋友圈，那时候忙着赶coursework，没有出门，哈哈哈哈哈。
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow2.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow3.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow4.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow5.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow6.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow7.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow8.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow9.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow10.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow11.jpg)
+
+![Snow](/img/2025-01-06-1st-semester-Ed/snow12.jpg)
+
 # Study Experience
 
 我的专业是High-Performance Computing with Data Science，下面会有我的选课和课表。总体来说，这个专业我还是很喜欢很感兴趣的，除了个别课程体验感较差。
@@ -148,34 +176,6 @@ Old College的内部，很有历史感。
 刚开学不是很忙，还跟朋友去了趟苏格兰博物馆。逛的比较潦草，下次还要再去仔细看看。
 
 ![Museum](/img/2025-01-06-1st-semester-Ed/scot-museum.jpg)
-
-# Snow
-
-爱丁堡初雪的时候，朋友拍的照片真的非常漂亮，这些照片来自朋友圈，那时候忙着赶coursework，没有出门，哈哈哈哈哈。
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow2.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow3.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow4.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow5.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow6.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow7.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow8.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow9.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow10.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow11.jpg)
-
-![Snow](/img/2025-01-06-1st-semester-Ed/snow12.jpg)
 
 # Ludovic
 
