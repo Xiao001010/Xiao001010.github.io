@@ -79,6 +79,8 @@ Reception的震惊
 
 这是朋友航拍的视频，真的非常好看。来自我的专业御用摄影师：杨子逸。
 
+## Aurora
+
 之后我朋友去了好几次卡尔顿山终于才看到了极光。
 
 ![Aurora](/img/2025-01-06-1st-semester-Ed/aurora.jpg)
