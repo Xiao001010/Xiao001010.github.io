@@ -32,9 +32,8 @@ Leader Key: \<space\>
 
 跳转到最后一行：G
 
-
-
 ### 单词移动
+
 移动至下一个单词开头：w
 
 移动至下N个单词开头：Nw
@@ -51,8 +50,8 @@ Leader Key: \<space\>
 
 移动至下N个单词结尾：Ne
 
-
 ### 行内移动
+
 移动至行首：|
 
 移动至此行第一个字符：^或0（数字）
@@ -61,17 +60,15 @@ Leader Key: \<space\>
 
 移动至当前行下第N行行尾：N$
 
-
 ### TODO移动
+
 上一个TODO：[t
 
 下一个TODO：]t
 
-
 移动至当前屏第一行：
 
 移动至当前屏最后一行：
-
 
 ## 标记和跳转
 
@@ -88,7 +85,6 @@ Leader Key: \<space\>
 删除所有标记：delmarks!
 
 删除后不再使用标记：:wshada!
-
 
 ## 翻转
 
@@ -110,16 +106,13 @@ Leader Key: \<space\>
 
 当前行移到中间：zz
 
-
 ## 当前行移动
-
 
 ## 撤销与重做
 
 撤消上一个操作：u
 
 撤销上一个撤销：Ctrl+r
-
 
 ## 选择与搜索
 
@@ -135,7 +128,6 @@ Leader Key: \<space\>
 
 搜索光标所在的单词：*
 
-
 搜索窗口待办清单：\<leader\>st
 
 搜索窗口Tudo/Fix/Fixme：\<leader\>sT
@@ -148,20 +140,17 @@ Leader Key: \<space\>
 
 下一个TODO：]t
 
-
 取消搜索高亮：\<leader\>nh
 
 下一个搜索结果：n
 
 上一个搜索结果：N
 
-
 搜索字符X：fX
 
 下一个搜索结果：f
 
 上一个搜索结果：F
-
 
 ## 删除
 
@@ -177,20 +166,17 @@ Leader Key: \<space\>
 
 光标之后的该行部分：d$
 
-
 ## 复制粘贴
 
 复制光标所在行：yy
 
 复制光标下第N行：Nyy
 
-
 ## 缩进
 
 向右增加缩进：Shift+>
 
 向左减少缩进：Shift+<
-
 
 ## Neo-tree
 
@@ -210,11 +196,13 @@ Leader Key: \<space\>
 
 从Neo-tree和文件窗口间移动：Ctrl-W+h/l
 
-
 ## Neogen
 
 生成注释：<leader>cn
 
+## Markdown
+
+Markdown预览:  :MarkdownPreview
 
 ## Buffer
 
@@ -224,7 +212,6 @@ Leader Key: \<space\>
 
 删除当前Buffer：\<leader\>bd
 
-
 ## 分割窗口及其移动与大小调整
 
 分割窗口：
@@ -233,11 +220,9 @@ Leader Key: \<space\>
 
 垂直分割：\<leader\>| or sv
 
-
 删除分割的窗口：\<leaader\>x or \<leader\>wd
 
 回到之前的窗口：\<leader\>n or \<leader\>ww or \<C-\\\>
-
 
 转到别的窗口：
 
@@ -249,14 +234,11 @@ Leader Key: \<space\>
 
 右：sl
 
-
 <!--调整窗口大小：-->
 <!--左：<C-h>-->
 <!--下：<C-j>-->
 <!--上：<C-k>-->
 <!--右：<C-l>-->
-
-
 
 ## 诊断
 
@@ -278,9 +260,7 @@ Leader Key: \<space\>
 
 在光标上另起一行：O
 
-
 退出插入模式：jk or Esc
-
 
 ## 自动补全
 
@@ -292,7 +272,6 @@ Leader Key: \<space\>
 
 关闭补全：\<C-e\>
 
-
 格式化：\<leader\>cf
 
 # 可视模式
@@ -301,5 +280,4 @@ Leader Key: \<space\>
 
 # Reference
 
-https://www.lazyvim.org/keymaps
-
+<https://www.lazyvim.org/keymaps>
