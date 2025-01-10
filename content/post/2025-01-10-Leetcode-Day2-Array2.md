@@ -1,5 +1,5 @@
 ---
-title:       "代码随想录Leetcode Day1 Array Part 2"
+title:       "代码随想录Leetcode Day2 Array Part 2"
 subtitle:    ""
 description: "209. Minimum Size Subarray Sum, 59. Spiral Matrix II, Interval Sum, Developers Purchase Land"
 date:        "2025-01-10T00:54:38Z"
