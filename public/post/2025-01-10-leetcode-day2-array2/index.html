@@ -467,9 +467,143 @@ The column remains constant as $layer$ and column decrements from $n−layer−2
 <ul>
 <li><code>0 &lt; n &lt;= 100000</code></li>
 </ul>
-<h1 id="kamacoder-44-developers-purchase-landhttpskamacodercomproblempagephppid1044"><a href="https://kamacoder.com/problempage.php?pid=1044">Kamacoder 44. Developers Purchase Land</a></h1>
+<h2 id="solution">Solution</h2>
+<p>此题由于暴力解法的时间复杂度过高，所以可以考虑使用前缀和的方法进行优化。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;iostream&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;vector&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> num, interval_a, interval_b;
+</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>cin <span style="color:#ff79c6">&gt;&gt;</span> num;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 初始化数组和前缀和数组
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    std<span style="color:#ff79c6">::</span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> arr(num, <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> prefix_sum(num <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 输入数组
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> num; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#ff79c6">::</span>cin <span style="color:#ff79c6">&gt;&gt;</span> arr[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 构造前缀和数组
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> num; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>        prefix_sum[i] <span style="color:#ff79c6">=</span> prefix_sum[i <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> arr[i <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 处理查询
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">while</span> (std<span style="color:#ff79c6">::</span>cin <span style="color:#ff79c6">&gt;&gt;</span> interval_a <span style="color:#ff79c6">&gt;&gt;</span> interval_b) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (interval_a <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">&amp;&amp;</span> interval_b <span style="color:#ff79c6">&lt;</span> num) {
+</span></span><span style="display:flex;"><span>            std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> prefix_sum[interval_b <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> prefix_sum[interval_a] <span style="color:#ff79c6">&lt;&lt;</span> std<span style="color:#ff79c6">::</span>endl;
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>            std<span style="color:#ff79c6">::</span>cerr <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Invalid interval range.&#34;</span> <span style="color:#ff79c6">&lt;&lt;</span> std<span style="color:#ff79c6">::</span>endl;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>上面是我自己写的代码，相较于下方标准答案，有一些细节问题，比如<code>prefix_sum</code>数组的大小，以及查询的范围。<br>
+不仅在计算前缀和的的时候增加了复杂度，并且在查询的时候需要进行判断，增加了代码的复杂度。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;iostream&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;vector&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> num, interval_a, interval_b;
+</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>cin <span style="color:#ff79c6">&gt;&gt;</span> num;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> arr(num, <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> prefix_sum(num, <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>cin <span style="color:#ff79c6">&gt;&gt;</span> arr[<span style="color:#bd93f9">0</span>];
+</span></span><span style="display:flex;"><span>    prefix_sum[<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">=</span> arr[<span style="color:#bd93f9">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;</span> num; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#ff79c6">::</span>cin <span style="color:#ff79c6">&gt;&gt;</span> arr[i];
+</span></span><span style="display:flex;"><span>        prefix_sum[i] <span style="color:#ff79c6">=</span> prefix_sum[i <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> arr[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> (std<span style="color:#ff79c6">::</span>cin <span style="color:#ff79c6">&gt;&gt;</span> interval_a <span style="color:#ff79c6">&gt;&gt;</span> interval_b) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (interval_a <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>) {
+</span></span><span style="display:flex;"><span>            std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> prefix_sum[interval_b] <span style="color:#ff79c6">&lt;&lt;</span> std<span style="color:#ff79c6">::</span>endl;
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>            std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> prefix_sum[interval_b] <span style="color:#ff79c6">-</span> prefix_sum[interval_a <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">&lt;&lt;</span> std<span style="color:#ff79c6">::</span>endl;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="kamacoder-44-developers-purchase-landhttpskamacodercomproblempagephppid1044"><a href="https://kamacoder.com/problempage.php?pid=1044">Kamacoder 44. Developers Purchase Land</a></h1>
 <h2 id="description-3">Description</h2>
-<h1 id="reference">Reference</h1>
+<p><strong>44. 开发商购买土地（第五期模拟笔试）</strong><br>
+<strong>题目描述</strong><br>
+在一个城市区域内，被划分成了 $n \times m $ 个连续的区块，每个区块都拥有不同的权值，代表着其土地价值。目前，有两家开发公司，A 公司和 B 公司，希望购买这个城市区域的土地。</p>
+<p>现在，需要将这个城市区域的所有区块分配给 A 公司和 B 公司。</p>
+<p>然而，由于城市规划的限制，只允许将区域按横向或纵向划分成两个子区域，而且每个子区域都必须包含一个或多个区块。 为了确保公平竞争，你需要找到一种分配方式，使得 A 公司和 B 公司各自的子区域内的土地总价值之差最小。</p>
+<p>注意：区块不可再分。</p>
+<p><strong>输入描述</strong><br>
+第一行输入两个正整数，代表 n 和 m。</p>
+<p>接下来的 n 行，每行输出 m 个正整数。</p>
+<p><strong>输出描述</strong><br>
+请输出一个整数，代表两个子区域内土地总价值之间的最小差距。</p>
+<p><strong>输入示例</strong></p>
+<pre tabindex="0"><code>3 3
+1 2 3
+2 1 3
+1 2 3
+</code></pre><p><strong>输出示例</strong></p>
+<pre tabindex="0"><code>0
+</code></pre><p><strong>提示信息</strong><br>
+如果将区域按照如下方式划分：</p>
+<pre tabindex="0"><code>1 2 | 3
+2 1 | 3
+1 2 | 3
+</code></pre><p>两个子区域内土地总价值之间的最小差距可以达到 0。</p>
+<p><strong>数据范围</strong>：</p>
+<ul>
+<li><code>1 &lt;= n, m &lt;= 100</code>；</li>
+<li>n 和 m 不同时为 1。</li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<p>可考虑使用前缀和的方法计算前  $i$ 行或前 $j$ 列的和。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;iostream&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;vector&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span><span style="color:#ff79c6">using</span> <span style="color:#ff79c6">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> num_rows, num_cols, sum;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#ff79c6">&gt;&gt;</span> num_rows <span style="color:#ff79c6">&gt;&gt;</span> num_cols;
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&gt;</span> matrix(num_rows, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span>(num_cols, <span style="color:#bd93f9">0</span>));
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> sum_rows(num_rows, <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> sum_cols(num_cols, <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> row <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; row <span style="color:#ff79c6">&lt;</span> num_rows; row<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> col <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; col <span style="color:#ff79c6">&lt;</span> num_cols; col<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            cin <span style="color:#ff79c6">&gt;&gt;</span> matrix[row][col];
+</span></span><span style="display:flex;"><span>            sum_rows[row] <span style="color:#ff79c6">+=</span> matrix[row][col];
+</span></span><span style="display:flex;"><span>            sum_cols[col] <span style="color:#ff79c6">+=</span> matrix[row][col];
+</span></span><span style="display:flex;"><span>            sum <span style="color:#ff79c6">+=</span> matrix[row][col];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// int left, right = 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">int</span> res <span style="color:#ff79c6">=</span> INT_MAX;
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// int target = sum &gt;&gt; 1;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// int middle = left + ((right - left) &gt;&gt; 1);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// while (left &lt;= right) {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// if sum_rows[left] 
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// }
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> row <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; row <span style="color:#ff79c6">&lt;</span> num_rows; row<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>        res <span style="color:#ff79c6">=</span> res <span style="color:#ff79c6">&lt;</span> abs(sum <span style="color:#ff79c6">-</span> sum_rows[row] <span style="color:#ff79c6">-</span> sum_rows[row]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> col <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; col <span style="color:#ff79c6">&lt;</span> num_cols; col<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>        res <span style="color:#ff79c6">=</span> res <span style="color:#ff79c6">&lt;</span> abs(sum <span style="color:#ff79c6">-</span> sum_cols[col] <span style="color:#ff79c6">-</span> sum_cols[col]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    cout <span style="color:#ff79c6">&lt;&lt;</span> result <span style="color:#ff79c6">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="reference">Reference</h1>
 <p><a href="https://programmercarl.com/">代码随想录</a></p>
 <p><a href="https://leetcode.com/problems/minimum-size-subarray-sum/solutions/823106/minimum-size-subarray-sum">LeetCode 209. Minimum Size Subarray Sum</a></p>
 <p><a href="https://leetcode.com/problems/spiral-matrix-ii/description/">LeetCode 59. Spiral Matrix II</a></p>

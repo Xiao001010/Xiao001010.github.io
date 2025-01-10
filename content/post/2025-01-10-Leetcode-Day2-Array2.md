@@ -301,9 +301,177 @@ public:
 
 - `0 < n <= 100000`
 
+## Solution
+
+此题由于暴力解法的时间复杂度过高，所以可以考虑使用前缀和的方法进行优化。  
+
+```cpp
+#include <iostream>
+#include <vector>
+
+int main() {
+    int num, interval_a, interval_b;
+    std::cin >> num;
+
+    // 初始化数组和前缀和数组
+    std::vector<int> arr(num, 0);
+    std::vector<int> prefix_sum(num + 1, 0);
+
+    // 输入数组
+    for (int i = 0; i < num; i++) {
+        std::cin >> arr[i];
+    }
+
+    // 构造前缀和数组
+    for (int i = 1; i <= num; i++) {
+        prefix_sum[i] = prefix_sum[i - 1] + arr[i - 1];
+    }
+
+    // 处理查询
+    while (std::cin >> interval_a >> interval_b) {
+        if (interval_a >= 0 && interval_b < num) {
+            std::cout << prefix_sum[interval_b + 1] - prefix_sum[interval_a] << std::endl;
+        } else {
+            std::cerr << "Invalid interval range." << std::endl;
+        }
+    }
+
+    return 0;
+}
+```
+
+上面是我自己写的代码，相较于下方标准答案，有一些细节问题，比如`prefix_sum`数组的大小，以及查询的范围。  
+不仅在计算前缀和的的时候增加了复杂度，并且在查询的时候需要进行判断，增加了代码的复杂度。  
+
+```cpp
+#include <iostream>
+#include <vector>
+
+int main() {
+    int num, interval_a, interval_b;
+    std::cin >> num;
+
+    std::vector<int> arr(num, 0);
+    std::vector<int> prefix_sum(num, 0);
+
+    std::cin >> arr[0];
+    prefix_sum[0] = arr[0];
+    for (int i = 1; i < num; i++) {
+        std::cin >> arr[i];
+        prefix_sum[i] = prefix_sum[i - 1] + arr[i];
+    }
+
+    while (std::cin >> interval_a >> interval_b) {
+        if (interval_a == 0) {
+            std::cout << prefix_sum[interval_b] << std::endl;
+        } else {
+            std::cout << prefix_sum[interval_b] - prefix_sum[interval_a - 1] << std::endl;
+        }
+    }
+
+    return 0;
+}
+```
+
 # [Kamacoder 44. Developers Purchase Land](https://kamacoder.com/problempage.php?pid=1044)
 
 ## Description
+
+**44. 开发商购买土地（第五期模拟笔试）**  
+**题目描述**  
+在一个城市区域内，被划分成了 $n \times m $ 个连续的区块，每个区块都拥有不同的权值，代表着其土地价值。目前，有两家开发公司，A 公司和 B 公司，希望购买这个城市区域的土地。
+
+现在，需要将这个城市区域的所有区块分配给 A 公司和 B 公司。
+
+然而，由于城市规划的限制，只允许将区域按横向或纵向划分成两个子区域，而且每个子区域都必须包含一个或多个区块。 为了确保公平竞争，你需要找到一种分配方式，使得 A 公司和 B 公司各自的子区域内的土地总价值之差最小。
+
+注意：区块不可再分。
+
+**输入描述**  
+第一行输入两个正整数，代表 n 和 m。
+
+接下来的 n 行，每行输出 m 个正整数。
+
+**输出描述**  
+请输出一个整数，代表两个子区域内土地总价值之间的最小差距。
+
+**输入示例**
+
+```
+3 3
+1 2 3
+2 1 3
+1 2 3
+```
+
+**输出示例**  
+
+```
+0
+```
+
+**提示信息**  
+如果将区域按照如下方式划分：
+
+```
+1 2 | 3
+2 1 | 3
+1 2 | 3
+```
+
+两个子区域内土地总价值之间的最小差距可以达到 0。
+
+**数据范围**：
+
+- `1 <= n, m <= 100`；
+- n 和 m 不同时为 1。
+
+## Solution
+
+可考虑使用前缀和的方法计算前  $i$ 行或前 $j$ 列的和。  
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int num_rows, num_cols, sum;
+    cin >> num_rows >> num_cols;
+    vector<vector<int>> matrix(num_rows, vector<int>(num_cols, 0));
+    vector<int> sum_rows(num_rows, 0);
+    vector<int> sum_cols(num_cols, 0);
+    for (int row = 0; row < num_rows; row++) {
+        for (int col = 0; col < num_cols; col++) {
+            cin >> matrix[row][col];
+            sum_rows[row] += matrix[row][col];
+            sum_cols[col] += matrix[row][col];
+            sum += matrix[row][col];
+        }
+    }
+    
+    // int left, right = 0;
+    int res = INT_MAX;
+    // int target = sum >> 1;
+    // int middle = left + ((right - left) >> 1);
+    
+    // while (left <= right) {
+        // if sum_rows[left] 
+    // }
+
+    for (int row = 0; row < num_rows; row++) {
+        res = res < abs(sum - sum_rows[row] - sum_rows[row]);
+    }
+    
+    for (int col = 0; col < num_cols; col++) {
+        res = res < abs(sum - sum_cols[col] - sum_cols[col]);
+    }
+    
+    cout << result << endl;
+    
+    return res;
+}
+```
 
 # Reference
 
