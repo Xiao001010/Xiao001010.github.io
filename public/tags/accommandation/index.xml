@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Accommandation on Hao Xu Blog</title>
-    <link>http://localhost:1313/tags/accommandation/</link>
+    <link>https://xiao00101010.github.io/tags/accommandation/</link>
     <description>Recent content in Accommandation on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Jan 2025 14:25:59 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/accommandation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://xiao00101010.github.io/tags/accommandation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First Semester in Edinburgh</title>
-      <link>http://localhost:1313/post/2025-01-06-1st-semenster-ed/</link>
+      <link>https://xiao00101010.github.io/post/2025-01-06-1st-semenster-ed/</link>
       <pubDate>Mon, 06 Jan 2025 14:25:59 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025-01-06-1st-semenster-ed/</guid>
+      <guid>https://xiao00101010.github.io/post/2025-01-06-1st-semenster-ed/</guid>
       <description>&lt;h1 id=&#34;awful-accommodation&#34;&gt;Awful Accommodation&lt;/h1&gt;&#xA;&lt;p&gt;爱丁堡的宿舍被分配到了离学校很远的地方，完全不在我的6个宿舍选项中。而爱丁堡的交通很垃圾，公交半个小时一班，班次还经常不准点。我的宿舍走到学校大概25分钟，公交20分钟。就很离谱。&lt;/p&gt;</description>
     </item>
   </channel>

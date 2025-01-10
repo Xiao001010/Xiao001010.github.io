@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Job on Hao Xu Blog</title>
-    <link>http://localhost:1313/tags/job/</link>
+    <link>https://xiao00101010.github.io/tags/job/</link>
     <description>Recent content in Job on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jan 2025 16:17:11 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/job/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Jan 2025 00:54:38 +0000</lastBuildDate>
+    <atom:link href="https://xiao00101010.github.io/tags/job/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代码随想录Leetcode Day2 Array Part 2</title>
+      <link>https://xiao00101010.github.io/post/2025-01-10-leetcode-day2-array2/</link>
+      <pubDate>Fri, 10 Jan 2025 00:54:38 +0000</pubDate>
+      <guid>https://xiao00101010.github.io/post/2025-01-10-leetcode-day2-array2/</guid>
+      <description>&lt;h1 id=&#34;209-minimum-size-subarray-sumhttpsleetcodecomproblemsminimum-size-subarray-sumdescription&#34;&gt;&lt;a href=&#34;https://leetcode.com/problems/minimum-size-subarray-sum/description/&#34;&gt;209. Minimum Size Subarray Sum&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;&#xA;&lt;p&gt;Given an array of positive integers &lt;code&gt;nums&lt;/code&gt; and a positive integer &lt;code&gt;target&lt;/code&gt;, return the &lt;strong&gt;minimal length&lt;/strong&gt; of a subarray whose sum is greater than or equal to &lt;code&gt;target&lt;/code&gt;. If there is no such subarray, return &lt;code&gt;0&lt;/code&gt; instead.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Example 1&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Input: target = 7, nums = [2,3,1,2,4,3]&#xA;Output: 2&#xA;Explanation: The subarray [4,3] has the minimal length under the problem constraint.&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 2&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Input: target = 4, nums = [1,4,4]&#xA;Output: 1&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 3&lt;/strong&gt;:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>代码随想录Leetcode Day1 Array Part 1</title>
-      <link>http://localhost:1313/post/2025-01-09-leetcode-day1-array1/</link>
+      <link>https://xiao00101010.github.io/post/2025-01-09-leetcode-day1-array1/</link>
       <pubDate>Thu, 09 Jan 2025 16:17:11 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025-01-09-leetcode-day1-array1/</guid>
+      <guid>https://xiao00101010.github.io/post/2025-01-09-leetcode-day1-array1/</guid>
       <description>&lt;h1 id=&#34;array&#34;&gt;Array&lt;/h1&gt;&#xA;&lt;p&gt;数组是存放在连续内存空间上的相同类型数据的集合。&lt;/p&gt;&#xA;&lt;p&gt;数组的特点：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;数组下标都是从0开始的。&lt;/li&gt;&#xA;&lt;li&gt;数组内存空间的地址是连续的&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;正是因为数组在内存空间的地址是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址。&lt;/p&gt;</description>
     </item>
   </channel>
