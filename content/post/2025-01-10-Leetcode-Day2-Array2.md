@@ -430,6 +430,8 @@ int main() {
 
 可考虑使用前缀和的方法计算前  $i$ 行或前 $j$ 列的和。  
 
+下方代码需要注意的是由于代码网页需要手机号登录，并没有进行验证。
+
 ```cpp
 #include <iostream>
 #include <vector>
