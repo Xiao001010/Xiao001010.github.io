@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="Hugo Quick Start" />
-    <meta property="og:title" content="Hugo Quick Start" />
-    <meta property="twitter:title" content="Hugo Quick Start" />
+    <meta name="title" content="代码随想录Leetcode Day1 Array Part 2" />
+    <meta property="og:title" content="代码随想录Leetcode Day1 Array Part 2" />
+    <meta property="twitter:title" content="代码随想录Leetcode Day1 Array Part 2" />
     
 
     
-    <meta name="description" content="A quik start guide for Hugo">
-    <meta property="og:description" content="A quik start guide for Hugo" />
-    <meta property="twitter:description" content="A quik start guide for Hugo" />
+    <meta name="description" content="209. Minimum Size Subarray Sum, 59. Spiral Matrix II, Interval Sum, Developers Purchase Land">
+    <meta property="og:description" content="209. Minimum Size Subarray Sum, 59. Spiral Matrix II, Interval Sum, Developers Purchase Land" />
+    <meta property="twitter:description" content="209. Minimum Size Subarray Sum, 59. Spiral Matrix II, Interval Sum, Developers Purchase Land" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Hugo Quick Start | 徐浩的博客 | Hao Xu Blog</title>
+    <title>代码随想录Leetcode Day1 Array Part 2 | 徐浩的博客 | Hao Xu Blog</title>
 
-    <link rel="canonical" href="/post/2025-01-04-hugo-quick-start/">
+    <link rel="canonical" href="/post/2025-01-10-leetcode-day2-array2/">
 
     
     
@@ -202,16 +202,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/web-development" title="Web development">
-                            Web development
+                        <a class="tag" href="/tags/tag1" title="tag1">
+                            tag1
                         </a>
                         
-                        <a class="tag" href="/tags/hugo" title="Hugo">
-                            Hugo
+                        <a class="tag" href="/tags/tag2" title="tag2">
+                            tag2
                         </a>
                         
                     </div>
-                    <h1>Hugo Quick Start</h1>
+                    <h1>代码随想录Leetcode Day1 Array Part 2</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -220,7 +220,7 @@
                                      &#34;Hao Xu&#34;
                              
                             on 
-                            Saturday, January 4, 2025
+                            Friday, January 10, 2025
                             
                             
                             
@@ -246,49 +246,119 @@
                 post-container">
 
                 
-                <h1 id="create-the-directory-structure-for-your-project-in-the-quickstart-directory">Create the directory structure for your project in the quickstart directory.</h1>
-<p>在quickstart目录中为您的项目创建目录结构。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new site quickstart
-</span></span></code></pre></div><h1 id="start-hugos-development-server-to-view-the-site">Start Hugo’s development server to view the site.</h1>
-<p>启动Hugo的开发服务器来查看站点。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo server
-</span></span></code></pre></div><h1 id="add-content">Add content</h1>
-<p>添加内容</p>
-<p>Add a new page to your site.
-向您的网站添加新页面。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new content content/posts/my-first-post.md
-</span></span></code></pre></div><p>Hugo created the file in the content/posts directory. Open the file with your editor.
-Hugo 在content/posts目录中创建了该文件。使用编辑器打开文件。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>+++
-</span></span><span style="display:flex;"><span>title = &#39;My First Post&#39;
-</span></span><span style="display:flex;"><span>date = 2024-01-14T07:07:07+01:00
-</span></span><span style="display:flex;"><span>draft = true
-</span></span><span style="display:flex;"><span>+++
-</span></span></code></pre></div><p>Notice the draft value in the front matter is true. By default, Hugo does not publish draft content when you build the site. Learn more about draft, future, and expired content.
-请注意，前面的内容中的draft值是true 。默认情况下，Hugo 在您构建网站时不会发布草稿内容。了解有关草稿、未来和过期内容的更多信息。</p>
-<p>Add some Markdown to the body of the post, but do not change the draft value.
-在帖子正文中添加一些Markdown ，但不要更改draft值。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>+++
-</span></span><span style="display:flex;"><span>title = &#39;My First Post&#39;
-</span></span><span style="display:flex;"><span>date = 2024-01-14T07:07:07+01:00
-</span></span><span style="display:flex;"><span>draft = true
-</span></span><span style="display:flex;"><span>+++
+                <h1 id="209-minimum-size-subarray-sumhttpsleetcodecomproblemsminimum-size-subarray-sumdescription"><a href="https://leetcode.com/problems/minimum-size-subarray-sum/description/">209. Minimum Size Subarray Sum</a></h1>
+<h2 id="description">Description</h2>
+<p>Given an array of positive integers <code>nums</code> and a positive integer <code>target</code>, return the <strong>minimal length</strong> of a subarray whose sum is greater than or equal to <code>target</code>. If there is no such subarray, return <code>0</code> instead.</p>
+<p><strong>Example 1</strong>:</p>
+<pre tabindex="0"><code>Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+</code></pre><p><strong>Example 2</strong>:</p>
+<pre tabindex="0"><code>Input: target = 4, nums = [1,4,4]
+Output: 1
+</code></pre><p><strong>Example 3</strong>:</p>
+<pre tabindex="0"><code>Input: target = 11, nums = [1,1,1,1,1,1,1,1]
+Output: 0
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li><code>1 &lt;= target &lt;= 109</code></li>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 104</code></li>
+</ul>
+<p>Follow up: If you have figured out the <code>O(n)</code> solution, try coding another solution of which the time complexity is <code>O(n log(n))</code>.</p>
+<h2 id="brute-force">Brute Force</h2>
+<p>最直接的方法就是通过两重循环，枚举所有的子数组，然后计算子数组的和，如果大于等于target，就更新最小长度。<br>
+但是这种方法的时间复杂度是$O(n^2)$，不符合题目要求。</p>
+<p>具体C++代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> minSubArrayLen(<span style="color:#8be9fd">int</span> target, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// int min_len = nums.size();
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> min_len <span style="color:#ff79c6">=</span> INT_MAX;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> nums.size(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> sum <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> i; j <span style="color:#ff79c6">&lt;</span> nums.size(); j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                sum <span style="color:#ff79c6">+=</span> nums[j];
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (sum <span style="color:#ff79c6">&gt;=</span> target) {
+</span></span><span style="display:flex;"><span>                    min_len <span style="color:#ff79c6">=</span> min_len <span style="color:#ff79c6">&lt;</span> j <span style="color:#ff79c6">-</span> i <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">?</span> <span style="color:#8be9fd;font-style:italic">min_len</span> : j <span style="color:#ff79c6">-</span> i <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// min_len = std::min(min_len, j-i+1);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> min_len <span style="color:#ff79c6">==</span> INT_MAX <span style="color:#ff79c6">?</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">:</span> min_len;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="two-pointers-sliding-window">Two Pointers (Sliding Window)</h2>
+<p>通过双指针实现滑动窗口，可以将时间复杂度降低到$O(n)$。</p>
+<p><strong>【注意】</strong>：<br>
+该题目的数组元素都是正整数，滑动窗口的和是递增的，所以可以通过滑动窗口的和来判断窗口是否需要移动左指针。<br>
+外部<code>for</code>循环针对右指针<code>right</code>，内部<code>while</code>循环针对左指针<code>left</code>。<br>
+注意理解滑动窗口的思想和原理。其关键在于数组元素是正整数导致的窗口和的递增性。</p>
+<p>你可能会想：<code>for</code>循环里面还有一个<code>while</code>循环，时间复杂度不是 $O(n^2)$ 吗？之所以还是 $O(n)$ ，是因为右指针<code>right</code>可以移动 n 次，左指针<code>left</code>也可以移动 次。对于外循环的每次迭代，内循环不会运行 n 次。滑动窗口保证最多 2n 次窗口迭代。这就是所谓的摊销分析 (<a href="https://en.wikipedia.org/wiki/Amortized_analysis">Amortized analysis</a>) - 尽管<code>for</code>循环内迭代的最坏情况是$O(n)$，但当您考虑整个运行时时，它的平均值为$O(1)$算法。</p>
+<p>具体C++代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> minSubArrayLen(<span style="color:#8be9fd">int</span> target, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> min_len <span style="color:#ff79c6">=</span> INT_MAX;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> left <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> sum <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> right <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; right <span style="color:#ff79c6">&lt;</span> nums.size(); right<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            sum <span style="color:#ff79c6">+=</span> nums[right];
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">while</span> (sum <span style="color:#ff79c6">&gt;=</span> target) {
+</span></span><span style="display:flex;"><span>                min_len <span style="color:#ff79c6">=</span> min_len <span style="color:#ff79c6">&lt;</span> right <span style="color:#ff79c6">-</span> left <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">?</span> <span style="color:#8be9fd;font-style:italic">min_len</span> : right <span style="color:#ff79c6">-</span> left <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// min_len = std::min(min_len, right-left+1);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                sum <span style="color:#ff79c6">-=</span> nums[left<span style="color:#ff79c6">++</span>];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> min_len <span style="color:#ff79c6">==</span> INT_MAX <span style="color:#ff79c6">?</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">:</span> min_len;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="binary-search">Binary Search</h2>
+<p>对于$O(n\ log\ n)$的解法，可以通过二分查找的方法实现。<br>
+大致思路是先计算前缀和，然后通过二分查找找到对于每个起点<code>i</code>，满足<code>sum[j] - sum[i] &gt;= target</code>的最小<code>j</code>。<br>
+同样需要注意的是，该题目的数组元素都是正整数，前缀和是递增的，所以可以通过前缀和来判断二分查找的方向。</p>
+<p>具体C++代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> minSubArrayLen(<span style="color:#8be9fd">int</span> target, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> min_len <span style="color:#ff79c6">=</span> INT_MAX;
+</span></span><span style="display:flex;"><span>        vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> prefix_sum(nums.size() <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="font-weight:bold">## Introduction
-</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
-</span></span><span style="display:flex;"><span>This is **bold** text, and this is <span style="text-decoration:underline">*emphasized*</span> text.
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> nums.size(); i<span style="color:#ff79c6">++</span>)    prefix_sum[i] <span style="color:#ff79c6">=</span> prefix_sum[i <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> nums[i <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>];
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Visit the [<span style="color:#ff79c6">Hugo</span>](<span style="color:#50fa7b">https://gohugo.io</span>) website!
-</span></span></code></pre></div><p>Save the file, then start Hugo’s development server to view the site. You can run either of the following commands to include draft content.
-保存文件，然后启动Hugo的开发服务器来查看站点。您可以运行以下任一命令来包含草稿内容。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo server --buildDrafts
-</span></span><span style="display:flex;"><span>hugo server -D
-</span></span></code></pre></div><p>View your site at the URL displayed in your terminal. Keep the development server running as you continue to add and change content.
-通过终端中显示的 URL 查看您的站点。当您继续添加和更改内容时，请保持开发服务器运行。</p>
-<p>When satisfied with your new content, set the front matter draft parameter to false.
-当您对新内容感到满意时，请将 front Matter draft设置为false 。</p>
-<h1 id="reference">Reference</h1>
-<p><a href="https://gohugo.io/getting-started/quick-start/">https://gohugo.io/getting-started/quick-start/</a></p>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> nums.size(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> left <span style="color:#ff79c6">=</span> i <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> right <span style="color:#ff79c6">=</span> nums.size();
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> result <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">while</span> (left <span style="color:#ff79c6">&lt;=</span> right) {
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> middle <span style="color:#ff79c6">=</span> left <span style="color:#ff79c6">+</span> ((right <span style="color:#ff79c6">-</span> left) <span style="color:#ff79c6">&gt;&gt;</span> <span style="color:#bd93f9">1</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (prefix_sum[middle] <span style="color:#ff79c6">-</span> prefix_sum[i] <span style="color:#ff79c6">&lt;</span> target) {
+</span></span><span style="display:flex;"><span>                    left <span style="color:#ff79c6">=</span> middle <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                    right <span style="color:#ff79c6">=</span> middle <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>                    result <span style="color:#ff79c6">=</span> middle;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (result <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)   min_len <span style="color:#ff79c6">=</span> min_len <span style="color:#ff79c6">&lt;</span> result <span style="color:#ff79c6">-</span> i <span style="color:#ff79c6">?</span> <span style="color:#8be9fd;font-style:italic">min_len</span> : result <span style="color:#ff79c6">-</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> min_len <span style="color:#ff79c6">==</span> INT_MAX <span style="color:#ff79c6">?</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">:</span> min_len;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h1 id="59-spiral-matrix-iihttpsleetcodecomproblemsspiral-matrix-iidescription"><a href="https://leetcode.com/problems/spiral-matrix-ii/description/">59. Spiral Matrix II</a></h1>
+<h2 id="description-1">Description</h2>
+<p>Given a positive integer <code>n</code>, generate an <code>n x n</code> <code>matrix</code> filled with elements from 1 to $n^2$ in spiral order.</p>
+<p><strong>Example 1</strong>:</p>
+<pre tabindex="0"><code>Input: n = 3
+Output: [[1,2,3],[8,9,4],[7,6,5]]
+</code></pre><p><strong>Example 2</strong>:</p>
+<pre tabindex="0"><code>Input: n = 1
+Output: [[1]]
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li><code>1 &lt;= n &lt;= 20</code></li>
+</ul>
 
 
                 
@@ -338,15 +408,10 @@ Hugo 在content/posts目录中创建了该文件。使用编辑器打开文件�
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/life-test/" data-toggle="tooltip" data-placement="top" title="Life Test">&larr;
+                        <a href="/post/2025-01-09-leetcode-day1-array1/" data-toggle="tooltip" data-placement="top" title="代码随想录Leetcode Day1 Array Part 1">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/post/2025-01-04-image-segmentation-basic-concepts/" data-toggle="tooltip" data-placement="top" title="Image Segmentation Basic Concepts">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 
@@ -379,8 +444,8 @@ Hugo 在content/posts目录中创建了该文件。使用编辑器打开文件�
 <script>
     Artalk.init({
         el: '#Comments',
-        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-04-hugo-quick-start\/',
-        pageTitle: 'Hugo Quick Start',
+        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-10-leetcode-day2-array2\/',
+        pageTitle: '代码随想录Leetcode Day1 Array Part 2',
         server: 'https:\/\/xxx.xxx.com',
         site: 'xxx blog',
     })

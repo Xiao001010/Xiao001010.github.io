@@ -57,7 +57,7 @@ Explanation: 2 does not exist in nums so return -1
 二分查找的时间复杂度是$O(log\ n)$，空间复杂度是$O(1)$。
 
 最值得注意的是，二分查找的**边界条件**，区间是左闭右开的，即`[left, right)`或左闭右闭，即`[left, right]`。  
-还有一点就是middle的取值，如果直接使用`(left + right) / 2`，可能会导致整数溢出，所以应当使用`left + (right - left) / 2`。此外，对于除2的操作，可以使用`>> 1`来代替。
+还有一点就是middle的取值，如果直接使用`(left + right) / 2`，可能会导致整数溢出，所以应当使用`left + (right - left) / 2`。此外，对于除2的操作，可以使用`>> 1`来代替（位运算符优先级大于`+`、`-`所以不要忘了加括号，即`int middle = left + ((right - left) >> 1);`）。
 
 ## 左闭右闭`[left, right]`
 

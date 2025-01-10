@@ -6,8 +6,15 @@
     <description>Recent content on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jan 2025 16:17:11 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jan 2025 00:54:38 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代码随想录Leetcode Day1 Array Part 2</title>
+      <link>http://localhost:1313/post/2025-01-10-leetcode-day2-array2/</link>
+      <pubDate>Fri, 10 Jan 2025 00:54:38 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-10-leetcode-day2-array2/</guid>
+      <description>&lt;h1 id=&#34;209-minimum-size-subarray-sumhttpsleetcodecomproblemsminimum-size-subarray-sumdescription&#34;&gt;&lt;a href=&#34;https://leetcode.com/problems/minimum-size-subarray-sum/description/&#34;&gt;209. Minimum Size Subarray Sum&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;&#xA;&lt;p&gt;Given an array of positive integers &lt;code&gt;nums&lt;/code&gt; and a positive integer &lt;code&gt;target&lt;/code&gt;, return the &lt;strong&gt;minimal length&lt;/strong&gt; of a subarray whose sum is greater than or equal to &lt;code&gt;target&lt;/code&gt;. If there is no such subarray, return &lt;code&gt;0&lt;/code&gt; instead.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Example 1&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Input: target = 7, nums = [2,3,1,2,4,3]&#xA;Output: 2&#xA;Explanation: The subarray [4,3] has the minimal length under the problem constraint.&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 2&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Input: target = 4, nums = [1,4,4]&#xA;Output: 1&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 3&lt;/strong&gt;:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>代码随想录Leetcode Day1 Array Part 1</title>
       <link>http://localhost:1313/post/2025-01-09-leetcode-day1-array1/</link>

@@ -277,7 +277,7 @@ Explanation: 2 does not exist in nums so return -1
 <p>此题可以使用二分查找的条件是数组是有序的且没有重复元素。</p>
 <p>二分查找的时间复杂度是$O(log\ n)$，空间复杂度是$O(1)$。</p>
 <p>最值得注意的是，二分查找的<strong>边界条件</strong>，区间是左闭右开的，即<code>[left, right)</code>或左闭右闭，即<code>[left, right]</code>。<br>
-还有一点就是middle的取值，如果直接使用<code>(left + right) / 2</code>，可能会导致整数溢出，所以应当使用<code>left + (right - left) / 2</code>。此外，对于除2的操作，可以使用<code>&gt;&gt; 1</code>来代替。</p>
+还有一点就是middle的取值，如果直接使用<code>(left + right) / 2</code>，可能会导致整数溢出，所以应当使用<code>left + (right - left) / 2</code>。此外，对于除2的操作，可以使用<code>&gt;&gt; 1</code>来代替（位运算符优先级大于<code>+</code>、<code>-</code>所以不要忘了加括号，即<code>int middle = left + ((right - left) &gt;&gt; 1);</code>）。</p>
 <h2 id="左闭右闭left-right">左闭右闭<code>[left, right]</code></h2>
 <p>通过<code>array.size() - 1</code>来获取最后一个元素的下标。最初的区间应当是<code>[0, array.size() - 1]</code>。<br>
 由于是闭区间，<code>left</code>与<code>right</code>可以相等，所以<code>while</code>循环的条件是<code>left &lt;= right</code>。<br>
@@ -521,6 +521,11 @@ Output: [4,9,9,49,121]
                     </li>
                     
                     
+                    <li class="next">
+                        <a href="/post/2025-01-10-leetcode-day2-array2/" data-toggle="tooltip" data-placement="top" title="代码随想录Leetcode Day1 Array Part 2">Next
+                            Post &rarr;</a>
+                    </li>
+                    
                 </ul>
                 
 
@@ -625,6 +630,10 @@ Output: [4,9,9,49,121]
                         <a href="/tags/image-segmentation" title="image segmentation">
                             image segmentation
                         </a>
+                        
+                        
+                        
+                        
                         
                         
                         
