@@ -2,122 +2,122 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hao Xu Blog</title>
-    <link>https://xiao00101010.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Jan 2025 00:54:38 +0000</lastBuildDate>
-    <atom:link href="https://xiao00101010.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>代码随想录Leetcode Day2 Array Part 2</title>
-      <link>https://xiao00101010.github.io/post/2025-01-10-leetcode-day2-array2/</link>
+      <link>http://localhost:1313/post/2025-01-10-leetcode-day2-array2/</link>
       <pubDate>Fri, 10 Jan 2025 00:54:38 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/post/2025-01-10-leetcode-day2-array2/</guid>
+      <guid>http://localhost:1313/post/2025-01-10-leetcode-day2-array2/</guid>
       <description>&lt;h1 id=&#34;209-minimum-size-subarray-sumhttpsleetcodecomproblemsminimum-size-subarray-sumdescription&#34;&gt;&lt;a href=&#34;https://leetcode.com/problems/minimum-size-subarray-sum/description/&#34;&gt;209. Minimum Size Subarray Sum&lt;/a&gt;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;&#xA;&lt;p&gt;Given an array of positive integers &lt;code&gt;nums&lt;/code&gt; and a positive integer &lt;code&gt;target&lt;/code&gt;, return the &lt;strong&gt;minimal length&lt;/strong&gt; of a subarray whose sum is greater than or equal to &lt;code&gt;target&lt;/code&gt;. If there is no such subarray, return &lt;code&gt;0&lt;/code&gt; instead.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Example 1&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Input: target = 7, nums = [2,3,1,2,4,3]&#xA;Output: 2&#xA;Explanation: The subarray [4,3] has the minimal length under the problem constraint.&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 2&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Input: target = 4, nums = [1,4,4]&#xA;Output: 1&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 3&lt;/strong&gt;:&lt;/p&gt;</description>
     </item>
     <item>
       <title>代码随想录Leetcode Day1 Array Part 1</title>
-      <link>https://xiao00101010.github.io/post/2025-01-09-leetcode-day1-array1/</link>
+      <link>http://localhost:1313/post/2025-01-09-leetcode-day1-array1/</link>
       <pubDate>Thu, 09 Jan 2025 16:17:11 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/post/2025-01-09-leetcode-day1-array1/</guid>
+      <guid>http://localhost:1313/post/2025-01-09-leetcode-day1-array1/</guid>
       <description>&lt;h1 id=&#34;array&#34;&gt;Array&lt;/h1&gt;&#xA;&lt;p&gt;数组是存放在连续内存空间上的相同类型数据的集合。&lt;/p&gt;&#xA;&lt;p&gt;数组的特点：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;数组下标都是从0开始的。&lt;/li&gt;&#xA;&lt;li&gt;数组内存空间的地址是连续的&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;正是因为数组在内存空间的地址是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址。&lt;/p&gt;</description>
     </item>
     <item>
       <title>First Semester in Edinburgh</title>
-      <link>https://xiao00101010.github.io/post/2025-01-06-1st-semenster-ed/</link>
+      <link>http://localhost:1313/post/2025-01-06-1st-semenster-ed/</link>
       <pubDate>Mon, 06 Jan 2025 14:25:59 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/post/2025-01-06-1st-semenster-ed/</guid>
+      <guid>http://localhost:1313/post/2025-01-06-1st-semenster-ed/</guid>
       <description>&lt;h1 id=&#34;awful-accommodation&#34;&gt;Awful Accommodation&lt;/h1&gt;&#xA;&lt;p&gt;爱丁堡的宿舍被分配到了离学校很远的地方，完全不在我的6个宿舍选项中。而爱丁堡的交通很垃圾，公交半个小时一班，班次还经常不准点。我的宿舍走到学校大概25分钟，公交20分钟。就很离谱。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Neovim Tips</title>
-      <link>https://xiao00101010.github.io/post/2025-01-05-neovim-tips/</link>
+      <link>http://localhost:1313/post/2025-01-05-neovim-tips/</link>
       <pubDate>Sun, 05 Jan 2025 10:46:42 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/post/2025-01-05-neovim-tips/</guid>
+      <guid>http://localhost:1313/post/2025-01-05-neovim-tips/</guid>
       <description>&lt;p&gt;Leader Key: &amp;lt;space&amp;gt;&lt;/p&gt;&#xA;&lt;p&gt;全部退出nvim：&amp;lt;leader&amp;gt;qq&lt;/p&gt;&#xA;&lt;h1 id=&#34;普通模式&#34;&gt;普通模式&lt;/h1&gt;&#xA;&lt;p&gt;重复上一步命令：.&lt;/p&gt;&#xA;&lt;h2 id=&#34;光标移动&#34;&gt;光标移动&lt;/h2&gt;&#xA;&lt;p&gt;显示行号：:set number&lt;/p&gt;&#xA;&lt;p&gt;普通模式左下上右移动：h、j(jump)、k(climb)、l(left)&lt;/p&gt;</description>
     </item>
     <item>
       <title>U-Net</title>
-      <link>https://xiao00101010.github.io/post/2025-01-04-u-net/</link>
+      <link>http://localhost:1313/post/2025-01-04-u-net/</link>
       <pubDate>Sat, 04 Jan 2025 21:59:30 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/post/2025-01-04-u-net/</guid>
-      <description>&lt;h1 id=&#34;u-net复现&#34;&gt;U-Net复现&lt;/h1&gt;&#xA;&lt;p&gt;本篇内容是通过PyTorch来复现U-Net.&lt;/p&gt;&#xA;&lt;h1 id=&#34;模型总览&#34;&gt;模型总览&lt;/h1&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://xiao00101010.github.io/img/2025-01-04-U-Net/Untitled.png&#34; alt=&#34;Source U-Net&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;Source &lt;a href=&#34;https://arxiv.org/abs/1505.04597&#34;&gt;U-Net&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;如上图（蓝色方块上方显示的是通道数，左下角显示的是数据的高宽）所示，U-Net 的模型结构符合我们前面说的 &lt;strong&gt;编码器/解码器结构 (Encoder/Decoder structure)&lt;/strong&gt;&lt;/p&gt;</description>
+      <guid>http://localhost:1313/post/2025-01-04-u-net/</guid>
+      <description>&lt;h1 id=&#34;u-net复现&#34;&gt;U-Net复现&lt;/h1&gt;&#xA;&lt;p&gt;本篇内容是通过PyTorch来复现U-Net.&lt;/p&gt;&#xA;&lt;h1 id=&#34;模型总览&#34;&gt;模型总览&lt;/h1&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/img/2025-01-04-U-Net/Untitled.png&#34; alt=&#34;Source U-Net&#34;&gt;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;Source &lt;a href=&#34;https://arxiv.org/abs/1505.04597&#34;&gt;U-Net&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;如上图（蓝色方块上方显示的是通道数，左下角显示的是数据的高宽）所示，U-Net 的模型结构符合我们前面说的 &lt;strong&gt;编码器/解码器结构 (Encoder/Decoder structure)&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Image Segmentation Basic Methods</title>
-      <link>https://xiao00101010.github.io/post/2025-01-04-image-segmentation-basic-methods/</link>
+      <link>http://localhost:1313/post/2025-01-04-image-segmentation-basic-methods/</link>
       <pubDate>Sat, 04 Jan 2025 17:26:33 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/post/2025-01-04-image-segmentation-basic-methods/</guid>
+      <guid>http://localhost:1313/post/2025-01-04-image-segmentation-basic-methods/</guid>
       <description>&lt;h1 id=&#34;图像分割基本方法&#34;&gt;图像分割基本方法&lt;/h1&gt;&#xA;&lt;h1 id=&#34;输入输出&#34;&gt;输入输出&lt;/h1&gt;&#xA;&lt;p&gt;下面讲解一下模型的输入与输出的形式。尤其是输出。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;输入 (Input)&lt;/strong&gt;：RGB图像 (height, width, 3) 或者灰度图 (height, width, 1) 。第三个维度是通道数，RGB图像有三个通道，而灰度图只有一个通道。在第一维再加一个batch size 就是 RGB 图像 (batch_size, height, width, 3) / 灰度图 (batch_size, height, width, 1)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Image Segmentation Basic Concepts</title>
-      <link>https://xiao00101010.github.io/post/2025-01-04-image-segmentation-basic-concepts/</link>
+      <link>http://localhost:1313/post/2025-01-04-image-segmentation-basic-concepts/</link>
       <pubDate>Sat, 04 Jan 2025 16:36:37 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/post/2025-01-04-image-segmentation-basic-concepts/</guid>
+      <guid>http://localhost:1313/post/2025-01-04-image-segmentation-basic-concepts/</guid>
       <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;人类对计算机视觉感兴趣的最重要的问题是&lt;strong&gt;图像分类 (Image Classification)、目标检测 (Object Detection) 和图像分割 (Image Segmentation)&lt;/strong&gt;，同时它们的难度也是依次递增。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hugo Quick Start</title>
-      <link>https://xiao00101010.github.io/post/2025-01-04-hugo-quick-start/</link>
+      <link>http://localhost:1313/post/2025-01-04-hugo-quick-start/</link>
       <pubDate>Sat, 04 Jan 2025 16:35:35 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/post/2025-01-04-hugo-quick-start/</guid>
+      <guid>http://localhost:1313/post/2025-01-04-hugo-quick-start/</guid>
       <description>&lt;h1 id=&#34;create-the-directory-structure-for-your-project-in-the-quickstart-directory&#34;&gt;Create the directory structure for your project in the quickstart directory.&lt;/h1&gt;&#xA;&lt;p&gt;在quickstart目录中为您的项目创建目录结构。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new site quickstart&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;start-hugos-development-server-to-view-the-site&#34;&gt;Start Hugo’s development server to view the site.&lt;/h1&gt;&#xA;&lt;p&gt;启动Hugo的开发服务器来查看站点。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Life Test</title>
-      <link>https://xiao00101010.github.io/post/life-test/</link>
+      <link>http://localhost:1313/post/life-test/</link>
       <pubDate>Sun, 13 Oct 2024 02:05:56 +0100</pubDate>
-      <guid>https://xiao00101010.github.io/post/life-test/</guid>
+      <guid>http://localhost:1313/post/life-test/</guid>
       <description>&lt;h1 id=&#34;life-test&#34;&gt;Life Test&lt;/h1&gt;&#xA;&lt;p&gt;Boring life, nothing to say.&lt;/p&gt;</description>
     </item>
     <item>
       <title>TestAuthorGen</title>
-      <link>https://xiao00101010.github.io/post/testauthorgen/</link>
+      <link>http://localhost:1313/post/testauthorgen/</link>
       <pubDate>Sun, 13 Oct 2024 00:51:17 +0100</pubDate>
-      <guid>https://xiao00101010.github.io/post/testauthorgen/</guid>
+      <guid>http://localhost:1313/post/testauthorgen/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pyton code here&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>Test2</title>
-      <link>https://xiao00101010.github.io/post/test2/</link>
+      <link>http://localhost:1313/post/test2/</link>
       <pubDate>Sun, 13 Oct 2024 00:33:57 +0100</pubDate>
-      <guid>https://xiao00101010.github.io/post/test2/</guid>
+      <guid>http://localhost:1313/post/test2/</guid>
       <description>&lt;p&gt;Description answer:&lt;/p&gt;&#xA;&lt;p&gt;If the description in front matter is not provided, it will display top lines above the &amp;lt;!&amp;ndash;more&amp;ndash;&amp;gt; tag. If the description is provided, it will display the description in front matter.&lt;/p&gt;&#xA;&lt;p&gt;Using the tag &amp;lt;!&amp;ndash;more&amp;ndash;&amp;gt; to separate the content. The content above the tag will be displayed in the list view. The content below the tag will be displayed in the detail view.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Test</title>
-      <link>https://xiao00101010.github.io/post/test/</link>
+      <link>http://localhost:1313/post/test/</link>
       <pubDate>Sun, 13 Oct 2024 00:31:14 +0100</pubDate>
-      <guid>https://xiao00101010.github.io/post/test/</guid>
+      <guid>http://localhost:1313/post/test/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;“Yeah It&amp;rsquo;s on. ”&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;hello-world&#34;&gt;Hello World!&lt;/h2&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>https://xiao00101010.github.io/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Sun, 13 Oct 2024 00:07:07 +0100</pubDate>
-      <guid>https://xiao00101010.github.io/about/</guid>
-      <description>&lt;h1 id=&#34;hao-xu&#34;&gt;Hao Xu&lt;/h1&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;High Performance Computing with Data Science postgraduate student at the University of Edinburgh&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://xiao00101010.github.io/Hao_Xu_CV.pdf&#34;&gt;Detailed PDF Resume&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;academic-experience&#34;&gt;Academic Experience&lt;/h2&gt;&#xA;&lt;h3 id=&#34;university-of-edinburgh-edinburgh-uk&#34;&gt;University of Edinburgh, Edinburgh, UK&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;MSc in High Performance Computing with Data Science&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;Sept, 2024 - Sept 2025&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Modules (to be taken) are HPC related: Thread Programming, Message-Passing Programming, Advanced Message-Passing Programming, Performance Programming, HPC Architecture, Accelerated Systems: Principles and Practice.&lt;/li&gt;&#xA;&lt;li&gt;Machine Learning related modules (to be taken): Fundamentals of Data Management, High Performance Data Analytics, Machine Learning and Pattern Recognition, Machine Learning at Scale, Reinforcement Learning.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;university-of-sussex-brighton-uk&#34;&gt;University of Sussex, Brighton, UK&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;BSc in Computer Science &amp;amp; Artificial Intelligence (First Honor)&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;Sept, 2022 - June 2024&lt;/em&gt;&lt;/p&gt;</description>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h1 id=&#34;hao-xu&#34;&gt;Hao Xu&lt;/h1&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;High Performance Computing with Data Science postgraduate student at the University of Edinburgh&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/Hao_Xu_CV.pdf&#34;&gt;Detailed PDF Resume&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;academic-experience&#34;&gt;Academic Experience&lt;/h2&gt;&#xA;&lt;h3 id=&#34;university-of-edinburgh-edinburgh-uk&#34;&gt;University of Edinburgh, Edinburgh, UK&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;MSc in High Performance Computing with Data Science&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;Sept, 2024 - Sept 2025&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Modules (to be taken) are HPC related: Thread Programming, Message-Passing Programming, Advanced Message-Passing Programming, Performance Programming, HPC Architecture, Accelerated Systems: Principles and Practice.&lt;/li&gt;&#xA;&lt;li&gt;Machine Learning related modules (to be taken): Fundamentals of Data Management, High Performance Data Analytics, Machine Learning and Pattern Recognition, Machine Learning at Scale, Reinforcement Learning.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;university-of-sussex-brighton-uk&#34;&gt;University of Sussex, Brighton, UK&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;BSc in Computer Science &amp;amp; Artificial Intelligence (First Honor)&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;Sept, 2022 - June 2024&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>https://xiao00101010.github.io/notes/</link>
+      <link>http://localhost:1313/notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/notes/</guid>
+      <guid>http://localhost:1313/notes/</guid>
       <description>&lt;p&gt;Nothing here yet.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>https://xiao00101010.github.io/search/placeholder/</link>
+      <link>http://localhost:1313/search/placeholder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/search/placeholder/</guid>
+      <guid>http://localhost:1313/search/placeholder/</guid>
       <description></description>
     </item>
     <item>
       <title>Posts Archive</title>
-      <link>https://xiao00101010.github.io/archive/</link>
+      <link>http://localhost:1313/archive/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://xiao00101010.github.io/archive/</guid>
+      <guid>http://localhost:1313/archive/</guid>
       <description></description>
     </item>
   </channel>

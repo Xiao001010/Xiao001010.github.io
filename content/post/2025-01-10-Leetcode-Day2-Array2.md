@@ -153,6 +153,7 @@ public:
 Given a positive integer `n`, generate an `n x n` `matrix` filled with elements from 1 to $n^2$ in spiral order.
 
 **Example 1**:
+![Example 1](/img/2025-01-10-Leetcode-Day2-Array2/spiral_example.jpg)
 
 ```
 Input: n = 3
@@ -170,4 +171,152 @@ Output: [[1]]
 
 - `1 <= n <= 20`
 
-##
+## 解题思路
+
+这题主要是模拟螺旋矩阵的生成过程，需要注意的是边界条件的处理。核心思想是解码底层模式。这可以通过模拟模式并找到适用于任何给定 n 的通用表示来完成。
+
+Traverse Layer by Layer in Spiral Form
+螺旋式逐层遍历
+
+### Intuition
+
+如果我们尝试为给定的 $n$ 构建一种模式，我们会观察到该模式在完成围绕矩阵的一次循环遍历后会重复。我们将这种循环遍历称为层。我们从外层开始遍历，并在每次迭代中向内层移动。
+
+![Spiral Layer](/img/2025-01-10-Leetcode-Day2-Array2/spiral_layers.png)
+
+### Algorithm  算法
+
+Let's devise an algorithm for the spiral traversal:  
+让我们设计一个螺旋遍历的算法：
+
+- We can observe that, for any given $n$, the total number of layers is given by :  
+- 我们可以观察到，对于任何给定的 $n$ ，总层数由下式给出：$$layers = \lceil \frac{n+1}{2} \rceil$$
+
+This works for both even and odd $n$.  
+这适用于偶数和奇数 n 。
+
+*Example*  
+*例子*
+
+For $n=3, layers=2$  
+For $n=6$, total $layers=3$
+
+- Also, for each layer, we traverse in at most 4 directions :  
+- 此外，对于每一层，我们最多遍历 4 个方向：
+![Spiral Traversal](/img/2025-01-10-Leetcode-Day2-Array2/spiral_traverse.png)
+
+In every direction, either row or column remains constant and other parameter changes (increments/decrements).  
+在每个方向上，行或列保持不变，而其他参数发生变化（增量/减量）。
+
+Direction 1: From top left corner to top right corner.  
+方向1：从左上角到右上角。  
+The row remains constant as $layer$ and column increments from $layer$ to $n−layer−1$  
+行保持不变为 $layer$ ，列从 $layer$ 递增到 $n−layer−1$
+
+Direction 2: From top right corner to the bottom right corner.  
+方向2：从右上角到右下角。  
+The column remains constant as $n−layer−1$ and row increments from $layer+1$ to $n−layer$.
+列保持不变为 $n−layer−1$ ，行从 $layer+1$ 到 $n−layer$ 。
+
+Direction 3: From bottom right corner to bottom left corner.  
+方向3：从右下角到左下角。  
+The row remains constant as $n−layer−1$ and column decrements from $n−layer−2$ to $layer$.
+行保持不变为 $n−layer−1$ ，列从 $n−layer−2$ 递减到 $layer$ 。
+
+Direction 4: From bottom left corner to top left corner.  
+方向4：从左下角到左上角。  
+The column remains constant as $layer$ and column decrements from $n−layer−2$ to $layer+1$.  
+该列保持不变为 $layer$ ，并且列从 $n−layer−2$ 递减到 $layer+1$ 。
+
+This process repeats $(n+1)/2$ times until all layers are traversed.  
+此过程重复 $(n+1)/2$ 次，直到遍历完所有层。
+
+![Spiral Details](/img/2025-01-10-Leetcode-Day2-Array2/spiral_detailed.png)
+
+### Code
+
+详细的C++代码如下：
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> matrix(n, vector<int>(n, 0));
+        int num = 1;
+        for (int layer = 0; layer < (n+1)/2; layer++){
+            for (int ptr = layer; ptr < n-layer; ptr++) {
+                matrix[layer][ptr] = num++;
+            }
+            for (int ptr = layer + 1; ptr < n-layer; ptr++) {
+                matrix[ptr][n-layer-1] = num++;
+            }
+            for (int ptr = n-layer-2; ptr >= layer; ptr--) {
+                matrix[n-layer-1][ptr] = num++;
+            }
+            for (int ptr = n-layer-2; ptr > layer; ptr--) {
+                matrix[ptr][layer] = num++;
+            }
+        }
+        return matrix;
+    }
+};
+```
+
+时间复杂度：$O(n^2)$  
+
+# [Kamacoder 58. Interval Sum](https://kamacoder.com/problempage.php?pid=1070)
+
+## Description
+
+**58. 区间和（第九期模拟笔试）**  
+给定一个整数数组 Array，请计算该数组在每个指定区间内元素的总和。
+
+**输入描述**  
+第一行输入为整数数组 Array 的长度 n，接下来 n 行，每行一个整数，表示数组的元素。随后的输入为需要计算总和的区间下标：a，b （b > = a），直至文件结束。
+
+**输出描述**  
+输出每个指定区间内元素的总和。
+
+**输入示例**  
+
+```
+5
+1
+2
+3
+4
+5
+0 1
+1 3
+```
+
+**输出示例**  
+
+```
+3
+9
+```
+
+**数据范围**：
+
+- `0 < n <= 100000`
+
+# [Kamacoder 44. Developers Purchase Land](https://kamacoder.com/problempage.php?pid=1044)
+
+## Description
+
+# Reference
+
+[代码随想录](https://programmercarl.com/)
+
+[LeetCode 209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/solutions/823106/minimum-size-subarray-sum)
+
+[LeetCode 59. Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/description/)
+
+[LeetCode 59. Spiral Matrix II Solution](https://leetcode.com/problems/spiral-matrix-ii/solutions/823106/spiral-matrix-ii)
+
+[一入循环深似海 | LeetCode：59.螺旋矩阵II](https://www.bilibili.com/video/BV1SL4y1N7mV/)
+
+[kamacoder 58. Interval Sum](https://kamacoder.com/problempage.php?pid=1070)
+
+[kamacoder 44. Developers Purchase Land](https://kamacoder.com/problempage.php?pid=1044)

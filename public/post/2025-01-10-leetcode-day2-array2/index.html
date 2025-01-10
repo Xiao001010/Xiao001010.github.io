@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://xiao00101010.github.io//img/home-bg-jeep.jpg">
-    <meta property="twitter:image" content="https://xiao00101010.github.io//img/home-bg-jeep.jpg" />
+    <meta property="og:image" content="http://localhost:1313//img/home-bg-jeep.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-bg-jeep.jpg" />
     
 
     
@@ -349,7 +349,11 @@ Output: 0
 </span></span></code></pre></div><h1 id="59-spiral-matrix-iihttpsleetcodecomproblemsspiral-matrix-iidescription"><a href="https://leetcode.com/problems/spiral-matrix-ii/description/">59. Spiral Matrix II</a></h1>
 <h2 id="description-1">Description</h2>
 <p>Given a positive integer <code>n</code>, generate an <code>n x n</code> <code>matrix</code> filled with elements from 1 to $n^2$ in spiral order.</p>
-<p><strong>Example 1</strong>:</p>
+<p><strong>Example 1</strong>:
+
+  <img src="/img/2025-01-10-Leetcode-Day2-Array2/spiral_example.jpg" alt="Example 1">
+
+</p>
 <pre tabindex="0"><code>Input: n = 3
 Output: [[1,2,3],[8,9,4],[7,6,5]]
 </code></pre><p><strong>Example 2</strong>:</p>
@@ -359,7 +363,120 @@ Output: [[1]]
 <ul>
 <li><code>1 &lt;= n &lt;= 20</code></li>
 </ul>
-<h2 id="heading"></h2>
+<h2 id="解题思路">解题思路</h2>
+<p>这题主要是模拟螺旋矩阵的生成过程，需要注意的是边界条件的处理。核心思想是解码底层模式。这可以通过模拟模式并找到适用于任何给定 n 的通用表示来完成。</p>
+<p>Traverse Layer by Layer in Spiral Form
+螺旋式逐层遍历</p>
+<h3 id="intuition">Intuition</h3>
+<p>如果我们尝试为给定的 $n$ 构建一种模式，我们会观察到该模式在完成围绕矩阵的一次循环遍历后会重复。我们将这种循环遍历称为层。我们从外层开始遍历，并在每次迭代中向内层移动。</p>
+<p>
+  <img src="/img/2025-01-10-Leetcode-Day2-Array2/spiral_layers.png" alt="Spiral Layer">
+
+</p>
+<h3 id="algorithm--算法">Algorithm  算法</h3>
+<p>Let&rsquo;s devise an algorithm for the spiral traversal:<br>
+让我们设计一个螺旋遍历的算法：</p>
+<ul>
+<li>We can observe that, for any given $n$, the total number of layers is given by :</li>
+<li>我们可以观察到，对于任何给定的 $n$ ，总层数由下式给出：$$layers = \lceil \frac{n+1}{2} \rceil$$</li>
+</ul>
+<p>This works for both even and odd $n$.<br>
+这适用于偶数和奇数 n 。</p>
+<p><em>Example</em><br>
+<em>例子</em></p>
+<p>For $n=3, layers=2$<br>
+For $n=6$, total $layers=3$</p>
+<ul>
+<li>Also, for each layer, we traverse in at most 4 directions :</li>
+<li>此外，对于每一层，我们最多遍历 4 个方向：
+
+  <img src="/img/2025-01-10-Leetcode-Day2-Array2/spiral_traverse.png" alt="Spiral Traversal">
+
+</li>
+</ul>
+<p>In every direction, either row or column remains constant and other parameter changes (increments/decrements).<br>
+在每个方向上，行或列保持不变，而其他参数发生变化（增量/减量）。</p>
+<p>Direction 1: From top left corner to top right corner.<br>
+方向1：从左上角到右上角。<br>
+The row remains constant as $layer$ and column increments from $layer$ to $n−layer−1$<br>
+行保持不变为 $layer$ ，列从 $layer$ 递增到 $n−layer−1$</p>
+<p>Direction 2: From top right corner to the bottom right corner.<br>
+方向2：从右上角到右下角。<br>
+The column remains constant as $n−layer−1$ and row increments from $layer+1$ to $n−layer$.
+列保持不变为 $n−layer−1$ ，行从 $layer+1$ 到 $n−layer$ 。</p>
+<p>Direction 3: From bottom right corner to bottom left corner.<br>
+方向3：从右下角到左下角。<br>
+The row remains constant as $n−layer−1$ and column decrements from $n−layer−2$ to $layer$.
+行保持不变为 $n−layer−1$ ，列从 $n−layer−2$ 递减到 $layer$ 。</p>
+<p>Direction 4: From bottom left corner to top left corner.<br>
+方向4：从左下角到左上角。<br>
+The column remains constant as $layer$ and column decrements from $n−layer−2$ to $layer+1$.<br>
+该列保持不变为 $layer$ ，并且列从 $n−layer−2$ 递减到 $layer+1$ 。</p>
+<p>This process repeats $(n+1)/2$ times until all layers are traversed.<br>
+此过程重复 $(n+1)/2$ 次，直到遍历完所有层。</p>
+<p>
+  <img src="/img/2025-01-10-Leetcode-Day2-Array2/spiral_detailed.png" alt="Spiral Details">
+
+</p>
+<h3 id="code">Code</h3>
+<p>详细的C++代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&gt;</span> generateMatrix(<span style="color:#8be9fd">int</span> n) {
+</span></span><span style="display:flex;"><span>        vector<span style="color:#ff79c6">&lt;</span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&gt;</span> matrix(n, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span>(n, <span style="color:#bd93f9">0</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> num <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> layer <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; layer <span style="color:#ff79c6">&lt;</span> (n<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>)<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>; layer<span style="color:#ff79c6">++</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> ptr <span style="color:#ff79c6">=</span> layer; ptr <span style="color:#ff79c6">&lt;</span> n<span style="color:#ff79c6">-</span>layer; ptr<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                matrix[layer][ptr] <span style="color:#ff79c6">=</span> num<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> ptr <span style="color:#ff79c6">=</span> layer <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>; ptr <span style="color:#ff79c6">&lt;</span> n<span style="color:#ff79c6">-</span>layer; ptr<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                matrix[ptr][n<span style="color:#ff79c6">-</span>layer<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> num<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> ptr <span style="color:#ff79c6">=</span> n<span style="color:#ff79c6">-</span>layer<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>; ptr <span style="color:#ff79c6">&gt;=</span> layer; ptr<span style="color:#ff79c6">--</span>) {
+</span></span><span style="display:flex;"><span>                matrix[n<span style="color:#ff79c6">-</span>layer<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>][ptr] <span style="color:#ff79c6">=</span> num<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> ptr <span style="color:#ff79c6">=</span> n<span style="color:#ff79c6">-</span>layer<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>; ptr <span style="color:#ff79c6">&gt;</span> layer; ptr<span style="color:#ff79c6">--</span>) {
+</span></span><span style="display:flex;"><span>                matrix[ptr][layer] <span style="color:#ff79c6">=</span> num<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> matrix;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>时间复杂度：$O(n^2)$</p>
+<h1 id="kamacoder-58-interval-sumhttpskamacodercomproblempagephppid1070"><a href="https://kamacoder.com/problempage.php?pid=1070">Kamacoder 58. Interval Sum</a></h1>
+<h2 id="description-2">Description</h2>
+<p><strong>58. 区间和（第九期模拟笔试）</strong><br>
+给定一个整数数组 Array，请计算该数组在每个指定区间内元素的总和。</p>
+<p><strong>输入描述</strong><br>
+第一行输入为整数数组 Array 的长度 n，接下来 n 行，每行一个整数，表示数组的元素。随后的输入为需要计算总和的区间下标：a，b （b &gt; = a），直至文件结束。</p>
+<p><strong>输出描述</strong><br>
+输出每个指定区间内元素的总和。</p>
+<p><strong>输入示例</strong></p>
+<pre tabindex="0"><code>5
+1
+2
+3
+4
+5
+0 1
+1 3
+</code></pre><p><strong>输出示例</strong></p>
+<pre tabindex="0"><code>3
+9
+</code></pre><p><strong>数据范围</strong>：</p>
+<ul>
+<li><code>0 &lt; n &lt;= 100000</code></li>
+</ul>
+<h1 id="kamacoder-44-developers-purchase-landhttpskamacodercomproblempagephppid1044"><a href="https://kamacoder.com/problempage.php?pid=1044">Kamacoder 44. Developers Purchase Land</a></h1>
+<h2 id="description-3">Description</h2>
+<h1 id="reference">Reference</h1>
+<p><a href="https://programmercarl.com/">代码随想录</a></p>
+<p><a href="https://leetcode.com/problems/minimum-size-subarray-sum/solutions/823106/minimum-size-subarray-sum">LeetCode 209. Minimum Size Subarray Sum</a></p>
+<p><a href="https://leetcode.com/problems/spiral-matrix-ii/description/">LeetCode 59. Spiral Matrix II</a></p>
+<p><a href="https://leetcode.com/problems/spiral-matrix-ii/solutions/823106/spiral-matrix-ii">LeetCode 59. Spiral Matrix II Solution</a></p>
+<p><a href="https://www.bilibili.com/video/BV1SL4y1N7mV/">一入循环深似海 | LeetCode：59.螺旋矩阵II</a></p>
+<p><a href="https://kamacoder.com/problempage.php?pid=1070">kamacoder 58. Interval Sum</a></p>
+<p><a href="https://kamacoder.com/problempage.php?pid=1044">kamacoder 44. Developers Purchase Land</a></p>
 
 
                 
@@ -374,7 +491,7 @@ Output: [[1]]
 <div class="zs-modal-box">
 	<div class="zs-modal-head">
 		<button type="button" class="close">×</button>
-		<span class="author"><a href="https://xiao00101010.github.io/"><img src="/img/favicon.png" />Hao Xu Blog</a></span>
+		<span class="author"><a href="http://localhost:1313/"><img src="/img/favicon.png" />Hao Xu Blog</a></span>
         
 	        <p class="tip"><i></i><span>如果这篇文章对你有用,请随意打赏</span></p>
 		
@@ -445,7 +562,7 @@ Output: [[1]]
 <script>
     Artalk.init({
         el: '#Comments',
-        pageKey: 'https:\/\/xiao00101010.github.io\/post\/2025-01-10-leetcode-day2-array2\/',
+        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-10-leetcode-day2-array2\/',
         pageTitle: '代码随想录Leetcode Day2 Array Part 2',
         server: 'https:\/\/xxx.xxx.com',
         site: 'xxx blog',
