@@ -66,7 +66,7 @@ artalk_site = "xxx blog"
 reward = true
 reward_guide = "如果这篇文章对你有用,请随意打赏"
 
-friends = false
+friends = true
 bookmarks = false
 # show my info in the sidebar
 about_me = true
@@ -99,9 +99,9 @@ wechat = "img/wechat_qrcode.jpg"
 #xing          = "https://www.xing.com/profile/yourxingid"
 #git           = "full profile url for git user"
 
-# [[params.friend_link]]
-# title = "Linda的博客"
-# href =  "https://zhaozhihan.com"
+[[params.friend_link]]
+title = "子逸的博客"
+href = "https://kevin256.github.io"
 
 [[params.bookmark_link]]
 title = "Martin Fowler"
