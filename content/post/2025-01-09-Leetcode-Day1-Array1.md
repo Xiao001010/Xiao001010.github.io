@@ -6,7 +6,7 @@ date:        "2025-01-09T16:17:11Z"
 author:      "Hao Xu"
 image:       ""
 tags:        ["Leetcode", "Job"]
-categories:  ["Tech", "Diary" ]
+categories:  ["Tech", "Diary"]
 draft:       false
 ---
 
@@ -312,16 +312,10 @@ public:
 
 # Reference
 
-[代码随想录](https://programmercarl.com/)
-
-[LeetCode 704. Binary Search](https://leetcode.com/problems/binary-search/description/)
-
-[手把手带你撕出正确的二分法 | 二分查找法 ｜ 二分搜索法 | LeetCode: 704. 二分查找](https://www.bilibili.com/video/BV1fA4y1o715)
-
-[LeetCode 27. Remove Element](https://leetcode.com/problems/remove-element/description/)
-
-[数组中移除元素并不容易！ | LeetCode：27. 移除元素](https://www.bilibili.com/video/BV12A4y1Z7LP/)
-
-[LeetCode 977. Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/description/)
-
+[代码随想录](https://programmercarl.com/)  
+[LeetCode 704. Binary Search](https://leetcode.com/problems/binary-search/description/)  
+[手把手带你撕出正确的二分法 | 二分查找法 ｜ 二分搜索法 | LeetCode: 704. 二分查找](https://www.bilibili.com/video/BV1fA4y1o715)  
+[LeetCode 27. Remove Element](https://leetcode.com/problems/remove-element/description/)  
+[数组中移除元素并不容易！ | LeetCode：27. 移除元素](https://www.bilibili.com/video/BV12A4y1Z7LP/)  
+[LeetCode 977. Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/description/)  
 [双指针法经典题目 | LeetCode：977.有序数组的平方](https://www.bilibili.com/video/BV1QB4y1D7ep/)

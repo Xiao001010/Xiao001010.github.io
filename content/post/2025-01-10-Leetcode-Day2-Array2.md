@@ -477,16 +477,10 @@ int main() {
 
 # Reference
 
-[代码随想录](https://programmercarl.com/)
-
-[LeetCode 209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/solutions/823106/minimum-size-subarray-sum)
-
-[LeetCode 59. Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/description/)
-
-[LeetCode 59. Spiral Matrix II Solution](https://leetcode.com/problems/spiral-matrix-ii/solutions/823106/spiral-matrix-ii)
-
-[一入循环深似海 | LeetCode：59.螺旋矩阵II](https://www.bilibili.com/video/BV1SL4y1N7mV/)
-
-[kamacoder 58. Interval Sum](https://kamacoder.com/problempage.php?pid=1070)
-
+[代码随想录](https://programmercarl.com/)  
+[LeetCode 209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/solutions/823106/minimum-size-subarray-sum)  
+[LeetCode 59. Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/description/)  
+[LeetCode 59. Spiral Matrix II Solution](https://leetcode.com/problems/spiral-matrix-ii/solutions/823106/spiral-matrix-ii)  
+[一入循环深似海 | LeetCode：59.螺旋矩阵II](https://www.bilibili.com/video/BV1SL4y1N7mV/)  
+[kamacoder 58. Interval Sum](https://kamacoder.com/problempage.php?pid=1070)  
 [kamacoder 44. Developers Purchase Land](https://kamacoder.com/problempage.php?pid=1044)

@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Hao Xu Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//img/home-bg-jeep.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-bg-jeep.jpg" />
+    
+
+    
+    <meta name="title" content="代码随想录Leetcode Day3 Linked List Part 1" />
+    <meta property="og:title" content="代码随想录Leetcode Day3 Linked List Part 1" />
+    <meta property="twitter:title" content="代码随想录Leetcode Day3 Linked List Part 1" />
+    
+
+    
+    <meta name="description" content="203. Remove Linked List Elements, 707. Design Linked List, 206. Reverse Linked List">
+    <meta property="og:description" content="203. Remove Linked List Elements, 707. Design Linked List, 206. Reverse Linked List" />
+    <meta property="twitter:description" content="203. Remove Linked List Elements, 707. Design Linked List, 206. Reverse Linked List" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>代码随想录Leetcode Day3 Linked List Part 1 | 徐浩的博客 | Hao Xu Blog</title>
+
+    <link rel="canonical" href="/post/2025-01-10-leetcode-day3-linked-list1/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});">
+    </script>
+
+</head>
+
+
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJW25L51HL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-FJW25L51HL');
+        }
+      </script>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hao Xu Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/diary/">diary</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive/">ARCHIVE</a></li>
+                    
+                        <li><a href="/about/">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-jeep.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/leetcode" title="Leetcode">
+                            Leetcode
+                        </a>
+                        
+                        <a class="tag" href="/tags/job" title="Job">
+                            Job
+                        </a>
+                        
+                    </div>
+                    <h1>代码随想录Leetcode Day3 Linked List Part 1</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                     &#34;Hao Xu&#34;
+                             
+                            on 
+                            Friday, January 10, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="linked-list">Linked List</h1>
+<p>链表是一种通过指针串联在一起的线性结构，每一个节点由两部分组成，一个是数据域一个是指针域（存放指向下一个节点的指针），最后一个节点的指针域指向null（空指针的意思）。</p>
+<p>链表的入口节点称为链表的头结点也就是head。</p>
+<p>
+  <img src="/img/2025-01-10-Leetcode-Day3-Linked-List1/linked-list.png" alt="Linked List">
+
+</p>
+<p>链表是通过指针域的指针链接在内存中各个节点。<br>
+相较于数组在内存中的连续存储，链表在内存中的存储是不连续的，所以在插入和删除元素时，不需要移动其他元素的地址，时间复杂度是$O(1)$。但是链表的查询时间复杂度是$O(n)$。</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">数据结构</th>
+          <th style="text-align: left">插入/删除（时间复杂度）</th>
+          <th style="text-align: left">查询（时间复杂度）</th>
+          <th style="text-align: left">适用场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">数组</td>
+          <td style="text-align: left">O(n)</td>
+          <td style="text-align: left">O(1)</td>
+          <td style="text-align: left">数据量固定，频繁查询，较少增删</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">链表</td>
+          <td style="text-align: left">O(1)</td>
+          <td style="text-align: left">O(n)</td>
+          <td style="text-align: left">数据量不固定，频繁增删，较少查询</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="linked-list-types">Linked List Types</h2>
+<ul>
+<li>单链表（Single Linked List）：每个节点只有一个指针域，指向下一个节点。</li>
+<li>双向链表（Double Linked List）：每个节点有两个指针域，一个指向前一个节点，一个指向下一个节点。</li>
+<li>循环链表（Circular Linked List）：尾节点指向头结点形成一个环。</li>
+</ul>
+<h2 id="linked-list-definition">Linked List Definition</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">// 单链表
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> val;  <span style="color:#6272a4">// 节点上存储的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    ListNode <span style="color:#ff79c6">*</span>next;  <span style="color:#6272a4">// 指向下一个节点的指针
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    ListNode(<span style="color:#8be9fd">int</span> x) <span style="color:#ff79c6">:</span> val(x), next(<span style="color:#8be9fd;font-style:italic">NULL</span>) {}  <span style="color:#6272a4">// 节点的构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Use Custom Constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>ListNode<span style="color:#ff79c6">*</span> head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode(<span style="color:#bd93f9">5</span>);  <span style="color:#6272a4">// 创建一个值为5的头结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Use Default Constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>ListNode<span style="color:#ff79c6">*</span> head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode();
+</span></span><span style="display:flex;"><span>head<span style="color:#ff79c6">-&gt;</span>val <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>;
+</span></span></code></pre></div><h2 id="linked-list-operations">Linked List Operations</h2>
+<h3 id="get-the-length-of-linked-list">Get the Length of Linked List</h3>
+<p>略</p>
+<h3 id="search-linked-list-elements">Search Linked List Elements</h3>
+<p>略</p>
+<h3 id="modify-linked-list-elements">Modify Linked List Elements</h3>
+<p>略</p>
+<h3 id="remove-linked-list-elements">Remove Linked List Elements</h3>
+<p>
+  <img src="/img/2025-01-10-Leetcode-Day3-Linked-List1/remove.png" alt="Remove Linked List Elements">
+
+</p>
+<p>找到要删除节点的前一个节点，将前一个节点的指针指向要删除节点的下一个节点。</p>
+<h3 id="add-linked-list-elements">Add Linked List Elements</h3>
+<p>
+  <img src="/img/2025-01-10-Leetcode-Day3-Linked-List1/add.png" alt="Add Linked List Elements">
+
+</p>
+<p>找到要添加节点的前一个节点，将前一个节点的指针指向要添加节点，要添加节点的指针指向前一个节点的下一个节点。</p>
+<h1 id="203-remove-linked-list-elementshttpsleetcodecomproblemsremove-linked-list-elementsdescription"><a href="https://leetcode.com/problems/remove-linked-list-elements/description/">203. Remove Linked List Elements</a></h1>
+<h2 id="description">Description</h2>
+<p>Given the <code>head</code> of a linked list and an integer <code>val</code>, remove all the nodes of the linked list that has <code>Node.val == val</code>, and return the new head.</p>
+<p><strong>Example 1</strong>:
+
+  <img src="/img/2025-01-10-Leetcode-Day3-Linked-List1/203.jpg" alt="203. Remove Linked List Elements">
+
+</p>
+<pre tabindex="0"><code>Input: head = [1,2,6,3,4,5,6], val = 6
+Output: [1,2,3,4,5]
+</code></pre><p><strong>Example 2</strong>:</p>
+<pre tabindex="0"><code>Input: head = [], val = 1
+Output: []
+</code></pre><p><strong>Example 3</strong>:</p>
+<pre tabindex="0"><code>Input: head = [7,7,7,7], val = 7
+Output: []
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li>The number of nodes in the list is in the range $[0, 10^4]$.</li>
+<li><code>1 &lt;= Node.val &lt;= 50</code></li>
+<li><code>0 &lt;= val &lt;= 50</code></li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>如上方所说，删除节点需要找到要删除节点的前一个节点，将前一个节点的指针指向要删除节点的下一个节点。</p>
+<p>这里使用一个dummy节点，dummy节点的next指向head，这样dummy节点就是要删除节点的前一个节点。</p>
+<p>此外，为了避免内存泄漏，需要释放要删除节点和dummy节点的内存。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * struct ListNode {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     int val;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode *next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * };
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#ff79c6">*</span> removeElements(ListNode<span style="color:#ff79c6">*</span> head, <span style="color:#8be9fd">int</span> val) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> dummy_head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode(<span style="color:#bd93f9">0</span>, head);
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> pre <span style="color:#ff79c6">=</span> dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (pre<span style="color:#ff79c6">-&gt;</span>next) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (pre<span style="color:#ff79c6">-&gt;</span>next<span style="color:#ff79c6">-&gt;</span>val <span style="color:#ff79c6">==</span> val) {
+</span></span><span style="display:flex;"><span>                ListNode<span style="color:#ff79c6">*</span> tmp <span style="color:#ff79c6">=</span> pre<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>                pre<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> tmp<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">delete</span> tmp;
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                pre <span style="color:#ff79c6">=</span> pre<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        head <span style="color:#ff79c6">=</span> dummy_head<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span> dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> head;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="cpp-note">CPP Note</h2>
+<h3 id="--vs--operator"><code>-&gt;</code> VS <code>.</code> Operator</h3>
+<p><code>-&gt;</code> is used to access the members of a structure or union through a <strong>pointer</strong>.<br>
+<code>.</code> is used to access the members of a structure or union through a <strong>variable</strong>.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;iostream&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">MyStruct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> value;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">print</span>() {
+</span></span><span style="display:flex;"><span>        std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Value: &#34;</span> <span style="color:#ff79c6">&lt;&lt;</span> value <span style="color:#ff79c6">&lt;&lt;</span> std<span style="color:#ff79c6">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    MyStruct obj;       <span style="color:#6272a4">// 结构体对象
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    obj.value <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>;     <span style="color:#6272a4">// 使用 . 访问成员
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    obj.print();        <span style="color:#6272a4">// 使用 . 调用成员函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    MyStruct<span style="color:#ff79c6">*</span> ptr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>obj; <span style="color:#6272a4">// 结构体指针
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    ptr<span style="color:#ff79c6">-&gt;</span>value <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">20</span>;      <span style="color:#6272a4">// 使用 -&gt; 访问成员
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    ptr<span style="color:#ff79c6">-&gt;</span>print();         <span style="color:#6272a4">// 使用 -&gt; 调用成员函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Operator</th>
+          <th style="text-align: left">Description</th>
+          <th style="text-align: left">Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>.</code></td>
+          <td style="text-align: left">直接访问结构体对象的成员</td>
+          <td style="text-align: left"><code>obj.member</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-&gt;</code></td>
+          <td style="text-align: left">通过结构体指针访问结构体的成员</td>
+          <td style="text-align: left"><code>ptr-&gt;member</code>（相当于 <code>(*ptr).member</code>）</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="delete-vs-free-operator"><code>delete</code> VS <code>free</code> Operator</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">特性</th>
+          <th style="text-align: left">delete</th>
+          <th style="text-align: left">free</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">适用语言</td>
+          <td style="text-align: left">仅用于 C++</td>
+          <td style="text-align: left">用于 C 和 C++</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">分配方式</td>
+          <td style="text-align: left">与 <code>new</code> 配合使用，用于释放动态分配的对象</td>
+          <td style="text-align: left">与 <code>malloc</code> / <code>calloc</code> 配合使用</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">调用构造/析构函数</td>
+          <td style="text-align: left">调用对象的析构函数（如果有）</td>
+          <td style="text-align: left">不会调用析构函数</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">释放内容</td>
+          <td style="text-align: left">释放对象所占的内存并处理关联资源</td>
+          <td style="text-align: left">仅释放分配的内存，不做其他操作</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">安全性</td>
+          <td style="text-align: left">提供更多的类型安全（强类型检查）</td>
+          <td style="text-align: left">不进行类型检查</td>
+      </tr>
+  </tbody>
+</table>
+<p>在 C++ 中，delete 和 free 都用于释放内存，但它们之间有一些关键的区别，主要体现在适用场景、执行的操作以及适用的编程语言特性。</p>
+<h4 id="使用场景">使用场景</h4>
+<p><code>delete</code>
+用于释放通过 <code>new</code> 分配的动态对象。
+自动调用对象的析构函数，适用于具有复杂数据结构或类的对象。</p>
+<p>*<em>Example</em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;iostream&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MyClass</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    MyClass() { std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Constructor called</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">~</span>MyClass() { std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Destructor called</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>; }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    MyClass<span style="color:#ff79c6">*</span> obj <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> MyClass(); <span style="color:#6272a4">// 动态分配
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">delete</span> obj;                  <span style="color:#6272a4">// 释放内存，同时调用析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>free</code>
+用于释放通过 <code>malloc</code> 或 <code>calloc</code> 分配的内存。
+不会调用析构函数，仅仅释放内存。</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;cstdlib&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;iostream&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span><span style="color:#ff79c6">*</span> arr <span style="color:#ff79c6">=</span> (<span style="color:#8be9fd">int</span><span style="color:#ff79c6">*</span>)malloc(<span style="color:#bd93f9">5</span> <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">sizeof</span>(<span style="color:#8be9fd">int</span>)); <span style="color:#6272a4">// 动态分配
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (arr <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Memory allocation failed</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    free(arr); <span style="color:#6272a4">// 释放内存，不涉及析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="智能指针替代">智能指针替代</h4>
+<p>C++ 中推荐使用智能指针（如 std::shared_ptr 和 std::unique_ptr），可以避免手动调用 delete 或 free 的风险。</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;memory&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;iostream&gt;</span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MyClass</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    MyClass() { std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Constructor called</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">~</span>MyClass() { std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Destructor called</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>; }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>unique_ptr<span style="color:#ff79c6">&lt;</span>MyClass<span style="color:#ff79c6">&gt;</span> ptr <span style="color:#ff79c6">=</span> std<span style="color:#ff79c6">::</span>make_unique<span style="color:#ff79c6">&lt;</span>MyClass<span style="color:#ff79c6">&gt;</span>(); <span style="color:#6272a4">// 自动管理内存
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 无需手动 delete，超出作用域时会自动释放内存并调用析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="707-design-linked-listhttpsleetcodecomproblemsdesign-linked-listdescription"><a href="https://leetcode.com/problems/design-linked-list/description/">707. Design Linked List</a></h1>
+<h2 id="description-1">Description</h2>
+<p>Design your implementation of the linked list. You can choose to use a singly or doubly linked list.<br>
+A node in a singly linked list should have two attributes: val and next. val is the value of the current node, and next is a pointer/reference to the next node.<br>
+If you want to use the doubly linked list, you will need one more attribute prev to indicate the previous node in the linked list. Assume all nodes in the linked list are <strong>0-indexed</strong>.</p>
+<p>Implement the <code>MyLinkedList</code> class:</p>
+<ul>
+<li><code>MyLinkedList()</code> Initializes the <code>MyLinkedList</code> object.</li>
+<li><code>int get(int index)</code> Get the value of the $index^th$ node in the linked list. If the index is invalid, return <code>-1</code>.</li>
+<li><code>void addAtHead(int val)</code> Add a node of value <code>val</code> before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.</li>
+<li><code>void addAtTail(int val)</code> Append a node of value <code>val</code> as the last element of the linked list.</li>
+<li><code>void addAtIndex(int index, int val)</code> Add a node of value <code>val</code> before the $index^th$ node in the linked list. If <code>index</code> equals the length of the linked list, the node will be appended to the end of the linked list. If <code>index</code> is greater than the length, the node will not be <strong>inserted</strong>.</li>
+<li><code>void deleteAtIndex(int index)</code> Delete the $index^th$ node in the linked list, if the index is valid.</li>
+</ul>
+<p><strong>Example 1</strong>:</p>
+<pre tabindex="0"><code>Input
+[&#34;MyLinkedList&#34;, &#34;addAtHead&#34;, &#34;addAtTail&#34;, &#34;addAtIndex&#34;, &#34;get&#34;, &#34;deleteAtIndex&#34;, &#34;get&#34;]
+[[], [1], [3], [1, 2], [1], [1], [1]]
+Output
+[null, null, null, null, 2, null, 3]
+
+Explanation
+MyLinkedList myLinkedList = new MyLinkedList();
+myLinkedList.addAtHead(1);
+myLinkedList.addAtTail(3);
+myLinkedList.addAtIndex(1, 2);    // linked list becomes 1-&gt;2-&gt;3
+myLinkedList.get(1);              // return 2
+myLinkedList.deleteAtIndex(1);    // now the linked list is 1-&gt;3
+myLinkedList.get(1);              // return 3
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li><code>0 &lt;= index, val &lt;= 1000</code></li>
+<li>Please do not use the built-in LinkedList library.</li>
+<li>At most <code>2000</code> calls will be made to get, <code>addAtHead</code>, <code>addAtTail</code>, <code>addAtIndex</code> and <code>deleteAtIndex</code>.</li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="206-reverse-linked-listhttpsleetcodecomproblemsreverse-linked-listdescription"><a href="https://leetcode.com/problems/reverse-linked-list/description/">206. Reverse Linked List</a></h1>
+<h2 id="description-2">Description</h2>
+<p>Given the <code>head</code> of a singly linked list, reverse the list, and return the reversed list.</p>
+<p><strong>Example 1</strong>:
+
+  <img src="/img/2025-01-10-Leetcode-Day3-Linked-List1/206-1.jpg" alt="206. Reverse Linked List">
+
+</p>
+<pre tabindex="0"><code>Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+</code></pre><p><strong>Example 2</strong>:
+
+  <img src="/img/2025-01-10-Leetcode-Day3-Linked-List1/206-2.jpg" alt="206. Reverse Linked List">
+
+</p>
+<pre tabindex="0"><code>Input: head = [1,2]
+Output: [2,1]
+</code></pre><p><strong>Example 3</strong>:</p>
+<pre tabindex="0"><code>Input: head = []
+Output: []
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
+<li><code>-5000 &lt;= Node.val &lt;= 5000</code></li>
+</ul>
+<p>Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?</p>
+<h2 id="solution-2">Solution</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="reference">Reference</h1>
+<p><a href="https://programmercarl.com/">代码随想录</a><br>
+<a href="https://leetcode.com/problems/reverse-linked-list/description/">206. Reverse Linked List</a><br>
+<a href="https://leetcode.com/problems/remove-linked-list-elements/description/">203. Remove Linked List Elements</a><br>
+<a href="https://leetcode.com/problems/design-linked-list/description/">707. Design Linked List</a></p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p> 「如果这篇文章对你有用,请随意打赏」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="http://localhost:1313/"><img src="/img/favicon.png" />Hao Xu Blog</a></span>
+        
+	        <p class="tip"><i></i><span>如果这篇文章对你有用,请随意打赏</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2025-01-10-leetcode-day2-array2/" data-toggle="tooltip" data-placement="top" title="代码随想录Leetcode Day2 Array Part 2">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+<script src="https://giscus.app/client.js"
+        data-repo="Xiao001010/Xiao001010.github.io"
+        data-repo-id="R_kgDOM-aRvQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM-aRvc4ClvEj"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-10-leetcode-day3-linked-list1\/',
+        pageTitle: '代码随想录Leetcode Day3 Linked List Part 1',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/computer-vision" title="computer vision">
+                            computer vision
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/deep-learning" title="deep learning">
+                            deep learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/image-segmentation" title="image segmentation">
+                            image segmentation
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/job" title="job">
+                            job
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/test" title="test">
+                            test
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/vim" title="vim">
+                            vim
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:haoxu1010@outlook.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat_qrcode.jpg">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Xiao001010">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/hao-xu-xiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Hao Xu Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Hao Xu Blog 2025
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
