@@ -52,17 +52,11 @@ head->val = 5;
 
 ## Linked List Operations
 
-### Get the Length of Linked List
-
-略
-
-### Search Linked List Elements
-
-略
-
-### Modify Linked List Elements
-
-略
+- Get the Length of Linked List
+- Search Linked List Elements
+- Modify Linked List Elements
+- Remove Linked List Elements
+- Add Linked List Elements
 
 ### Remove Linked List Elements
 
@@ -311,7 +305,102 @@ myLinkedList.get(1);              // return 3
 
 ## Solution
 
+这题的难点在于链表的操作，需要注意的是链表的增删操作，需要找到要增加节点的前一个节点。对于循环条件的判断，需要注意边界条件。
+
+另外，链表的内存释放也是一个重要的问题，需要在析构函数中释放链表的内存。（包括野指针的释放）
+
+对于C++类还需要多加练习，熟悉类的定义和使用。
+
 ```cpp
+class MyLinkedList {
+public:
+    struct ListNode {
+        int val;
+        ListNode* next;
+        ListNode(int val) : val(val), next(nullptr) {}
+        ListNode(int val, ListNode* next) : val(val), next(next) {}
+    };
+
+    MyLinkedList() {
+        _dummy_head = new ListNode(0);
+        _size = 0;
+    }
+
+    ~MyLinkedList() {
+        ListNode* cur = _dummy_head;
+        while (cur) {
+            ListNode* temp = cur->next;
+            delete cur;
+            cur = temp;
+        }
+    }
+    
+    int get(int index) {
+        if (index > (_size - 1) || index < 0) {
+            return -1;
+        }
+        ListNode* cur = _dummy_head;
+        for (int i = 0; i <= index; i++)    cur = cur->next;
+        // while (index--)     cur = cur->next;
+        return cur->val;
+    }
+    
+    void addAtHead(int val) {
+        ListNode* head = new ListNode(val);
+        head->next = _dummy_head->next;
+        _dummy_head->next = head;
+        _size++;
+    }
+    
+    void addAtTail(int val) {
+        ListNode* pre = _dummy_head;
+        while (pre->next)   pre=pre->next;
+        pre->next = new ListNode(val);
+        _size++;
+    }
+    
+    void addAtIndex(int index, int val) {
+        if(index > _size) return;
+        if(index < 0) index = 0; 
+        ListNode* pre = _dummy_head;
+        for (int i = 0; i < index; i++)    pre = pre->next;
+        // while (index--)     pre = pre->next;
+        ListNode* cur = new ListNode(val, pre->next);
+        pre->next = cur;
+        _size++;
+    }
+    
+    void deleteAtIndex(int index) {
+        if (index >= _size || index < 0) {
+            return;
+        }
+        ListNode* pre = _dummy_head;
+        for (int i = 0; i < index; i++)    pre = pre->next;
+        // while (index--)     pre = pre->next;
+        ListNode* tmp = pre->next;
+        pre->next = pre->next->next;
+        delete tmp;
+        //delete命令指示释放了tmp指针原本所指的那部分内存，
+        //被delete后的指针tmp的值（地址）并非就是NULL，而是随机值。也就是被delete后，
+        //如果不再加上一句tmp=nullptr,tmp会成为乱指的野指针
+        //如果之后的程序不小心使用了tmp，会指向难以预想的内存空间
+        tmp = nullptr;
+        _size--;
+    }
+private:
+    int _size;
+    ListNode* _dummy_head;
+};
+
+/**
+ * Your MyLinkedList object will be instantiated and called as such:
+ * MyLinkedList* obj = new MyLinkedList();
+ * int param_1 = obj->get(index);
+ * obj->addAtHead(val);
+ * obj->addAtTail(val);
+ * obj->addAtIndex(index,val);
+ * obj->deleteAtIndex(index);
+ */
 ```
 
 # [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/description/)
@@ -352,8 +441,76 @@ Follow up: A linked list can be reversed either iteratively or recursively. Coul
 
 ## Solution
 
+如果再定义一个新的链表，实现链表元素的反转，其实这是对内存空间的浪费。
+
+其实只需要改变链表的next指针的指向，直接将链表反转 ，而不用重新定义一个新的链表，如图所示:
+
+![206. Reverse Linked List](/img/2025-01-10-Leetcode-Day3-Linked-List1/206.gif)
+
+### 双指针迭代
+
 ```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* tmp;
+        ListNode* pre = nullptr;
+        ListNode* cur = head;
+        while (cur) {
+            tmp = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
+    }
+};
 ```
+
+同样，该代码需要注意循环条件的判断与返回值的设置。
+
+### 递归
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverse(ListNode* pre, ListNode* cur) {
+        if(!cur) return pre;
+        ListNode* tmp = cur->next;
+        cur->next = pre;
+        return reverse(cur, tmp);
+    }
+    ListNode* reverseList(ListNode* head) {
+        ListNode* pre = nullptr;
+        ListNode* cur = head;
+        return reverse(pre, cur);
+    }
+};
+```
+
+### Complexity Analysis
+
+两种方法的时间复杂度都是$O(n)$，但是递归方法调用了 n 层栈空间，它的空间复杂度是$O(n)$，而迭代方法的空间复杂度是$O(1)$。
 
 # Reference
 

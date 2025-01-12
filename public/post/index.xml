@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2025 00:54:38 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jan 2025 22:32:32 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代码随想录Leetcode Day3 Linked List Part 1</title>
+      <link>http://localhost:1313/post/2025-01-10-leetcode-day3-linked-list1/</link>
+      <pubDate>Fri, 10 Jan 2025 22:32:32 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-10-leetcode-day3-linked-list1/</guid>
+      <description>&lt;h1 id=&#34;linked-list&#34;&gt;Linked List&lt;/h1&gt;&#xA;&lt;p&gt;链表是一种通过指针串联在一起的线性结构，每一个节点由两部分组成，一个是数据域一个是指针域（存放指向下一个节点的指针），最后一个节点的指针域指向null（空指针的意思）。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>代码随想录Leetcode Day2 Array Part 2</title>
       <link>http://localhost:1313/post/2025-01-10-leetcode-day2-array2/</link>

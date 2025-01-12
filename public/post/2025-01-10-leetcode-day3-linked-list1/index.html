@@ -300,12 +300,13 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>ListNode<span style="color:#ff79c6">*</span> head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode();
 </span></span><span style="display:flex;"><span>head<span style="color:#ff79c6">-&gt;</span>val <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>;
 </span></span></code></pre></div><h2 id="linked-list-operations">Linked List Operations</h2>
-<h3 id="get-the-length-of-linked-list">Get the Length of Linked List</h3>
-<p>略</p>
-<h3 id="search-linked-list-elements">Search Linked List Elements</h3>
-<p>略</p>
-<h3 id="modify-linked-list-elements">Modify Linked List Elements</h3>
-<p>略</p>
+<ul>
+<li>Get the Length of Linked List</li>
+<li>Search Linked List Elements</li>
+<li>Modify Linked List Elements</li>
+<li>Remove Linked List Elements</li>
+<li>Add Linked List Elements</li>
+</ul>
 <h3 id="remove-linked-list-elements">Remove Linked List Elements</h3>
 <p>
   <img src="/img/2025-01-10-Leetcode-Day3-Linked-List1/remove.png" alt="Remove Linked List Elements">
@@ -544,7 +545,99 @@ myLinkedList.get(1);              // return 3
 <li>At most <code>2000</code> calls will be made to get, <code>addAtHead</code>, <code>addAtTail</code>, <code>addAtIndex</code> and <code>deleteAtIndex</code>.</li>
 </ul>
 <h2 id="solution-1">Solution</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="206-reverse-linked-listhttpsleetcodecomproblemsreverse-linked-listdescription"><a href="https://leetcode.com/problems/reverse-linked-list/description/">206. Reverse Linked List</a></h1>
+<p>这题的难点在于链表的操作，需要注意的是链表的增删操作，需要找到要增加节点的前一个节点。对于循环条件的判断，需要注意边界条件。</p>
+<p>另外，链表的内存释放也是一个重要的问题，需要在析构函数中释放链表的内存。（包括野指针的释放）</p>
+<p>对于C++类还需要多加练习，熟悉类的定义和使用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MyLinkedList</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">ListNode</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> val;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> next;
+</span></span><span style="display:flex;"><span>        ListNode(<span style="color:#8be9fd">int</span> val) <span style="color:#ff79c6">:</span> val(val), next(<span style="color:#ff79c6">nullptr</span>) {}
+</span></span><span style="display:flex;"><span>        ListNode(<span style="color:#8be9fd">int</span> val, ListNode<span style="color:#ff79c6">*</span> next) <span style="color:#ff79c6">:</span> val(val), next(next) {}
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    MyLinkedList() {
+</span></span><span style="display:flex;"><span>        _dummy_head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode(<span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>        _size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">~</span>MyLinkedList() {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> cur <span style="color:#ff79c6">=</span> _dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (cur) {
+</span></span><span style="display:flex;"><span>            ListNode<span style="color:#ff79c6">*</span> temp <span style="color:#ff79c6">=</span> cur<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">delete</span> cur;
+</span></span><span style="display:flex;"><span>            cur <span style="color:#ff79c6">=</span> temp;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">get</span>(<span style="color:#8be9fd">int</span> index) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (index <span style="color:#ff79c6">&gt;</span> (_size <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">||</span> index <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> cur <span style="color:#ff79c6">=</span> _dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;=</span> index; i<span style="color:#ff79c6">++</span>)    cur <span style="color:#ff79c6">=</span> cur<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// while (index--)     cur = cur-&gt;next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">return</span> cur<span style="color:#ff79c6">-&gt;</span>val;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">addAtHead</span>(<span style="color:#8be9fd">int</span> val) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode(val);
+</span></span><span style="display:flex;"><span>        head<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> _dummy_head<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        _dummy_head<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> head;
+</span></span><span style="display:flex;"><span>        _size<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">addAtTail</span>(<span style="color:#8be9fd">int</span> val) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> pre <span style="color:#ff79c6">=</span> _dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (pre<span style="color:#ff79c6">-&gt;</span>next)   pre<span style="color:#ff79c6">=</span>pre<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        pre<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode(val);
+</span></span><span style="display:flex;"><span>        _size<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">addAtIndex</span>(<span style="color:#8be9fd">int</span> index, <span style="color:#8be9fd">int</span> val) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(index <span style="color:#ff79c6">&gt;</span> _size) <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(index <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>) index <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; 
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> pre <span style="color:#ff79c6">=</span> _dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> index; i<span style="color:#ff79c6">++</span>)    pre <span style="color:#ff79c6">=</span> pre<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// while (index--)     pre = pre-&gt;next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        ListNode<span style="color:#ff79c6">*</span> cur <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode(val, pre<span style="color:#ff79c6">-&gt;</span>next);
+</span></span><span style="display:flex;"><span>        pre<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> cur;
+</span></span><span style="display:flex;"><span>        _size<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">deleteAtIndex</span>(<span style="color:#8be9fd">int</span> index) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (index <span style="color:#ff79c6">&gt;=</span> _size <span style="color:#ff79c6">||</span> index <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> pre <span style="color:#ff79c6">=</span> _dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> index; i<span style="color:#ff79c6">++</span>)    pre <span style="color:#ff79c6">=</span> pre<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// while (index--)     pre = pre-&gt;next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        ListNode<span style="color:#ff79c6">*</span> tmp <span style="color:#ff79c6">=</span> pre<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        pre<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> pre<span style="color:#ff79c6">-&gt;</span>next<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span> tmp;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">//delete命令指示释放了tmp指针原本所指的那部分内存，
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">//被delete后的指针tmp的值（地址）并非就是NULL，而是随机值。也就是被delete后，
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">//如果不再加上一句tmp=nullptr,tmp会成为乱指的野指针
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">//如果之后的程序不小心使用了tmp，会指向难以预想的内存空间
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        tmp <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span>        _size<span style="color:#ff79c6">--</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">private</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> _size;
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#ff79c6">*</span> _dummy_head;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Your MyLinkedList object will be instantiated and called as such:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * MyLinkedList* obj = new MyLinkedList();
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * int param_1 = obj-&gt;get(index);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * obj-&gt;addAtHead(val);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * obj-&gt;addAtTail(val);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * obj-&gt;addAtIndex(index,val);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * obj-&gt;deleteAtIndex(index);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span></code></pre></div><h1 id="206-reverse-linked-listhttpsleetcodecomproblemsreverse-linked-listdescription"><a href="https://leetcode.com/problems/reverse-linked-list/description/">206. Reverse Linked List</a></h1>
 <h2 id="description-2">Description</h2>
 <p>Given the <code>head</code> of a singly linked list, reverse the list, and return the reversed list.</p>
 <p><strong>Example 1</strong>:
@@ -571,7 +664,67 @@ Output: []
 </ul>
 <p>Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?</p>
 <h2 id="solution-2">Solution</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="reference">Reference</h1>
+<p>如果再定义一个新的链表，实现链表元素的反转，其实这是对内存空间的浪费。</p>
+<p>其实只需要改变链表的next指针的指向，直接将链表反转 ，而不用重新定义一个新的链表，如图所示:</p>
+<p>
+  <img src="/img/2025-01-10-Leetcode-Day3-Linked-List1/206.gif" alt="206. Reverse Linked List">
+
+</p>
+<h3 id="双指针迭代">双指针迭代</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * struct ListNode {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     int val;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode *next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * };
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#ff79c6">*</span> reverseList(ListNode<span style="color:#ff79c6">*</span> head) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> tmp;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> pre <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> cur <span style="color:#ff79c6">=</span> head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (cur) {
+</span></span><span style="display:flex;"><span>            tmp <span style="color:#ff79c6">=</span> cur<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            cur<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> pre;
+</span></span><span style="display:flex;"><span>            pre <span style="color:#ff79c6">=</span> cur;
+</span></span><span style="display:flex;"><span>            cur <span style="color:#ff79c6">=</span> tmp;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> pre;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>同样，该代码需要注意循环条件的判断与返回值的设置。</p>
+<h3 id="递归">递归</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * struct ListNode {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     int val;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode *next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * };
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#ff79c6">*</span> reverse(ListNode<span style="color:#ff79c6">*</span> pre, ListNode<span style="color:#ff79c6">*</span> cur) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">!</span>cur) <span style="color:#ff79c6">return</span> pre;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> tmp <span style="color:#ff79c6">=</span> cur<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        cur<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> pre;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#50fa7b">reverse</span>(cur, tmp);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#ff79c6">*</span> <span style="color:#50fa7b">reverseList</span>(ListNode<span style="color:#ff79c6">*</span> head) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> pre <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> cur <span style="color:#ff79c6">=</span> head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> reverse(pre, cur);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="complexity-analysis">Complexity Analysis</h3>
+<p>两种方法的时间复杂度都是$O(n)$，但是递归方法调用了 n 层栈空间，它的空间复杂度是$O(n)$，而迭代方法的空间复杂度是$O(1)$。</p>
+<h1 id="reference">Reference</h1>
 <p><a href="https://programmercarl.com/">代码随想录</a><br>
 <a href="https://leetcode.com/problems/reverse-linked-list/description/">206. Reverse Linked List</a><br>
 <a href="https://leetcode.com/problems/remove-linked-list-elements/description/">203. Remove Linked List Elements</a><br>

@@ -6,15 +6,21 @@ license = "Apache"
 licenselink = "https://github.com/zhaohuabing/hugo-theme-cleanwhite/blob/master/LICENSE"
 description = "A clean, elegant blog theme for hugo"
 homepage = "https://github.com/zhaohuabing/hugo-theme-cleanwhite"
-tags = [ "minimal", "responsive", "blog","light", "clean", "search"]
-features = ["disqus", "site search", "responsive", "google analytics", "side bar"]
+tags = ["minimal", "responsive", "blog", "light", "clean", "search"]
+features = [
+  "disqus",
+  "site search",
+  "responsive",
+  "google analytics",
+  "side bar",
+]
 min_version = 0.10
 
 [author]
-  name = "Huabing Zhao"
-  homepage = "https://github.com/zhaohuabing"
+name = "Huabing Zhao"
+homepage = "https://github.com/zhaohuabing"
 
 # If porting an existing theme
 [original]
-  name = "huxblog"
-  homepage = "https://github.com/Huxpro/huxpro.github.io"
+name = "huxblog"
+homepage = "https://github.com/Huxpro/huxpro.github.io"
