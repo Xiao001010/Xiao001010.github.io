@@ -290,7 +290,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">ListNode</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> val;  <span style="color:#6272a4">// 节点上存储的元素
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    ListNode <span style="color:#ff79c6">*</span>next;  <span style="color:#6272a4">// 指向下一个节点的指针
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    ListNode(<span style="color:#8be9fd">int</span> x) <span style="color:#ff79c6">:</span> val(x), next(<span style="color:#8be9fd;font-style:italic">NULL</span>) {}  <span style="color:#6272a4">// 节点的构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    ListNode(<span style="color:#8be9fd">int</span> x) <span style="color:#ff79c6">:</span> val(x), next(<span style="color:#ff79c6">nullptr</span>) {}  <span style="color:#6272a4">// 节点的构造函数
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// Use Custom Constructor
@@ -517,11 +517,11 @@ If you want to use the doubly linked list, you will need one more attribute prev
 <p>Implement the <code>MyLinkedList</code> class:</p>
 <ul>
 <li><code>MyLinkedList()</code> Initializes the <code>MyLinkedList</code> object.</li>
-<li><code>int get(int index)</code> Get the value of the $index^th$ node in the linked list. If the index is invalid, return <code>-1</code>.</li>
+<li><code>int get(int index)</code> Get the value of the $index^{th}$ node in the linked list. If the index is invalid, return <code>-1</code>.</li>
 <li><code>void addAtHead(int val)</code> Add a node of value <code>val</code> before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.</li>
 <li><code>void addAtTail(int val)</code> Append a node of value <code>val</code> as the last element of the linked list.</li>
-<li><code>void addAtIndex(int index, int val)</code> Add a node of value <code>val</code> before the $index^th$ node in the linked list. If <code>index</code> equals the length of the linked list, the node will be appended to the end of the linked list. If <code>index</code> is greater than the length, the node will not be <strong>inserted</strong>.</li>
-<li><code>void deleteAtIndex(int index)</code> Delete the $index^th$ node in the linked list, if the index is valid.</li>
+<li><code>void addAtIndex(int index, int val)</code> Add a node of value <code>val</code> before the $index^{th}$ node in the linked list. If <code>index</code> equals the length of the linked list, the node will be appended to the end of the linked list. If <code>index</code> is greater than the length, the node will not be <strong>inserted</strong>.</li>
+<li><code>void deleteAtIndex(int index)</code> Delete the $index^{th}$ node in the linked list, if the index is valid.</li>
 </ul>
 <p><strong>Example 1</strong>:</p>
 <pre tabindex="0"><code>Input
@@ -662,7 +662,7 @@ Output: []
 <li>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
 <li><code>-5000 &lt;= Node.val &lt;= 5000</code></li>
 </ul>
-<p>Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?</p>
+<p><strong>Follow up</strong>: A linked list can be reversed either iteratively or recursively. Could you implement both?</p>
 <h2 id="solution-2">Solution</h2>
 <p>如果再定义一个新的链表，实现链表元素的反转，其实这是对内存空间的浪费。</p>
 <p>其实只需要改变链表的next指针的指向，直接将链表反转 ，而不用重新定义一个新的链表，如图所示:</p>
@@ -782,6 +782,11 @@ Output: []
                             Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/post/2025-01-13-leetcode-day4-linked-list2/" data-toggle="tooltip" data-placement="top" title="代码随想录Leetcode Day4 Linked List Part 2">Next
+                            Post &rarr;</a>
+                    </li>
                     
                 </ul>
                 

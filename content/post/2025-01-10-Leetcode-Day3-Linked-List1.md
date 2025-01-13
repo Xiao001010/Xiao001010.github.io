@@ -39,7 +39,7 @@ draft:       false
 struct ListNode {
     int val;  // 节点上存储的元素
     ListNode *next;  // 指向下一个节点的指针
-    ListNode(int x) : val(x), next(NULL) {}  // 节点的构造函数
+    ListNode(int x) : val(x), next(nullptr) {}  // 节点的构造函数
 };
 
 // Use Custom Constructor
@@ -272,11 +272,11 @@ If you want to use the doubly linked list, you will need one more attribute prev
 Implement the `MyLinkedList` class:
 
 - `MyLinkedList()` Initializes the `MyLinkedList` object.
-- `int get(int index)` Get the value of the $index^th$ node in the linked list. If the index is invalid, return `-1`.
+- `int get(int index)` Get the value of the $index^{th}$ node in the linked list. If the index is invalid, return `-1`.
 - `void addAtHead(int val)` Add a node of value `val` before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
 - `void addAtTail(int val)` Append a node of value `val` as the last element of the linked list.
-- `void addAtIndex(int index, int val)` Add a node of value `val` before the $index^th$ node in the linked list. If `index` equals the length of the linked list, the node will be appended to the end of the linked list. If `index` is greater than the length, the node will not be **inserted**.
-- `void deleteAtIndex(int index)` Delete the $index^th$ node in the linked list, if the index is valid.
+- `void addAtIndex(int index, int val)` Add a node of value `val` before the $index^{th}$ node in the linked list. If `index` equals the length of the linked list, the node will be appended to the end of the linked list. If `index` is greater than the length, the node will not be **inserted**.
+- `void deleteAtIndex(int index)` Delete the $index^{th}$ node in the linked list, if the index is valid.
 
 **Example 1**:
 
@@ -437,7 +437,7 @@ Output: []
 - The number of nodes in the list is the range `[0, 5000]`.
 - `-5000 <= Node.val <= 5000`
 
-Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
+**Follow up**: A linked list can be reversed either iteratively or recursively. Could you implement both?
 
 ## Solution
 

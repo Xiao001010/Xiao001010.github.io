@@ -44,7 +44,7 @@ Output: 0
 - `1 <= nums.length <= 105`
 - `1 <= nums[i] <= 104`
 
-Follow up: If you have figured out the `O(n)` solution, try coding another solution of which the time complexity is `O(n log(n))`.
+**Follow up**: If you have figured out the `O(n)` solution, try coding another solution of which the time complexity is `O(n log(n))`.
 
 ## Brute Force
 

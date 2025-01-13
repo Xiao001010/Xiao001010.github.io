@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Hao Xu Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//img/home-bg-jeep.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//img/home-bg-jeep.jpg" />
+    
+
+    
+    <meta name="title" content="代码随想录Leetcode Day4 Linked List Part 2" />
+    <meta property="og:title" content="代码随想录Leetcode Day4 Linked List Part 2" />
+    <meta property="twitter:title" content="代码随想录Leetcode Day4 Linked List Part 2" />
+    
+
+    
+    <meta name="description" content="24. Swap Nodes in Pairs, 19. Remove Nth Node From End of List, 160. Intersection of Two Linked Lists, 142. Linked List Cycle II">
+    <meta property="og:description" content="24. Swap Nodes in Pairs, 19. Remove Nth Node From End of List, 160. Intersection of Two Linked Lists, 142. Linked List Cycle II" />
+    <meta property="twitter:description" content="24. Swap Nodes in Pairs, 19. Remove Nth Node From End of List, 160. Intersection of Two Linked Lists, 142. Linked List Cycle II" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>代码随想录Leetcode Day4 Linked List Part 2 | 徐浩的博客 | Hao Xu Blog</title>
+
+    <link rel="canonical" href="/post/2025-01-13-leetcode-day4-linked-list2/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});">
+    </script>
+
+</head>
+
+
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJW25L51HL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-FJW25L51HL');
+        }
+      </script>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hao Xu Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/diary/">diary</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/life/">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech/">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/archive/">ARCHIVE</a></li>
+                    
+                        <li><a href="/about/">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-jeep.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/leetcode" title="Leetcode">
+                            Leetcode
+                        </a>
+                        
+                        <a class="tag" href="/tags/job" title="Job">
+                            Job
+                        </a>
+                        
+                    </div>
+                    <h1>代码随想录Leetcode Day4 Linked List Part 2</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                     &#34;Hao Xu&#34;
+                             
+                            on 
+                            Monday, January 13, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="24-swap-nodes-in-pairshttpsleetcodecomproblemsswap-nodes-in-pairs"><a href="https://leetcode.com/problems/swap-nodes-in-pairs/">24. Swap Nodes in Pairs</a></h1>
+<h2 id="description">Description</h2>
+<p>Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list&rsquo;s nodes (i.e., only nodes themselves may be changed.)</p>
+<p><strong>Example 1</strong>:</p>
+<pre tabindex="0"><code>Input: head = [1,2,3,4]
+
+Output: [2,1,4,3]
+</code></pre><p>Explanation:
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/swap_ex1.jpg" alt="Swap Nodes in Pairs">
+
+</p>
+<p><strong>Example 2</strong>:</p>
+<pre tabindex="0"><code>Input: head = []
+
+Output: []
+</code></pre><p><strong>Example 3</strong>:</p>
+<pre tabindex="0"><code>Input: head = [1]
+
+Output: [1]
+</code></pre><p><strong>Example 4</strong>:</p>
+<pre tabindex="0"><code>Input: head = [1,2,3]
+
+Output: [2,1,3]
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li>The number of nodes in the list is in the range <code>[0, 100]</code>.</li>
+<li><code>0 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+<h2 id="iteration-solution">Iteration Solution</h2>
+<p>
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/24_iter.gif" alt="Swap Nodes in Pairs Iteration Solution">
+
+
+<a href="https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia">24. 两两交换链表中的节点 | LeetCode题解 - 迭代解法</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * struct ListNode {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     int val;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode *next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * };
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#ff79c6">*</span> swapPairs(ListNode<span style="color:#ff79c6">*</span> head) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> dummy_head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode(<span style="color:#bd93f9">0</span>, head);
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> cur <span style="color:#ff79c6">=</span> dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (cur<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">&amp;&amp;</span> cur<span style="color:#ff79c6">-&gt;</span>next<span style="color:#ff79c6">-&gt;</span>next) {
+</span></span><span style="display:flex;"><span>            ListNode<span style="color:#ff79c6">*</span> first <span style="color:#ff79c6">=</span> cur<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            ListNode<span style="color:#ff79c6">*</span> second <span style="color:#ff79c6">=</span> cur<span style="color:#ff79c6">-&gt;</span>next<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            cur<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> second;
+</span></span><span style="display:flex;"><span>            first<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> second<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            second<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> first;
+</span></span><span style="display:flex;"><span>            cur <span style="color:#ff79c6">=</span> first;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> result <span style="color:#ff79c6">=</span> dummy_head<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span> dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>由于需要返回头节点，所以需要一个 dummy_head，指向 head 的前一个节点。<br>
+此题如果通过画图，可以很清晰地发现，每次交换两个节点，只需要改变三个指针的指向即可。</p>
+<p>迭代解法的时间复杂度是 O(n)，空间复杂度是 O(1)。<br>
+除了迭代解法，上方GIF的题解来源还给出了递归解法和Stack解法。图中的t指针对应代码中的cur指针，a指针对应first指针，b指针对应second指针。</p>
+<h1 id="19-remove-nth-node-from-end-of-listhttpsleetcodecomproblemsremove-nth-node-from-end-of-list"><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">19. Remove Nth Node From End of List</a></h1>
+<h2 id="description-1">Description</h2>
+<p>Given the <code>head</code> of a linked list, remove the $n^{th}$ node from the end of the list and return its head.</p>
+<p><strong>Example 1</strong>:<br>
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/remove_ex1.jpg" alt="Remove Nth Node From End of List">
+
+</p>
+<pre tabindex="0"><code>Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+</code></pre><p><strong>Example 2</strong>:</p>
+<pre tabindex="0"><code>Input: head = [1], n = 1
+Output: []
+</code></pre><p><strong>Example 3</strong>:</p>
+<pre tabindex="0"><code>Input: head = [1,2], n = 1
+Output: [1]
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li>The number of nodes in the list is <code>sz</code>.</li>
+<li><code>1 &lt;= sz &lt;= 30</code></li>
+<li><code>0 &lt;= Node.val &lt;= 100</code></li>
+<li><code>1 &lt;= n &lt;= sz</code></li>
+</ul>
+<p><strong>Follow up</strong>: Could you do this in one pass?</p>
+<h2 id="solution">Solution</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="160-intersection-of-two-linked-listshttpsleetcodecomproblemsintersection-of-two-linked-lists"><a href="https://leetcode.com/problems/intersection-of-two-linked-lists/">160. Intersection of Two Linked Lists</a></h1>
+<h2 id="description-2">Description</h2>
+<p>Given the heads of two singly linked-lists <code>headA</code> and <code>headB</code>, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return <code>null</code>.</p>
+<p>For example, the following two linked lists begin to intersect at node <code>c1</code>:
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/160_statement.png" alt="Intersection of Two Linked Lists">
+
+
+The test cases are generated such that there are no cycles anywhere in the entire linked structure.</p>
+<p><strong>Note</strong> that the linked lists must <strong>retain their original structure</strong> after the function returns.</p>
+<p><strong>Custom Judge</strong>:</p>
+<p>The inputs to the judge are given as follows (your program is not given these inputs):</p>
+<p><code>intersectVal</code> - The value of the node where the intersection occurs. This is 0 if there is no intersected node.
+<code>listA</code> - The first linked list.
+<code>listB</code> - The second linked list.
+<code>skipA</code> - The number of nodes to skip ahead in <code>listA</code> (starting from the head) to get to the intersected node.
+<code>skipB</code> - The number of nodes to skip ahead in <code>listB</code> (starting from the head) to get to the intersected node.
+The judge will then create the linked structure based on these inputs and pass the two heads, <code>headA</code> and <code>headB</code> to your program. If you correctly return the intersected node, then your solution will be <strong>accepted</strong>.</p>
+<p>Example 1:
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/160_example_1_1.png" alt="Intersection of Two Linked Lists">
+
+</p>
+<pre tabindex="0"><code>Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+Output: Intersected at &#39;8&#39;
+Explanation: The intersected node&#39;s value is 8 (note that this must not be 0 if the two lists intersect).
+From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
+
+- Note that the intersected node&#39;s value is not 1 because the nodes with value 1 in A and B (2nd node in A and 3rd node in B) are different node references. In other words, they point to two different locations in memory, while the nodes with value 8 in A and B (3rd node in A and 4th node in B) point to the same location in memory.
+</code></pre><p>Example 2:
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/160_example_2.png" alt="Intersection of Two Linked Lists">
+
+</p>
+<pre tabindex="0"><code>Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+Output: Intersected at &#39;2&#39;
+Explanation: The intersected node&#39;s value is 2 (note that this must not be 0 if the two lists intersect).
+From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
+</code></pre><p>Example 3:
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/160_example_3.png" alt="Intersection of Two Linked Lists">
+
+</p>
+<pre tabindex="0"><code>Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+Output: No intersection
+Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
+Explanation: The two lists do not intersect, so return null.
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li>The number of nodes of <code>listA</code> is in the <code>m</code>.</li>
+<li>The number of nodes of <code>listB</code> is in the <code>n</code>.</li>
+<li><code>1 &lt;= m, n &lt;= 3 * 104</code></li>
+<li><code>1 &lt;= Node.val &lt;= 105</code></li>
+<li><code>0 &lt;= skipA &lt;= m</code></li>
+<li><code>0 &lt;= skipB &lt;= n</code></li>
+<li><code>intersectVal</code> is <code>0</code> if <code>listA</code> and <code>listB</code> do not intersect.</li>
+<li><code>intersectVal == listA[skipA] == listB[skipB]</code> if <code>listA</code> and <code>listB</code> intersect.</li>
+</ul>
+<p>Follow up: Could you write a solution that runs in $O(m + n)$ time and use only $O(1)$ memory?</p>
+<h2 id="solution-1">Solution</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="142-linked-list-cycle-iihttpsleetcodecomproblemslinked-list-cycle-ii"><a href="https://leetcode.com/problems/linked-list-cycle-ii/">142. Linked List Cycle II</a></h1>
+<h2 id="description-3">Description</h2>
+<p>Given the <code>head</code> of a linked list, return the node where the cycle begins. If there is no cycle, return <code>null</code>.</p>
+<p>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the <code>next</code> pointer. Internally, <code>pos</code> is used to denote the index of the node that tail&rsquo;s <code>next</code> pointer is connected to (<strong>0-indexed</strong>). It is <code>-1</code> if there is no cycle. <strong>Note that <code>pos</code> is not passed as a parameter</strong>.</p>
+<p><strong>Do not modify</strong> the linked list.</p>
+<p><strong>Example 1</strong>:
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/142_ex1.png" alt="Linked List Cycle II Example 1">
+
+</p>
+<pre tabindex="0"><code>Input: head = [3,2,0,-4], pos = 1
+Output: tail connects to node index 1
+Explanation: There is a cycle in the linked list, where tail connects to the second node.
+</code></pre><p><strong>Example 2</strong>:
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/142_ex2.png" alt="Linked List Cycle II Example 2">
+
+</p>
+<pre tabindex="0"><code>Input: head = [1,2], pos = 0
+Output: tail connects to node index 0
+Explanation: There is a cycle in the linked list, where tail connects to the first node.
+</code></pre><p><strong>Example 3</strong>:
+
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/142_example_3.png" alt="Linked List Cycle II Example 2">
+
+</p>
+<pre tabindex="0"><code>Input: head = [1], pos = -1
+Output: no cycle
+Explanation: There is no cycle in the linked list.
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li>The number of the nodes in the list is in the range <code>[0, 104]</code>.</li>
+<li><code>-105 &lt;= Node.val &lt;= 105</code></li>
+<li><code>pos</code> is <code>-1</code> or a <strong>valid index</strong> in the linked-list.</li>
+</ul>
+<p><strong>Follow up</strong>: Can you solve it using $O(1)$ (i.e. constant) memory?</p>
+<h2 id="solution-2">Solution</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="reference">Reference</h1>
+<p><a href="https://programmercarl.com/">代码随想录</a><br>
+<a href="https://leetcode.com/problems/swap-nodes-in-pairs/">24. Swap Nodes in Pairs</a><br>
+<a href="https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia">24. 两两交换链表中的节点 | LeetCode题解</a><br>
+<a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">19. Remove Nth Node From End of List</a><br>
+<a href="https://leetcode.com/problems/intersection-of-two-linked-lists/">160. Intersection of Two Linked Lists</a><br>
+<a href="https://leetcode.com/problems/linked-list-cycle-ii/">142. Linked List Cycle II</a></p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p> 「如果这篇文章对你有用,请随意打赏」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="http://localhost:1313/"><img src="/img/favicon.png" />Hao Xu Blog</a></span>
+        
+	        <p class="tip"><i></i><span>如果这篇文章对你有用,请随意打赏</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2025-01-10-leetcode-day3-linked-list1/" data-toggle="tooltip" data-placement="top" title="代码随想录Leetcode Day3 Linked List Part 1">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+<script src="https://giscus.app/client.js"
+        data-repo="Xiao001010/Xiao001010.github.io"
+        data-repo-id="R_kgDOM-aRvQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM-aRvc4ClvEj"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-13-leetcode-day4-linked-list2\/',
+        pageTitle: '代码随想录Leetcode Day4 Linked List Part 2',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ai" title="ai">
+                            ai
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/computer-vision" title="computer vision">
+                            computer vision
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/deep-learning" title="deep learning">
+                            deep learning
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/image-segmentation" title="image segmentation">
+                            image segmentation
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/job" title="job">
+                            job
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/test" title="test">
+                            test
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/vim" title="vim">
+                            vim
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://kevin256.github.io">子逸的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:haoxu1010@outlook.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat_qrcode.jpg">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Xiao001010">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/hao-xu-xiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="Hao Xu Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+            
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Hao Xu Blog 2025
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
