@@ -280,7 +280,7 @@ Output: [2,1,3]
   <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/24_iter.gif" alt="Swap Nodes in Pairs Iteration Solution">
 
 
-<a href="https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia">24. 两两交换链表中的节点 | LeetCode题解 - 迭代解法</a></p>
+<a href="https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia">24. 两两交换链表中的节点 | 动画演示 迭代+递归 24. 两两交换链表中的节点 | LeetCode题解</a></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Definition for singly-linked list.
 </span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * struct ListNode {
@@ -338,7 +338,44 @@ Output: [1]
 </ul>
 <p><strong>Follow up</strong>: Could you do this in one pass?</p>
 <h2 id="solution">Solution</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="160-intersection-of-two-linked-listshttpsleetcodecomproblemsintersection-of-two-linked-lists"><a href="https://leetcode.com/problems/intersection-of-two-linked-lists/">160. Intersection of Two Linked Lists</a></h1>
+<p>这题需要删除倒数第 n 个节点，如果是删除第 n 个节点，可以先遍历一遍链表，得到链表长度，然后再遍历一遍链表删除第 n 个节点。  但是这样需要遍历两遍链表，复杂 度是 $O(n)$。</p>
+<p>所以，考虑使用双指针，两个指针之间相差 n-1  个节点，当后面的指针到达链表尾部时，前面的指针正好指向倒数第 n 个节点的前一个节点。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * struct ListNode {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     int val;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode *next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * };
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#ff79c6">*</span> removeNthFromEnd(ListNode<span style="color:#ff79c6">*</span> head, <span style="color:#8be9fd">int</span> n) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> dummy_head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ListNode(<span style="color:#bd93f9">0</span>, head);
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> slow <span style="color:#ff79c6">=</span> dummy_head;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> fast <span style="color:#ff79c6">=</span> dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;=</span> n; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (fast <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 如果 n 大于链表长度，直接返回原链表
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#ff79c6">return</span> head;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            fast <span style="color:#ff79c6">=</span> fast<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (fast) {
+</span></span><span style="display:flex;"><span>            fast <span style="color:#ff79c6">=</span> fast<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            slow <span style="color:#ff79c6">=</span> slow<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> to_delete <span style="color:#ff79c6">=</span> slow<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        slow<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">=</span> to_delete<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> result <span style="color:#ff79c6">=</span> dummy_head<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span> dummy_head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span> to_delete;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h1 id="160-intersection-of-two-linked-listshttpsleetcodecomproblemsintersection-of-two-linked-lists"><a href="https://leetcode.com/problems/intersection-of-two-linked-lists/">160. Intersection of Two Linked Lists</a></h1>
 <h2 id="description-2">Description</h2>
 <p>Given the heads of two singly linked-lists <code>headA</code> and <code>headB</code>, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return <code>null</code>.</p>
 <p>For example, the following two linked lists begin to intersect at node <code>c1</code>:
@@ -363,10 +400,14 @@ The judge will then create the linked structure based on these inputs and pass t
 </p>
 <pre tabindex="0"><code>Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
 Output: Intersected at &#39;8&#39;
-Explanation: The intersected node&#39;s value is 8 (note that this must not be 0 if the two lists intersect).
-From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
+Explanation: The intersected node&#39;s value is 8 (note that this must not be 0 if the two lists intersect).  
+From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5].   
+There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
 
-- Note that the intersected node&#39;s value is not 1 because the nodes with value 1 in A and B (2nd node in A and 3rd node in B) are different node references. In other words, they point to two different locations in memory, while the nodes with value 8 in A and B (3rd node in A and 4th node in B) point to the same location in memory.
+- Note that the intersected node&#39;s value is not 1   
+because the nodes with value 1 in A and B (2nd node in A and 3rd node in B) are different node references.   
+In other words, they point to two different locations in memory,   
+while the nodes with value 8 in A and B (3rd node in A and 4th node in B) point to the same location in memory.
 </code></pre><p>Example 2:
 
   <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/160_example_2.png" alt="Intersection of Two Linked Lists">
@@ -375,7 +416,8 @@ From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,
 <pre tabindex="0"><code>Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
 Output: Intersected at &#39;2&#39;
 Explanation: The intersected node&#39;s value is 2 (note that this must not be 0 if the two lists intersect).
-From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
+From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4].   
+There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
 </code></pre><p>Example 3:
 
   <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/160_example_3.png" alt="Intersection of Two Linked Lists">
@@ -383,7 +425,9 @@ From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,
 </p>
 <pre tabindex="0"><code>Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
 Output: No intersection
-Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
+Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5].   
+Since the two lists do not intersect, intersectVal must be 0,   
+while skipA and skipB can be arbitrary values.
 Explanation: The two lists do not intersect, so return null.
 </code></pre><p><strong>Constraints</strong>:</p>
 <ul>
@@ -398,7 +442,56 @@ Explanation: The two lists do not intersect, so return null.
 </ul>
 <p>Follow up: Could you write a solution that runs in $O(m + n)$ time and use only $O(1)$ memory?</p>
 <h2 id="solution-1">Solution</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="142-linked-list-cycle-iihttpsleetcodecomproblemslinked-list-cycle-ii"><a href="https://leetcode.com/problems/linked-list-cycle-ii/">142. Linked List Cycle II</a></h1>
+<p>这里需要注意理解Example 1中的Note，即两个链表的交点不是值相同的节点，而是内存地址相同的节点。<br>
+在输入函数前，两个链表相交的节点就已经是同一个节点了，而不是两个值相同的不同节点。</p>
+<p>这题的思路是，当两个链表在末端相交时，末尾的节点是相同的，所以可以先遍历两个链表得到链表长度，然后将较长的链表的指针向前移动，使得两个链表末端对齐。<br>
+这样再比较两个链表的节点，找到相交的节点。</p>
+<p>这个思路的时间复杂度是 $O(m+n)$，空间复杂度是 $O(1)$。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * struct ListNode {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     int val;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode *next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x) : val(x), next(NULL) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * };
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#ff79c6">*</span>getIntersectionNode(ListNode <span style="color:#ff79c6">*</span>headA, ListNode <span style="color:#ff79c6">*</span>headB) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> sizeA <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>, sizeB <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> curA <span style="color:#ff79c6">=</span> headA;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> curB <span style="color:#ff79c6">=</span> headB;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 对齐指针
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">while</span> (curA) {
+</span></span><span style="display:flex;"><span>            sizeA<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>            curA <span style="color:#ff79c6">=</span> curA<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (curB) {
+</span></span><span style="display:flex;"><span>            sizeB<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>            curB <span style="color:#ff79c6">=</span> curB<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        curA <span style="color:#ff79c6">=</span> headA;
+</span></span><span style="display:flex;"><span>        curB <span style="color:#ff79c6">=</span> headB;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (sizeA <span style="color:#ff79c6">&lt;</span> sizeB) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> sizeB <span style="color:#ff79c6">-</span> sizeA; i<span style="color:#ff79c6">++</span>)     curB <span style="color:#ff79c6">=</span> curB<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span> <span style="color:#50fa7b">if</span> (sizeA <span style="color:#ff79c6">&gt;</span> sizeB) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> sizeA <span style="color:#ff79c6">-</span> sizeB; i<span style="color:#ff79c6">++</span>)     curA <span style="color:#ff79c6">=</span> curA<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 寻找相交节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">while</span> (curA <span style="color:#ff79c6">!=</span> curB) {
+</span></span><span style="display:flex;"><span>            curA <span style="color:#ff79c6">=</span> curA<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            curB <span style="color:#ff79c6">=</span> curB<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> result <span style="color:#ff79c6">=</span> curA <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">:</span> curA;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h1 id="142-linked-list-cycle-iihttpsleetcodecomproblemslinked-list-cycle-ii"><a href="https://leetcode.com/problems/linked-list-cycle-ii/">142. Linked List Cycle II</a></h1>
 <h2 id="description-3">Description</h2>
 <p>Given the <code>head</code> of a linked list, return the node where the cycle begins. If there is no cycle, return <code>null</code>.</p>
 <p>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the <code>next</code> pointer. Internally, <code>pos</code> is used to denote the index of the node that tail&rsquo;s <code>next</code> pointer is connected to (<strong>0-indexed</strong>). It is <code>-1</code> if there is no cycle. <strong>Note that <code>pos</code> is not passed as a parameter</strong>.</p>
@@ -421,7 +514,7 @@ Output: tail connects to node index 0
 Explanation: There is a cycle in the linked list, where tail connects to the first node.
 </code></pre><p><strong>Example 3</strong>:
 
-  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/142_example_3.png" alt="Linked List Cycle II Example 2">
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/142_ex3.png" alt="Linked List Cycle II Example 3">
 
 </p>
 <pre tabindex="0"><code>Input: head = [1], pos = -1
@@ -435,13 +528,49 @@ Explanation: There is no cycle in the linked list.
 </ul>
 <p><strong>Follow up</strong>: Can you solve it using $O(1)$ (i.e. constant) memory?</p>
 <h2 id="solution-2">Solution</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"></code></pre></div><h1 id="reference">Reference</h1>
+<p>这题判断链表中是否有环很简单，只需要使用快慢指针，如果快指针追上了慢指针，说明有环，如果快指针变成了 nullptr，说明没有环。</p>
+<p>然而对于这题，需要找到环的起点，这就需要画图并进行一定的数学推导。</p>
+<p>
+  <img src="/img/2025-01-13-Leetcode-Day4-Linked-List2/142_solution.png" alt="142. Linked List Cycle II Solution">
+
+
+<a href="https://leetcode.cn/problems/linked-list-cycle-ii/solutions/181070/xiang-xi-tu-jie-ken-ding-kan-de-ming-bai-by-xixili">142. 环形链表 II | 详细图解(肯定看的明白) | LeetCode题解</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * struct ListNode {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     int val;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode *next;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *     ListNode(int x) : val(x), next(NULL) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * };
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#ff79c6">*</span>detectCycle(ListNode <span style="color:#ff79c6">*</span>head) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> fast <span style="color:#ff79c6">=</span> head;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#ff79c6">*</span> slow <span style="color:#ff79c6">=</span> head;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (fast <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">&amp;&amp;</span> fast<span style="color:#ff79c6">-&gt;</span>next <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            fast <span style="color:#ff79c6">=</span> fast<span style="color:#ff79c6">-&gt;</span>next<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            slow <span style="color:#ff79c6">=</span> slow<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (fast <span style="color:#ff79c6">==</span> slow) {
+</span></span><span style="display:flex;"><span>                slow <span style="color:#ff79c6">=</span> head;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">while</span> (slow <span style="color:#ff79c6">!=</span> fast) {
+</span></span><span style="display:flex;"><span>                    slow <span style="color:#ff79c6">=</span> slow<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>                    fast <span style="color:#ff79c6">=</span> fast<span style="color:#ff79c6">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> fast;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h1 id="reference">Reference</h1>
 <p><a href="https://programmercarl.com/">代码随想录</a><br>
 <a href="https://leetcode.com/problems/swap-nodes-in-pairs/">24. Swap Nodes in Pairs</a><br>
-<a href="https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia">24. 两两交换链表中的节点 | LeetCode题解</a><br>
+<a href="https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia">24. 两两交换链表中的节点 | 动画演示 迭代+递归 24. 两两交换链表中的节点 | LeetCode题解</a><br>
 <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">19. Remove Nth Node From End of List</a><br>
 <a href="https://leetcode.com/problems/intersection-of-two-linked-lists/">160. Intersection of Two Linked Lists</a><br>
-<a href="https://leetcode.com/problems/linked-list-cycle-ii/">142. Linked List Cycle II</a></p>
+<a href="https://leetcode.com/problems/linked-list-cycle-ii/">142. Linked List Cycle II</a><br>
+<a href="https://leetcode.cn/problems/linked-list-cycle-ii/solutions/181070/xiang-xi-tu-jie-ken-ding-kan-de-ming-bai-by-xixili">142. 环形链表 II | 详细图解(肯定看的明白) | LeetCode题解</a></p>
 
 
                 

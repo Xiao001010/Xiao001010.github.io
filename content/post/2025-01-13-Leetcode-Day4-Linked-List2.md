@@ -59,7 +59,7 @@ Output: [2,1,3]
 ## Iteration Solution
 
 ![Swap Nodes in Pairs Iteration Solution](/img/2025-01-13-Leetcode-Day4-Linked-List2/24_iter.gif)
-[24. 两两交换链表中的节点 | LeetCode题解 - 迭代解法](https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia)
+[24. 两两交换链表中的节点 | 动画演示 迭代+递归 24. 两两交换链表中的节点 | LeetCode题解](https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia)  
 
 ```cpp
 /**
@@ -137,8 +137,46 @@ Output: [1]
 
 ## Solution
 
-```cpp
+这题需要删除倒数第 n 个节点，如果是删除第 n 个节点，可以先遍历一遍链表，得到链表长度，然后再遍历一遍链表删除第 n 个节点。  但是这样需要遍历两遍链表，复杂 度是 $O(n)$。  
 
+所以，考虑使用双指针，两个指针之间相差 n-1  个节点，当后面的指针到达链表尾部时，前面的指针正好指向倒数第 n 个节点的前一个节点。  
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* dummy_head = new ListNode(0, head);
+        ListNode* slow = dummy_head;
+        ListNode* fast = dummy_head;
+        for (int i = 0; i <= n; i++) {
+            if (fast == nullptr) {
+                // 如果 n 大于链表长度，直接返回原链表
+                return head;
+            }
+            fast = fast->next;
+        }
+        while (fast) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        ListNode* to_delete = slow->next;
+        slow->next = to_delete->next;
+        ListNode* result = dummy_head->next;
+        delete dummy_head;
+        delete to_delete;
+        return result;
+    }
+};
 ```
 
 # [160. Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)
@@ -170,10 +208,14 @@ Example 1:
 ```
 Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
 Output: Intersected at '8'
-Explanation: The intersected node's value is 8 (note that this must not be 0 if the two lists intersect).
-From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
+Explanation: The intersected node's value is 8 (note that this must not be 0 if the two lists intersect).  
+From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5].   
+There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
 
-- Note that the intersected node's value is not 1 because the nodes with value 1 in A and B (2nd node in A and 3rd node in B) are different node references. In other words, they point to two different locations in memory, while the nodes with value 8 in A and B (3rd node in A and 4th node in B) point to the same location in memory.
+- Note that the intersected node's value is not 1   
+because the nodes with value 1 in A and B (2nd node in A and 3rd node in B) are different node references.   
+In other words, they point to two different locations in memory,   
+while the nodes with value 8 in A and B (3rd node in A and 4th node in B) point to the same location in memory.
 ```
 
 Example 2:
@@ -183,7 +225,8 @@ Example 2:
 Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
 Output: Intersected at '2'
 Explanation: The intersected node's value is 2 (note that this must not be 0 if the two lists intersect).
-From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
+From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4].   
+There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
 ```
 
 Example 3:
@@ -192,7 +235,9 @@ Example 3:
 ```
 Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
 Output: No intersection
-Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
+Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5].   
+Since the two lists do not intersect, intersectVal must be 0,   
+while skipA and skipB can be arbitrary values.
 Explanation: The two lists do not intersect, so return null.
 ```
 
@@ -211,7 +256,59 @@ Follow up: Could you write a solution that runs in $O(m + n)$ time and use only 
 
 ## Solution
 
+这里需要注意理解Example 1中的Note，即两个链表的交点不是值相同的节点，而是内存地址相同的节点。  
+在输入函数前，两个链表相交的节点就已经是同一个节点了，而不是两个值相同的不同节点。  
+
+这题的思路是，当两个链表在末端相交时，末尾的节点是相同的，所以可以先遍历两个链表得到链表长度，然后将较长的链表的指针向前移动，使得两个链表末端对齐。  
+这样再比较两个链表的节点，找到相交的节点。  
+
+这个思路的时间复杂度是 $O(m+n)$，空间复杂度是 $O(1)$。  
+
 ```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int sizeA = 0, sizeB = 0;
+        ListNode* curA = headA;
+        ListNode* curB = headB;
+
+        // 对齐指针
+        while (curA) {
+            sizeA++;
+            curA = curA->next;
+        }
+        while (curB) {
+            sizeB++;
+            curB = curB->next;
+        }
+
+        curA = headA;
+        curB = headB;
+        if (sizeA < sizeB) {
+            for (int i = 0; i < sizeB - sizeA; i++)     curB = curB->next;
+        }
+        else if (sizeA > sizeB) {
+            for (int i = 0; i < sizeA - sizeB; i++)     curA = curA->next;
+        }
+
+        // 寻找相交节点
+        while (curA != curB) {
+            curA = curA->next;
+            curB = curB->next;
+        }
+
+        ListNode* result = curA == nullptr ? nullptr : curA;
+        return result;
+    }
+};
 ```
 
 # [142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)
@@ -243,7 +340,7 @@ Explanation: There is a cycle in the linked list, where tail connects to the fir
 ```
 
 **Example 3**:
-![Linked List Cycle II Example 2](/img/2025-01-13-Leetcode-Day4-Linked-List2/142_example_3.png)
+![Linked List Cycle II Example 3](/img/2025-01-13-Leetcode-Day4-Linked-List2/142_ex3.png)
 
 ```
 Input: head = [1], pos = -1
@@ -261,15 +358,50 @@ Explanation: There is no cycle in the linked list.
 
 ## Solution
 
-```cpp
+这题判断链表中是否有环很简单，只需要使用快慢指针，如果快指针追上了慢指针，说明有环，如果快指针变成了 nullptr，说明没有环。  
 
+然而对于这题，需要找到环的起点，这就需要画图并进行一定的数学推导。  
+
+![142. Linked List Cycle II Solution](/img/2025-01-13-Leetcode-Day4-Linked-List2/142_solution.png)
+[142. 环形链表 II | 详细图解(肯定看的明白) | LeetCode题解](https://leetcode.cn/problems/linked-list-cycle-ii/solutions/181070/xiang-xi-tu-jie-ken-ding-kan-de-ming-bai-by-xixili)  
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while (fast != nullptr && fast->next != nullptr) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if (fast == slow) {
+                slow = head;
+                while (slow != fast) {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return fast;
+            }
+        }
+        return nullptr;
+    }
+};
 ```
 
 # Reference
 
 [代码随想录](https://programmercarl.com/)  
 [24. Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/)  
-[24. 两两交换链表中的节点 | LeetCode题解](https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia)  
+[24. 两两交换链表中的节点 | 动画演示 迭代+递归 24. 两两交换链表中的节点 | LeetCode题解](https://leetcode.cn/problems/swap-nodes-in-pairs/solutions/41485/dong-hua-yan-shi-24-liang-liang-jiao-huan-lian-bia)  
 [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)  
 [160. Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)  
 [142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)  
+[142. 环形链表 II | 详细图解(肯定看的明白) | LeetCode题解](https://leetcode.cn/problems/linked-list-cycle-ii/solutions/181070/xiang-xi-tu-jie-ken-ding-kan-de-ming-bai-by-xixili)  
