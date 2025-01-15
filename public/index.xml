@@ -6,8 +6,15 @@
     <description>Recent content on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jan 2025 00:03:32 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jan 2025 11:28:25 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代码随想录Leetcode Day5 Hash Table Part 1</title>
+      <link>http://localhost:1313/post/2025-01-14-leetcode-day5-hash-table1/</link>
+      <pubDate>Tue, 14 Jan 2025 11:28:25 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-14-leetcode-day5-hash-table1/</guid>
+      <description>&lt;h1 id=&#34;hash-table&#34;&gt;Hash Table&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;哈希表 (Hash Table)&lt;/strong&gt;: 也叫做散列表。是根据关键码值 (Key Value) 直接进行访问的数据结构。&lt;/p&gt;&#xA;&lt;p&gt;哈希表通过「键$key$」和「映射函数 $Hash(key)$」计算出对应的「索引 $index$」，把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做「哈希函数（散列函数）」，存放记录的数组叫做「哈希表（散列表）」。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>代码随想录Leetcode Day4 Linked List Part 2</title>
       <link>http://localhost:1313/post/2025-01-13-leetcode-day4-linked-list2/</link>
