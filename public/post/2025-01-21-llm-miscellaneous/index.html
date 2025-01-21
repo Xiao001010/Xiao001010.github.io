@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="代码随想录Leetcode Day5 Hash Table Part 1" />
-    <meta property="og:title" content="代码随想录Leetcode Day5 Hash Table Part 1" />
-    <meta property="twitter:title" content="代码随想录Leetcode Day5 Hash Table Part 1" />
+    <meta name="title" content="LLM Miscellaneous" />
+    <meta property="og:title" content="LLM Miscellaneous" />
+    <meta property="twitter:title" content="LLM Miscellaneous" />
     
 
     
-    <meta name="description" content="242. Valid Anagram, 349. Intersection of Two Arrays, 202. Happy Number, 1. Two Sum">
-    <meta property="og:description" content="242. Valid Anagram, 349. Intersection of Two Arrays, 202. Happy Number, 1. Two Sum" />
-    <meta property="twitter:description" content="242. Valid Anagram, 349. Intersection of Two Arrays, 202. Happy Number, 1. Two Sum" />
+    <meta name="description" content="LLM 笔记 / 杂记">
+    <meta property="og:description" content="LLM 笔记 / 杂记" />
+    <meta property="twitter:description" content="LLM 笔记 / 杂记" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="徐浩, xuhao, XuHao, Hao Xu, 徐浩的网络日志, 徐浩的博客, Hao Xu Blog, 博客, 个人网站, AI, Artificial Intelligence, Computer Vision, CV, Natural Language Processing, NLP">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>代码随想录Leetcode Day5 Hash Table Part 1 | 徐浩的博客 | Hao Xu Blog</title>
+    <title>LLM Miscellaneous | 徐浩的博客 | Hao Xu Blog</title>
 
-    <link rel="canonical" href="/post/2025-01-14-leetcode-day5-hash-table1/">
+    <link rel="canonical" href="/post/2025-01-21-llm-miscellaneous/">
 
     
     
@@ -202,16 +202,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/leetcode" title="Leetcode">
-                            Leetcode
+                        <a class="tag" href="/tags/ai" title="AI">
+                            AI
                         </a>
                         
-                        <a class="tag" href="/tags/job" title="Job">
-                            Job
+                        <a class="tag" href="/tags/llm" title="LLM">
+                            LLM
                         </a>
                         
                     </div>
-                    <h1>代码随想录Leetcode Day5 Hash Table Part 1</h1>
+                    <h1>LLM Miscellaneous</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -220,7 +220,7 @@
                                      &#34;Hao Xu&#34;
                              
                             on 
-                            Tuesday, January 14, 2025
+                            Tuesday, January 21, 2025
                             
                             
                             
@@ -246,142 +246,41 @@
                 post-container">
 
                 
-                <h1 id="hash-table">Hash Table</h1>
-<h2 id="introduction">Introduction</h2>
-<p><strong>哈希表 (Hash Table)</strong>: 也叫做散列表。是根据关键码值 (Key Value) 直接进行访问的数据结构。</p>
-<p>哈希表通过「键$key$」和「映射函数 $Hash(key)$」计算出对应的「索引 $index$」，把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做「哈希函数（散列函数）」，存放记录的数组叫做「哈希表（散列表）」。</p>
-<p>哈希表的关键思想是使用哈希函数，将键映射到对应表的某个区块中。我们可以将算法思想分为两个部分:</p>
-<ul>
-<li><strong>向哈希表中插入一个关键码值</strong>:哈希函数决定该关键字的对应值应该存放到表中的哪个区块，并将对应值存放到该区块中。</li>
-<li><strong>在哈希表中搜索一个关键码值</strong>:使用相同的哈希函数从哈希表中查找对应的区块，并在特定的区块搜索该关键字对应的值。<br>
-哈希表的原理示例图如下所示:<br>
-
-  <img src="/img/2025-01-14-Leetcode-Day5-Hash-Table1/hash-table.png" alt="Hash Table">
-
-</li>
-</ul>
-<p>在上图例子中，我们使用 $index = Hash(key) = key // 1000$ 作为哈希函数。 $//$符号代表整除。
-我们以这个例子来说明一下哈希表的插入和查找策略。</p>
-<ul>
-<li><strong>向哈希表中插入一个关键码值</strong>: 通过哈希函数解析关键字，并将对应值存放到该区块中。
-<ul>
-<li>比如：$0138$通过哈希函数$ Hash(0138) = 0138 // 1000 $ ，得出应将 $0138$ 分配到$0$所在的区块中。</li>
-</ul>
-</li>
-<li><strong>在哈希表中搜索一个关键码值</strong>: 通过哈希函数解析关键字，并在特定的区块搜索该关键字对应的值。
-<ul>
-<li>比如: 查找 $2321$，通过哈希函数，得出 $2321$ 应该在 $2$ 所对应的区块中。然后我们从 $2$ 对应的区块中继续搜索，并在 $2$ 对应的区块中成功找到了$2321$。</li>
-<li>比如：查找 $3214$，通过哈希函数，得出 $3214$ 应该在 $3$ 所对应的区块中。然后我们从 $3$ 对应的区块中继续搜索，但并没有找到对应值，则说明 $3214$ 不在哈希表中。</li>
-</ul>
-</li>
-</ul>
-<p>哈希表在生活中的一个常见例子就是「查字典」。</p>
-<p>比如为了查找 <strong>「赞」</strong> 这个字的具体意思，我们在字典中根据这个字的拼音索引 <code>zan</code>，查找到对应的页码为  $599$。然后我们就可以翻到字典的第 $599$ 页查看 <strong>「赞」</strong> 字相关的解释了。</p>
+                <h1 id="llm显存占用计算">LLM显存占用计算</h1>
+<h2 id="精度">精度</h2>
+<p>FP32 (32 位浮点数): 32 bits = 4 bytes。标准精度，每个参数占用 4 字节。
+FP16 (16 位浮点数): 16 bits = 2 bytes。半精度浮点数，每个参数占用 2 字节。
+BP16 (16 位脑浮点数): 16 bits = 2 bytes。与 FP16 类似，但具有更大的指数范围，适用于深度学习。
+INT8 (8 位整数): 8 bits = 1 byte。低精度整数精度，每个参数占用 1 字节。
+量化 (4 位整数): 4 bits = 0.5 bytes。每个参数占用 0.5 字节。或者更低的精度，如 2 位整数。</p>
 <p>
-  <img src="/img/2025-01-14-Leetcode-Day5-Hash-Table1/dict.png" alt="Dictionary">
+  <img src="/img/2025-01-21-LLM-Miscellaneous/precision.png" alt="Precision">
 
 </p>
-<p>在这个例子中：</p>
+<h2 id="模型显存占用">模型显存占用</h2>
+<p>神经网络模型由多个层组成，每一层都包含权重（weight）和偏置（bias），这些统称为模型参数。而模型的参数量一般直接影响它的学习和表示能力。模型参数量的计算公式为：</p>
+<p>B (Billion) 和 G (Giga) 都是十亿级别的量级。例如，1B = 1,000,000,000，1G = 1,000,000,000。而 K (Kilo) 和 M (Mega) 都是百万级别的量级。例如，1K = 1,000，1M = 1,000,000。</p>
+<p>模型显存占用的计算公式为：参数量 x 参数精度。</p>
+<h2 id="gpu-显存需求">GPU 显存需求</h2>
+<h3 id="训练显存占用">训练显存占用</h3>
+<p>训练过程中，显存占用主要包括：</p>
 <ul>
-<li>存放所有拼音和对应地址的表可以看做是 <strong>「哈希表」</strong>。</li>
-<li><strong>「赞」</strong> 字的拼音索引 zan 可以看做是哈希表中的 <strong>「关键字 $key$」</strong>。</li>
-<li>根据拼音索引 <code>zan</code> 来确定字对应页码的过程可以看做是哈希表中的 <strong>「哈希函数 $Hash(key)$」</strong>。</li>
-<li>查找到的对应页码 $599$ 可以看做是哈希表中的 <strong>「哈希地址 $value$」</strong>。</li>
+<li>模型参数: 模型参数量 x 参数精度</li>
+<li>梯度: 模型参数量 x 参数精度</li>
+<li>优化器状态: 优化器状态量 x 参数精度。如动量和二阶矩估计等，取决于优化器的类型，单纯的 SGD 不占显存。Adam 优化器：需要存储一阶和二阶动量，各自占用模型参数大小的空间。</li>
+<li>中间激活值: 每个 batch 的激活值 x 参数精度。激活值的大小取决于模型的结构和 batch size。前向传播过程中产生的激活值，需要在反向传播中使用，其显存占用与 Batch Size、序列长度以及模型架构相关。</li>
+<li>批量大小 (Batch Size): 一次处理的批样本占用的显存。batch size 越大，显存占用越大。</li>
+<li>其他开销: CUDA 上下文、显存碎片等。</li>
 </ul>
-<h2 id="hash-function">Hash Function</h2>
-<p><strong>哈希函数 (Hash Function)</strong>: 将哈希表中元素的关键键值映射为元素存储位置的函数。</p>
-<p>哈希函数是哈希表中最重要的部分。一般来说，哈希函数会满足以下几个条件：</p>
+<h3 id="推理显存占用">推理显存占用</h3>
+<p>推理过程中，显存占用主要包括：</p>
 <ul>
-<li>哈希函数应该易于计算，并且尽量使计算出来的索引值均匀分布。</li>
-<li>哈希函数计算得到的哈希值是一个固定长度的输出值。</li>
-<li>如果 $Hash(key1) \neq Hash(key2)$，那么 $key1$ 和 $key2$ 一定不相等。</li>
-<li>如果 $Hash(key1) = Hash(key2)$，那么 $key1$ 和 $key2$可能相等，也可能不相等(会发生哈希碰撞)。</li>
+<li>模型参数: 模型参数量 x 参数精度</li>
+<li>激活值: 激活值 x 参数精度。推理过程中，激活值的显存占用与模型的结构和 batch size 有关。</li>
+<li>批量大小 (Batch Size): 一次处理的批样本占用的显存。batch size 越大，显存占用越大。</li>
 </ul>
-<p>在哈希表的实际应用中，关键字的类型除了数字类，还有可能是字符串类型、浮点数类型、大整数类型，甚至还有可能是几种类型的组合。一般我们会将各种类型的关键字先转换为整数类型，再通过哈希函数，将其映射到哈希表中。</p>
-<p>而关于整数类型的关键字，通常用到的哈希函数方法有：直接定址法、除留余数法、平方取中法、基数转换法、数字分析法、折叠法、随机数法、乘积法、点积法等。下面我们介绍几个常用的哈希函数方法。</p>
-<h3 id="直接定址法">直接定址法</h3>
-<p><strong>直接定址法</strong>: 取关键字本身 / 关键字的某个线性函数值作为哈希地址。即: $Hash(key) = key$ 或者 $Hash(key) = a \times key + b$ ，其中 $a$ 和 $b$ 为常数。<br>
-这种方法计算最简单，且不会产生冲突。适合于关键字分布基本连续的情况，如果关键字分布不连续，空位较多，则会造成存储空间的浪费。</p>
-<h3 id="除留余数法">除留余数法</h3>
-<p><strong>除留余数法</strong>: 假设哈希表的表长为 $m$，取一个不大于 $m$ 但接近或等于 $m$ 的质数
-，利用取模运算，将关键字转换为哈希地址。即: $Hash(key) = key \mod p$，其中 $p$ 为不大于 $m$ 的质数。<br>
-这也是一种简单且常用的哈希函数方法。其关键点在于 $p$ 的选择。根据经验而言，一般 $m$ 取素数或者 $m$，这样可以尽可能的减少冲突。</p>
-<h2 id="hash-collision">Hash Collision</h2>
-<p><strong>哈希冲突 (Hash Collision)</strong>：不同的关键字通过同一个哈希函数可能得到同一哈希地址，即 $Hash(key1) = Hash(key2)$，但是 $key1 \neq key2$，这种现象称为哈希冲突。</p>
-<p>理想状态下，我们的哈希函数是完美的一对一映射，即一个关键字 $(key)$ 对应一个索引 $(index)$，不需要处理冲突。但是一般情况下，不同的关键字 $(key)$ 通过哈希函数映射到同一个索引 $(index)$ 的情况是非常常见的。这种情况就是哈希冲突。</p>
-<p>设计再好的哈希函数也无法完全避免哈希冲突。所以就需要通过一定的方法来解决哈希冲突问题。常用的哈希冲突解决方法主要是两类：<strong>「开放地址法 (Open Addressing)」</strong> 和 <strong>「链地址法 (Chaining)」</strong>。</p>
-<h3 id="开放地址法">开放地址法</h3>
-<p><strong>开放地址法 (Open Addressing)</strong>: 指的是将哈希表中的「空地址」向处理冲突开放。当哈希表未满时，处理冲突时需要尝试另外的单元，直到找到空的单元为止。</p>
-<p>当发生冲突时，开放地址法按照下面的方法求得后继哈希地址:
-$$H(i) = (Hash(key) + F(i)) \mod m, i = 1, 2, 3, \ldots, n$$</p>
-<ul>
-<li>$H(i)$ 是在处理冲突中得到的地址序列。即在第1次冲突 $(i=1)$ 时经过处理得到一个新地址 $H(1)$，如果在 $H(1)$ 处仍然发生冲突 $(i=2)$ 时经过处理时得到另一个新地址 $H(2)$ …… 如此下去，直到求得的 $H(n)$ 不再发生冲突。</li>
-<li>$Hash(key)$ 是哈希函数，$m$ 是哈希表表长，对哈希表长取余的目的是为了使得到的下一个地址一定落在哈希表中。</li>
-<li>$F(i)$ 是冲突解决方法，取法可以有以下几种:
-<ul>
-<li>线性探测法: $F(i) = 1,2,3, \ldots, m-1$ 。即依次探测下一个地址。</li>
-<li>二次探测法: $F(z) = 1^2, -1^2, 2^2, -2^2, \ldots, \pm n^2 (n \leq m/2)。$ 即探测下一个地址的平方。</li>
-<li>伪随机数序列: $F(i) = 伪随机数序列。$ 即通过伪随机数序列来探测下一个地址。</li>
-</ul>
-</li>
-</ul>
-<p>举个例子说说明一下如何用以上三种冲突解决方法处理冲突，并得到新地址 $H(i)$。例如，在长度为 $11$ 的哈希表中已经填有关键字分别为 $28、49、18$ 的记录 (哈希函数为 $Hash(key) = key \mod 11$)。现在将插入关键字为 $38$ 的新纪录。根据哈希函数得到的哈希地址为 $5$，产生冲突。接下来分别使用这三种冲突解决方法处理冲突。</p>
-<ul>
-<li>使用线性探测法: 得到下一个地址 $H(1) = (5 + 1) \mod 11 = 6$，仍然冲突；继续求出 $H(2) =(5+2) \mod 11 = 7$，仍然冲突；继续求出 $H(3) =(5 + 3) \mod 11 = 8$， $8$ 对应的地址为空，处理冲突过程结束，记录填入哈希表中索引为 $8$ 的位置。</li>
-<li>使用二次探测法: 得到下一个地址 $H(1) =(5 + 1 \times 1) \mod 11 = 6$，仍然冲突；继续求出 $H(2) = (5 - 1 \times 1) \mod 11 = 4$，$4$ 对应的地址为空，处理冲突过程结束，记录填入哈希表中索引为 $4$ 的位置。</li>
-<li>使用伪随机数序列：假设伪随机数为 $9$，则得到下一个地址 $H(1) = (9 + 5) \mod 11 = 3$，$3$ 对应的地址为空，处理冲突过程结束，记录填入哈希表中索引为 $3$ 的位置。<br>
-使用这三种方法处理冲突的结果如下图所示:<br>
-
-  <img src="/img/2025-01-14-Leetcode-Day5-Hash-Table1/open.png" alt="Open Addressing">
-
-</li>
-</ul>
-<h3 id="链地址法">链地址法</h3>
-<p><strong>链地址法 (Chaining)</strong>: 将具有相同哈希地址的元素(或记录)存储在同一个线性链表中。</p>
-<p>链地址法是一种更加常用的哈希冲突解决方法。相比于开放地址法，链地址法更加简单。</p>
-<p>我们假设哈希函数产生的哈希地址区间为 $[0, m一1]$，哈希表的表长为 $m$。则可以将哈希表定义为一个有 $m$ 个头节点组成的链表指针数组 $T$。</p>
-<ul>
-<li>这样在插入关键字的时候，我们只需要通过哈希函数 $Hash(key)$ 计算出对应的哈希地址 $i$，然后将其以链表节点的形式插入到以 $T[i]$ 为头节点的单链表中。在链表中插入位置可以在表头或表尾，也可以在中间。如果每次插入位置为表头，则插入操作的时间复杂度为 $O(1)$。</li>
-<li>而在在查询关键字的时候，我们只需要通过哈希函数 $Hash(key)$ 计算出对应的哈希地址 $i$，然后将对应位置上的链表整个扫描一遍，比较链表中每个链节点的键值与查询的键值是否一致。查询操作的时间复杂度跟链表的长度 $k$ 成正比，也就是 $O(k)$。对于哈希地址比较均匀的哈希函数来说，理论上讲，$k = n // m$，其中 $k$ 为关键字的个数，$m$ 为哈希表的表长。</li>
-</ul>
-<p>举个例子来说明如何使用链地址法处理冲突。假设现在要存入的关键字集合 $keys =［88, 60, 65, 69, 90, 39, 07, 06, 14, 44, 52, 70, 21, 45, 19, 32]$。再假定哈希函数为 $Hash(key) = key \mod 13$，哈希表的表长 $m = 13$，哈希地址范围为 $[0，m一1]$。将这些关键字使用链地址法处理冲突，并按顺序加入哈希表中(图示为插入链表表尾位置)，最终得到的哈希表如下图所示。
-
-  <img src="/img/2025-01-14-Leetcode-Day5-Hash-Table1/chain.png" alt="Chaining">
-
-</p>
-<p><strong>上方所有内容都来自<a href="https://datawhalechina.github.io/leetcode-notes/#/ch03/03.01/03.01.01-Hash-Table">Datahale Leetcode 算法笔记 | 03.01.01 哈希表 (第 01 ~ 02 天)</a></strong><br>
-搬运过来仅是为了方便自己复习，如有侵权请联系删除。</p>
-<h1 id="242-valid-anagramhttpsleetcodecomproblemsvalid-anagram"><a href="https://leetcode.com/problems/valid-anagram/">242. Valid Anagram</a></h1>
-<h2 id="description">Description</h2>
-<p>Given two strings <code>s</code> and <code>t</code>, return true if <code>t</code> is an
-anagram of <code>s</code>, and <code>false</code> otherwise.</p>
-<p><strong>Example 1</strong>:</p>
-<pre tabindex="0"><code>Input: s = &#34;anagram&#34;, t = &#34;nagaram&#34;
-
-Output: true
-</code></pre><p><strong>Example 2</strong>:</p>
-<pre tabindex="0"><code>Input: s = &#34;rat&#34;, t = &#34;car&#34;
-
-Output: false
-</code></pre><p><strong>Constraints</strong>:</p>
-<ul>
-<li><code>1 &lt;= s.length, t.length &lt;= 5 * 10^4</code></li>
-<li><code>s</code> and <code>t</code> consist of lowercase English letters.</li>
-</ul>
-<p><strong>Follow up</strong>: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?</p>
-<h1 id="349-intersection-of-two-arrayshttpsleetcodecomproblemsintersection-of-two-arrays"><a href="https://leetcode.com/problems/intersection-of-two-arrays/">349. Intersection of Two Arrays</a></h1>
-<h2 id="description-1">Description</h2>
-<h1 id="202-happy-numberhttpsleetcodecomproblemshappy-number"><a href="https://leetcode.com/problems/happy-number/">202. Happy Number</a></h1>
-<h2 id="description-2">Description</h2>
-<h1 id="1-two-sumhttpsleetcodecomproblemstwo-sum"><a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a></h1>
-<h2 id="description-3">Description</h2>
 <h1 id="reference">Reference</h1>
-<p><a href="https://programmercarl.com/">代码随想录</a><br>
-<a href="https://datawhalechina.github.io/leetcode-notes/#/ch03/03.01/03.01.01-Hash-Table">Datawhale Leetcode 算法笔记 | 03.01.01 哈希表 (第 01 ~ 02 天)</a><br>
-<a href="https://leetcode.com/problems/valid-anagram/">242. Valid Anagram</a><br>
-<a href="https://leetcode.com/problems/intersection-of-two-arrays/">349. Intersection of Two Arrays</a><br>
-<a href="https://leetcode.com/problems/happy-number/">202. Happy Number</a><br>
-<a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/721250766">[1] 7. 探究模型参数与显存的关系以及不同精度造成的影响</a></p>
 
 
                 
@@ -431,15 +330,10 @@ Output: false
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/2025-01-13-leetcode-day4-linked-list2/" data-toggle="tooltip" data-placement="top" title="代码随想录Leetcode Day4 Linked List Part 2">&larr;
+                        <a href="/post/2025-01-14-leetcode-day5-hash-table1/" data-toggle="tooltip" data-placement="top" title="代码随想录Leetcode Day5 Hash Table Part 1">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/post/2025-01-21-llm-miscellaneous/" data-toggle="tooltip" data-placement="top" title="LLM Miscellaneous">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 
@@ -472,8 +366,8 @@ Output: false
 <script>
     Artalk.init({
         el: '#Comments',
-        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-14-leetcode-day5-hash-table1\/',
-        pageTitle: '代码随想录Leetcode Day5 Hash Table Part 1',
+        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-21-llm-miscellaneous\/',
+        pageTitle: 'LLM Miscellaneous',
         server: 'https:\/\/xxx.xxx.com',
         site: 'xxx blog',
     })
