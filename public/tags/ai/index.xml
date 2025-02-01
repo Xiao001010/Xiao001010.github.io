@@ -6,8 +6,15 @@
     <description>Recent content in AI on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Jan 2025 21:59:30 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jan 2025 14:23:16 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLM Miscellaneous</title>
+      <link>http://localhost:1313/post/2025-01-21-llm-miscellaneous/</link>
+      <pubDate>Tue, 21 Jan 2025 14:23:16 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-21-llm-miscellaneous/</guid>
+      <description>&lt;h1 id=&#34;llm显存占用计算&#34;&gt;LLM显存占用计算&lt;/h1&gt;&#xA;&lt;h2 id=&#34;精度&#34;&gt;精度&lt;/h2&gt;&#xA;&lt;p&gt;FP32 (32 位浮点数): 32 bits = 4 bytes。标准精度，每个参数占用 4 字节。&#xA;FP16 (16 位浮点数): 16 bits = 2 bytes。半精度浮点数，每个参数占用 2 字节。&#xA;BP16 (16 位脑浮点数): 16 bits = 2 bytes。与 FP16 类似，但具有更大的指数范围，适用于深度学习。&#xA;INT8 (8 位整数): 8 bits = 1 byte。低精度整数精度，每个参数占用 1 字节。&#xA;量化 (4 位整数): 4 bits = 0.5 bytes。每个参数占用 0.5 字节。或者更低的精度，如 2 位整数。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>U-Net</title>
       <link>http://localhost:1313/post/2025-01-04-u-net/</link>

@@ -6,14 +6,14 @@
     <description>Recent content in Tag1 on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jan 2025 00:03:32 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jan 2025 16:26:28 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2025 01 13 Leetcode Day4 Linked List2</title>
-      <link>http://localhost:1313/post/2025-01-13-leetcode-day4-linked-list2/</link>
-      <pubDate>Mon, 13 Jan 2025 00:03:32 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025-01-13-leetcode-day4-linked-list2/</guid>
-      <description></description>
+      <title>Git Miscellaneous</title>
+      <link>http://localhost:1313/post/2025-01-22-git-miscellaneous/</link>
+      <pubDate>Wed, 22 Jan 2025 16:26:28 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-01-22-git-miscellaneous/</guid>
+      <description>&lt;p&gt;git init&lt;br&gt;&#xA;git add .&lt;br&gt;&#xA;git commit -m &amp;ldquo;message&amp;rdquo;&lt;br&gt;&#xA;git push origin master&lt;br&gt;&#xA;git remote add origin &amp;lt;remote_repo&amp;gt;&lt;br&gt;&#xA;or&lt;br&gt;&#xA;git clone &amp;lt;remote_repo&amp;gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

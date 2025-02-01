@@ -6,20 +6,20 @@
     <description>Recent content in Categories on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2025 22:32:32 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jan 2025 16:26:28 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Diary</title>
-      <link>http://localhost:1313/categories/diary/</link>
-      <pubDate>Fri, 10 Jan 2025 22:32:32 +0000</pubDate>
-      <guid>http://localhost:1313/categories/diary/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Tech</title>
       <link>http://localhost:1313/categories/tech/</link>
-      <pubDate>Fri, 10 Jan 2025 22:32:32 +0000</pubDate>
+      <pubDate>Wed, 22 Jan 2025 16:26:28 +0000</pubDate>
       <guid>http://localhost:1313/categories/tech/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Diary</title>
+      <link>http://localhost:1313/categories/diary/</link>
+      <pubDate>Tue, 14 Jan 2025 11:28:25 +0000</pubDate>
+      <guid>http://localhost:1313/categories/diary/</guid>
       <description></description>
     </item>
     <item>
