@@ -5,7 +5,7 @@ description: ""
 date:        "2025-01-22T16:26:28Z"
 author:      "Hao Xu"
 image:       ""
-tags:        ["tag1", "tag2"]
+tags:        ["Git"]
 categories:  ["Tech" ]
 draft:       false
 ---
@@ -20,6 +20,8 @@ git push origin <branch>  // 推送到远程分支
 ```
 
 <!--more-->
+
+![Git](/img/2025-01-22-Git-Miscellaneous/git.png)
 
 # 创建本地仓库并推送到远程仓库
 

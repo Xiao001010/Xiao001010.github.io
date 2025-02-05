@@ -351,10 +351,17 @@ $$H(i) = (Hash(key) + F(i)) \mod m, i = 1, 2, 3, \ldots, n$$</p>
 </p>
 <p><strong>上方所有内容都来自<a href="https://datawhalechina.github.io/leetcode-notes/#/ch03/03.01/03.01.01-Hash-Table">Datahale Leetcode 算法笔记 | 03.01.01 哈希表 (第 01 ~ 02 天)</a></strong><br>
 搬运过来仅是为了方便自己复习，如有侵权请联系删除。</p>
+<h1 id="c中的哈希表">C++中的哈希表</h1>
+<p>C++中的哈希表主要是通过 <code>array</code>，<code>set</code>，<code>map</code>等容器实现的。<code>array</code>是一个固定大小的数组，<code>set</code>是一个集合，<code>map</code>是一个键值对。<br>
+其中，<code>std::unordered_set</code> 和 <code>std::unordered_map</code>，这两个容器是基于哈希表实现的，查询与增删效率都是 $O(1)$。在解决哈希表问题时应当<strong>优先</strong>考虑使用这两个容器。<br>
+<code>std::set</code>，<code>std::multiset</code>，<code>std::map</code>，<code>std::multimap</code>是基于红黑树实现的，查询与增删效率都是 $O(\log n)$。key值是有序的，但key不可以修改，改动key值会导致整棵树的错乱，所以只能删除和增加。两种 <code>set</code> 的区别是 <code>std::multiset</code> 允许重复元素。同理，<code>std::multimap</code> 允许重复的key。</p>
+<p>Java中的哈希表主要是通过 <code>HashMap</code> 实现的，查询与增删效率都是 $O(1)$。<br>
+而<code>TreeMap</code> 是基于红黑树实现的，查询与增删效率都是 $O(\log n)$。</p>
+<p>Python中的哈希表主要是通过 <code>dict</code> 实现的，查询与增删效率都是 $O(1)$。</p>
 <h1 id="242-valid-anagramhttpsleetcodecomproblemsvalid-anagram"><a href="https://leetcode.com/problems/valid-anagram/">242. Valid Anagram</a></h1>
 <h2 id="description">Description</h2>
 <p>Given two strings <code>s</code> and <code>t</code>, return true if <code>t</code> is an
-anagram of <code>s</code>, and <code>false</code> otherwise.</p>
+anagram (<em>An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.</em>) of <code>s</code>, and <code>false</code> otherwise.</p>
 <p><strong>Example 1</strong>:</p>
 <pre tabindex="0"><code>Input: s = &#34;anagram&#34;, t = &#34;nagaram&#34;
 
@@ -365,23 +372,179 @@ Output: true
 Output: false
 </code></pre><p><strong>Constraints</strong>:</p>
 <ul>
-<li><code>1 &lt;= s.length, t.length &lt;= 5 * 10^4</code></li>
+<li>$1 &lt;= s.length, t.length &lt;= 5 \times 10^4$</li>
 <li><code>s</code> and <code>t</code> consist of lowercase English letters.</li>
 </ul>
 <p><strong>Follow up</strong>: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?</p>
+<h2 id="solution">Solution</h2>
+<p>对于 $O(n^2)$ 的暴力解法，这里不再赘述。</p>
+<p>如果能够想到使用哈希表进行类似于词频统计来解决，那么这道题就会变得非常简单。</p>
+<p>这里使用长度为 $26$ 的数组来模拟哈希表，数组的下标表示字母，数组的值表示字母出现的次数。当遍历字符串 $s$ 时，将对应字母的次数加一，遍历字符串 $t$ 时，将对应字母的次数减一。最后判断数组中的值是否全为 $0$ 即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">bool</span> isAnagram(string s, string t) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> freq[<span style="color:#bd93f9">26</span>] <span style="color:#ff79c6">=</span> {<span style="color:#bd93f9">0</span>};
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> s.size(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            freq[s[i]<span style="color:#ff79c6">-</span><span style="color:#f1fa8c">&#39;a&#39;</span>]<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> t.size(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            freq[t[i]<span style="color:#ff79c6">-</span><span style="color:#f1fa8c">&#39;a&#39;</span>]<span style="color:#ff79c6">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">26</span>; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (freq[i] <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">0</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">false</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>时间复杂度为 $O(n)$，空间复杂度为 $O(1)$。</p>
+<p><strong>思考</strong>：如果两个字符串是异位词，那么他们长度一定相等。所以，可以先进行长度判断，如果相等再进行哈希表统计并且前两个循环可以进行合并。</p>
 <h1 id="349-intersection-of-two-arrayshttpsleetcodecomproblemsintersection-of-two-arrays"><a href="https://leetcode.com/problems/intersection-of-two-arrays/">349. Intersection of Two Arrays</a></h1>
 <h2 id="description-1">Description</h2>
-<h1 id="202-happy-numberhttpsleetcodecomproblemshappy-number"><a href="https://leetcode.com/problems/happy-number/">202. Happy Number</a></h1>
+<p>Given two integer arrays <code>nums1</code> and <code>nums2</code>, return an array of their
+intersection (<em>The intersection of two arrays is defined as the set of elements that are present in both arrays.</em>). Each element in the result must be <strong>unique</strong> and you may return the result in <strong>any order</strong>.</p>
+<p><strong>Example 1</strong>:</p>
+<pre tabindex="0"><code>Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2]
+</code></pre><p><strong>Example 2</strong>:</p>
+<pre tabindex="0"><code>Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [9,4]
+Explanation: [4,9] is also accepted.
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li><code>1 &lt;= nums1.length, nums2.length &lt;= 1000</code></li>
+<li><code>0 &lt;= nums1[i], nums2[i] &lt;= 1000</code></li>
+</ul>
+<h2 id="solution-1">Solution</h2>
+<p>此题可以同上题一样使用哈希表来统计两个数组中的元素，然后再进行比较。但是需要使用 <code>set</code> 来进行去重最后转换成 <code>vector</code> 输出。</p>
+<p>下方提供两种解法，第一种使用 <code>unsorted_set</code> 直接统计 <code>nums1</code> 中的元素，然后再遍历 <code>nums2</code>，如果 <code>nums2</code> 中的元素在 <code>set</code> 中，则将其加入到 <code>res</code> 集合中。第二种和上题类似，使用一个长度为   $1001$ 的数组来统计 <code>nums1</code> 中的元素，然后再遍历 <code>nums2</code>，如果以 <code>nums2</code> 中的元素为下标的数组值不为 $0$，则将其加入到 <code>res</code> 集合中。<br>
+两者的时间复杂度都是 $O(n)$，空间复杂度都是 $O(n)$。但是在数据量较大的 case 中，第二种方法的效率会更高。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> intersection(vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> nums1, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> nums2) {
+</span></span><span style="display:flex;"><span>        unordered_set<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> nums1_set(nums1.begin(), nums1.end());
+</span></span><span style="display:flex;"><span>        unordered_set<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> intersection;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> <span style="color:#8be9fd;font-style:italic">num</span> : nums2) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (nums1_set.find(num) <span style="color:#ff79c6">!=</span> nums1_set.end())      intersection.insert(num);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span>(intersection.begin(), intersection.end());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>这里需要注意 <code>unordered_set&lt;int&gt; nums1_set(nums1.begin(), nums1.end());</code> 和 <code>vector&lt;int&gt;(intersection.begin(), intersection.end());</code> 这两句代码可以实现集合和数组之间的转换。<br>
+此外，<a href="https://www.runoob.com/cplusplus/cpp-libs-unordered_set.html"><code>unsorted</code> 的查找用法 <code>nums1_set.find(num) != nums1_set.end()</code>，如果 <code>num</code> 在 <code>nums1_set</code> 中，则 <code>find</code> 函数返回的迭代器不等于 <code>end</code>，否则等于 <code>end</code></a>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> intersection(vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> nums1, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> nums2) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> occur[<span style="color:#bd93f9">1001</span>] <span style="color:#ff79c6">=</span> {<span style="color:#bd93f9">0</span>};
+</span></span><span style="display:flex;"><span>        unordered_set<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> intersection;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> <span style="color:#8be9fd;font-style:italic">num</span> : nums1)     occur[num] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> <span style="color:#8be9fd;font-style:italic">num</span> : nums2) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (occur[num] <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span>)      intersection.insert(num);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span>(intersection.begin(), intersection.end());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h1 id="202-happy-numberhttpsleetcodecomproblemshappy-number"><a href="https://leetcode.com/problems/happy-number/">202. Happy Number</a></h1>
 <h2 id="description-2">Description</h2>
+<p>Write an algorithm to determine if a number <code>n</code> is happy.</p>
+<p>A <strong>happy number</strong> is a number defined by the following process:</p>
+<ul>
+<li>Starting with any positive integer, replace the number by the sum of the squares of its digits.</li>
+<li>Repeat the process until the number equals 1 (where it will stay), or it <strong>loops endlessly in a cycle</strong> which does not include 1.</li>
+<li>Those numbers for which this process <strong>ends in 1</strong> are happy.
+Return <code>true</code> if <code>n</code> is a happy number, and false if not.</li>
+</ul>
+<p><strong>Example 1</strong>:</p>
+<pre tabindex="0"><code>
+Input: n = 19
+Output: true
+</code></pre><p>Explanation:<br>
+$1^2 + 9^2 = 82$<br>
+$8^2 + 2^2 = 68$<br>
+$6^2 + 8^2 = 100$<br>
+$1^2 + 0^2 + 0^2 = 1$</p>
+<p><strong>Example 2</strong>:</p>
+<pre tabindex="0"><code>
+Input: n = 2
+Output: false
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li>$1 &lt;= n &lt;= 2^{31} - 1$</li>
+</ul>
+<h2 id="solution-2">Solution</h2>
+<p>这题需要判断终止条件：当数字为 $1$ 时，返回 <code>true</code>；当数字重复出现时，返回 <code>false</code>。</p>
+<p>这题的关键是判断数字是否重复出现。可以使用 <code>set</code> 来存储每次计算的结果，如果结果重复出现，则返回 <code>false</code>。</p>
+<p>此外还需要注意如何计算每一位数字的平方和。这里可以使用 <code>%</code> 和 <code>/</code> 运算来分别得到数字的最后一位和去掉最后一位的数字。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">bool</span> isHappy(<span style="color:#8be9fd">int</span> n) {
+</span></span><span style="display:flex;"><span>        unordered_set<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> sum_set;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (sum_set.find(n) <span style="color:#ff79c6">==</span> sum_set.end()) {
+</span></span><span style="display:flex;"><span>            sum_set.insert(n);
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> sum <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">while</span> (n) {
+</span></span><span style="display:flex;"><span>                sum <span style="color:#ff79c6">+=</span> (n<span style="color:#ff79c6">%</span><span style="color:#bd93f9">10</span>) <span style="color:#ff79c6">*</span> (n<span style="color:#ff79c6">%</span><span style="color:#bd93f9">10</span>);
+</span></span><span style="display:flex;"><span>                n <span style="color:#ff79c6">/=</span> <span style="color:#bd93f9">10</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (sum <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span>)   <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">true</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">else</span>    n <span style="color:#ff79c6">=</span> sum;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>该解法的复杂度为 $O(log n)$，空间复杂度为 $O(log n)$。</p>
 <h1 id="1-two-sumhttpsleetcodecomproblemstwo-sum"><a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a></h1>
 <h2 id="description-3">Description</h2>
+<p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.</p>
+<p>You may assume that each input would have <em>exactly</em> <strong>one solution</strong>, and you may not use the same element twice.</p>
+<p>You can return the answer in any order.</p>
+<p><strong>Example 1</strong>:</p>
+<pre tabindex="0"><code>
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+</code></pre><p><strong>Example 2</strong>:</p>
+<pre tabindex="0"><code>
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+</code></pre><p><strong>Example 3</strong>:</p>
+<pre tabindex="0"><code>
+Input: nums = [3,3], target = 6
+Output: [0,1]
+</code></pre><p><strong>Constraints</strong>:</p>
+<ul>
+<li>$2 &lt;= nums.length &lt;= 10^4$</li>
+<li>$-10^9 &lt;= nums[i] &lt;= 10^9$</li>
+<li>$-10^9 &lt;= target &lt;= 10^9$</li>
+<li><strong>Only one valid answer exists.</strong></li>
+</ul>
+<p><strong>Follow-up</strong>: Can you come up with an algorithm that is less than $O(n^2)$ time complexity?</p>
+<h2 id="solution-3">Solution</h2>
+<p>此题有多种解法，这里主要使用哈希表来实现 $O(n)$ 的时间复杂度。</p>
+<p>这里需要使用 <code>unordered_map</code> 来存储每个数字对应的下标。遍历数组时，如果 <code>target - nums[i]</code> 在 <code>map</code> 中，则返回对应下标，否则就将数字与下标的 <code>pair</code>  存入 <code>map</code> 中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> twoSum(vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> nums, <span style="color:#8be9fd">int</span> target) {
+</span></span><span style="display:flex;"><span>        unordered_map<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span>, <span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> num_map;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> nums.size(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">auto</span> iter <span style="color:#ff79c6">=</span> num_map.find(target <span style="color:#ff79c6">-</span> nums[i]);
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (iter <span style="color:#ff79c6">==</span> num_map.end())    num_map.insert(pair<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span>, <span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span>(nums[i], i));
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">else</span>    <span style="color:#ff79c6">return</span> {i, iter<span style="color:#ff79c6">-&gt;</span>second};
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> {};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>这题主要需要注意 <a href="https://www.runoob.com/cplusplus/cpp-libs-unordered_map.html"><code>C++</code> 中 <code>map</code> 和 <code>unordered_map</code> 的使用方法 （如何创建，搜索，插入）</a>，以及如何返回 <code>vector</code>。</p>
 <h1 id="reference">Reference</h1>
 <p><a href="https://programmercarl.com/">代码随想录</a><br>
 <a href="https://datawhalechina.github.io/leetcode-notes/#/ch03/03.01/03.01.01-Hash-Table">Datawhale Leetcode 算法笔记 | 03.01.01 哈希表 (第 01 ~ 02 天)</a><br>
 <a href="https://leetcode.com/problems/valid-anagram/">242. Valid Anagram</a><br>
 <a href="https://leetcode.com/problems/intersection-of-two-arrays/">349. Intersection of Two Arrays</a><br>
 <a href="https://leetcode.com/problems/happy-number/">202. Happy Number</a><br>
-<a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a></p>
+<a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a><br>
+<a href="https://www.runoob.com/cplusplus/cpp-libs-unordered_set.html">C++ 容器类 &lt;unordered_set&gt;</a><br>
+<a href="https://www.runoob.com/cplusplus/cpp-libs-unordered_map.html">C++ 容器类 &lt;unordered_map&gt;</a></p>
 
 
                 
@@ -542,6 +705,8 @@ Output: false
                         
                         
                         
+                        
+                        
                         <a href="/tags/image-segmentation" title="image segmentation">
                             image segmentation
                         </a>
@@ -559,10 +724,6 @@ Output: false
                         <a href="/tags/leetcode" title="leetcode">
                             leetcode
                         </a>
-                        
-                        
-                        
-                        
                         
                         
                         
