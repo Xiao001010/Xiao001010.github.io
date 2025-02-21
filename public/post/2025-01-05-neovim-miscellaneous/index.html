@@ -36,7 +36,7 @@
 
     <title>Neovim Tips | 徐浩的博客 | Hao Xu Blog</title>
 
-    <link rel="canonical" href="/post/2025-01-05-neovim-tips/">
+    <link rel="canonical" href="/post/2025-01-05-neovim-miscellaneous/">
 
     
     
@@ -250,95 +250,96 @@
                 post-container">
 
                 
-                <p>Leader Key: &lt;space&gt;</p>
+                <p>Leader Key: &lt;space&gt;<br>
+Local Leader Key: \</p>
 <p>全部退出nvim：&lt;leader&gt;qq</p>
 <h1 id="普通模式">普通模式</h1>
 <p>重复上一步命令：.</p>
 <h2 id="光标移动">光标移动</h2>
 <p>显示行号：:set number</p>
-<p>普通模式左下上右移动：h、j(jump)、k(climb)、l(left)</p>
-<p>向左下上右移动5个单位：5h、5j、5k、5l</p>
-<p>跳转到第一行：gg</p>
-<p>跳转到第N行：Ngg or NG or :N</p>
-<p>跳转到最后一行：G</p>
+<p>普通模式左下上右移动：h、j(jump)、k(climb)、l(left)<br>
+向左下上右移动5个单位：5h、5j、5k、5l</p>
+<p>跳转到第一行：gg<br>
+跳转到第N行：Ngg or NG or :N<br>
+跳转到最后一行：G</p>
 <h3 id="单词移动">单词移动</h3>
-<p>移动至下一个单词开头：w</p>
-<p>移动至下N个单词开头：Nw</p>
-<p>移动至上一个单词开头：b</p>
-<p>移动至上N个单词开头：Nb</p>
-<p>移动至上一个单词结尾：ge</p>
-<p>移动至上N个单词结尾：Nge</p>
-<p>移动至下一个单词结尾：e</p>
-<p>移动至下N个单词结尾：Ne</p>
+<p>移动至下一个单词开头：w<br>
+移动至下N个单词开头：Nw</p>
+<p>移动至上一个单词开头：b<br>
+移动至上N个单词开头：Nb</p>
+<p>移动至上一个单词结尾：ge<br>
+移动至上N个单词结尾：Nge<br>
+移动至下一个单词结尾：e<br>
+移动至下N个单词结尾：Ne</p>
 <h3 id="行内移动">行内移动</h3>
-<p>移动至行首：|</p>
-<p>移动至此行第一个字符：^或0（数字）</p>
-<p>移动至行尾：$</p>
-<p>移动至当前行下第N行行尾：N$</p>
+<p>移动至行首：|<br>
+移动至此行第一个字符：^或0（数字）</p>
+<p>移动至行尾：$<br>
+移动至当前行下第N行行尾：N$</p>
 <h3 id="todo移动">TODO移动</h3>
-<p>上一个TODO：[t</p>
-<p>下一个TODO：]t</p>
-<p>移动至当前屏第一行：</p>
-<p>移动至当前屏最后一行：</p>
+<p>上一个TODO：[t<br>
+下一个TODO：]t</p>
+<p>移动至当前屏第一行：<br>
+移动至当前屏最后一行：</p>
 <h2 id="标记和跳转">标记和跳转</h2>
 <p>【a-z只能用于文件内标记与跳转，A-Z同时标记文件可用于不同文件间跳转】</p>
 <p>标记某当前行：m[A-Za-z]</p>
-<p>跳转到标记行：(单引号)’[A-Za-z]</p>
-<p>跳转到标记行时光标所在位置：(反引号)`[A-Za-z]</p>
-<p>删除标记：delmarks [A-Za-z]</p>
-<p>删除所有标记：delmarks!</p>
-<p>删除后不再使用标记：:wshada!</p>
+<p>跳转到标记行：(单引号)’[A-Za-z]<br>
+跳转到标记行时光标所在位置：(反引号)`[A-Za-z]</p>
+<p>删除标记：delmarks [A-Za-z]<br>
+删除所有标记：delmarks!<br>
+删除后不再使用标记：:wshada!</p>
 <h2 id="翻转">翻转</h2>
-<p>向下翻一页：Ctrl+F</p>
-<p>向上翻一页：Ctrl+B</p>
-<p>向下翻半页：Ctrl+D（向下）</p>
-<p>向上翻半页：Ctrl+U（向上）</p>
-<p>向下翻一行，保持当前光标不动：Ctrl+E</p>
-<p>向上翻一行，保持当前光标不动：Ctrl+Y</p>
-<p>当前行移到顶部：zt/z+Enter</p>
-<p>当前行移到底部：zb</p>
-<p>当前行移到中间：zz</p>
+<p>向下翻一页：Ctrl+F<br>
+向上翻一页：Ctrl+B<br>
+向下翻半页：Ctrl+D（向下）<br>
+向上翻半页：Ctrl+U（向上）</p>
+<p>向下翻一行，保持当前光标不动：Ctrl+E<br>
+向上翻一行，保持当前光标不动：Ctrl+Y</p>
+<p>当前行移到顶部：zt/z+Enter<br>
+当前行移到底部：zb<br>
+当前行移到中间：zz</p>
 <h2 id="当前行移动">当前行移动</h2>
 <h2 id="撤销与重做">撤销与重做</h2>
-<p>撤消上一个操作：u</p>
-<p>撤销上一个撤销：Ctrl+r</p>
+<p>撤消上一个操作：u<br>
+撤销上一个撤销：Ctrl+r</p>
 <h2 id="选择与搜索">选择与搜索</h2>
 <p>全选：&lt;C-a&gt;</p>
 <p>选择：见可视模式</p>
-<p>向下搜索：/关键字</p>
-<p>向上搜索：?关键字</p>
-<p>搜索回车确定，然后进行选择</p>
+<p>向下搜索：/关键字<br>
+向上搜索：?关键字<br>
+搜索回车确定，然后进行选择</p>
 <p>搜索光标所在的单词：*</p>
-<p>搜索窗口待办清单：&lt;leader&gt;st</p>
-<p>搜索窗口Tudo/Fix/Fixme：&lt;leader&gt;sT</p>
-<p>分窗Tudo/Fix/Fixme：&lt;leader&gt;xt</p>
-<p>分窗Tudo/Fix/Fixme：&lt;leader&gt;xT</p>
-<p>前一个TODO：[t</p>
-<p>下一个TODO：]t</p>
+<p>搜索窗口待办清单：&lt;leader&gt;st<br>
+搜索窗口Tudo/Fix/Fixme：&lt;leader&gt;sT</p>
+<p>分窗Tudo/Fix/Fixme：&lt;leader&gt;xt<br>
+分窗Tudo/Fix/Fixme：&lt;leader&gt;xT</p>
+<p>前一个TODO：[t<br>
+下一个TODO：]t</p>
 <p>取消搜索高亮：&lt;leader&gt;nh</p>
-<p>下一个搜索结果：n</p>
-<p>上一个搜索结果：N</p>
+<p>下一个搜索结果：n<br>
+上一个搜索结果：N</p>
 <p>搜索字符X：fX</p>
-<p>下一个搜索结果：f</p>
-<p>上一个搜索结果：F</p>
+<p>下一个搜索结果：f<br>
+上一个搜索结果：F</p>
 <h2 id="删除">删除</h2>
 <p>【删除内容会复制到剪切板】</p>
 <p>删除行：dd</p>
-<p>删除单词/光标之后的单词剩余部分：dw</p>
-<p>删除以光标开始的N个字：Ndw</p>
+<p>删除单词/光标之后的单词剩余部分：dw<br>
+删除以光标开始的N个字：Ndw</p>
 <p>删除光标当前字符：x</p>
 <p>光标之后的该行部分：d$</p>
 <h2 id="复制粘贴">复制粘贴</h2>
-<p>复制光标所在行：yy</p>
-<p>复制光标下第N行：Nyy</p>
+<p>复制光标所在行：yy<br>
+复制光标下第N行：Nyy</p>
 <h2 id="缩进">缩进</h2>
-<p>向右增加缩进：Shift+&gt;</p>
-<p>向左减少缩进：Shift+&lt;</p>
+<p>向右增加缩进：Shift+&gt;<br>
+向左减少缩进：Shift+&lt;</p>
 <h2 id="neo-tree">Neo-tree</h2>
-<p>打开/关闭Neo-tree (当前文件夹所在目录)：&lt;leader&gt;e</p>
-<p>打开/关闭Neo-tree (启动nvim时的root dir)：&lt;leader&gt;E</p>
-<p>新建文件：a</p>
-<p>新建文件夹：A或a文件名以/结尾</p>
+<p>打开/关闭Neo-tree (当前文件夹所在目录)：&lt;leader&gt;e<br>
+打开/关闭Neo-tree (启动nvim时的root dir)：&lt;leader&gt;E</p>
+<p>新建文件：a<br>
+新建文件夹：A或a文件名以/结尾</p>
 <p>重命名：r</p>
 <p>删除文件/文件夹：d</p>
 <p>显示隐藏文件（.gitignore中的文件会隐藏）：H</p>
@@ -346,22 +347,23 @@
 <h2 id="neogen">Neogen</h2>
 <p>生成注释：<!-- raw HTML omitted -->cn</p>
 <h2 id="markdown">Markdown</h2>
-<p>Markdown预览:  :MarkdownPreview</p>
+<p>Markdown预览:  :MarkdownPreview<br>
+Keymap: &lt;localLeader&gt;mp</p>
 <h2 id="buffer">Buffer</h2>
-<p>前一个Buffer：[b</p>
-<p>后一个Buffer：]b</p>
+<p>前一个Buffer：[b<br>
+后一个Buffer：]b</p>
 <p>删除当前Buffer：&lt;leader&gt;bd</p>
 <h2 id="分割窗口及其移动与大小调整">分割窗口及其移动与大小调整</h2>
-<p>分割窗口：</p>
-<p>水平分割：&lt;leader&gt;- or ss</p>
-<p>垂直分割：&lt;leader&gt;| or sv</p>
-<p>删除分割的窗口：&lt;leaader&gt;x or &lt;leader&gt;wd</p>
-<p>回到之前的窗口：&lt;leader&gt;n or &lt;leader&gt;ww or &lt;C-\&gt;</p>
-<p>转到别的窗口：</p>
-<p>左：sh</p>
-<p>下：sj</p>
-<p>上：sk</p>
-<p>右：sl</p>
+<p>分割窗口</p>
+<p>水平分割：&lt;leader&gt;- or ss<br>
+垂直分割：&lt;leader&gt;| or sv</p>
+<p>删除分割的窗口：&lt;leaader&gt;x or &lt;leader&gt;wd<br>
+回到之前的窗口：&lt;leader&gt;n or &lt;leader&gt;ww or &lt;C-\&gt;</p>
+<p>转到别的窗口</p>
+<p>左：sh<br>
+下：sj<br>
+上：sk<br>
+右：sl</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
@@ -371,18 +373,18 @@
 <p>取消诊断：&lt;leader&gt;ud</p>
 <h1 id="插入模式">插入模式</h1>
 <h2 id="进入与退出插入模式">进入与退出插入模式</h2>
-<p>在光标位置插入：i</p>
-<p>在光标后插入：a</p>
-<p>在行首插入：I</p>
-<p>在行尾插入：A</p>
-<p>在光标下另起一行：o</p>
-<p>在光标上另起一行：O</p>
+<p>在光标位置插入：i<br>
+在光标后插入：a</p>
+<p>在行首插入：I<br>
+在行尾插入：A</p>
+<p>在光标下另起一行：o<br>
+在光标上另起一行：O</p>
 <p>退出插入模式：jk or Esc</p>
 <h2 id="自动补全">自动补全</h2>
-<p>选择上一个：&lt;C-p&gt;</p>
-<p>选择下一个：&lt;C-n&gt;</p>
-<p>打开补全：&lt;C-space&gt;已被Mac切换输入法快捷键占用</p>
-<p>关闭补全：&lt;C-e&gt;</p>
+<p>选择上一个：&lt;C-p&gt;<br>
+选择下一个：&lt;C-n&gt;</p>
+<p>打开补全：&lt;C-space&gt;已被Mac切换输入法快捷键占用<br>
+关闭补全：&lt;C-e&gt;</p>
 <p>格式化：&lt;leader&gt;cf</p>
 <h1 id="可视模式">可视模式</h1>
 <p>进入可视模式：v</p>
@@ -478,7 +480,7 @@
 <script>
     Artalk.init({
         el: '#Comments',
-        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-05-neovim-tips\/',
+        pageKey: 'http:\/\/localhost:1313\/post\/2025-01-05-neovim-miscellaneous\/',
         pageTitle: 'Neovim Tips',
         server: 'https:\/\/xxx.xxx.com',
         site: 'xxx blog',
@@ -548,6 +550,8 @@
                         
                         
                         
+                        
+                        
                         <a href="/tags/image-segmentation" title="image segmentation">
                             image segmentation
                         </a>
@@ -565,8 +569,6 @@
                         <a href="/tags/leetcode" title="leetcode">
                             leetcode
                         </a>
-                        
-                        
                         
                         
                         
