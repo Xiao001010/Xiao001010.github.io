@@ -6,8 +6,15 @@
     <description>Recent content in AI on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Jan 2025 14:23:16 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 13 Apr 2025 12:39:34 +0100</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Datawhale AI春训营SAIS Medicine</title>
+      <link>http://localhost:1313/post/2025-04-13-sais-medicine/</link>
+      <pubDate>Sun, 13 Apr 2025 12:39:34 +0100</pubDate>
+      <guid>http://localhost:1313/post/2025-04-13-sais-medicine/</guid>
+      <description>&lt;h1 id=&#34;improvements&#34;&gt;Improvements&lt;/h1&gt;&#xA;&lt;p&gt;相较于Datawhale 给出的 Baseline 代码，Task 2的代码有以下改进：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;更丰富的几何特征: 新代码引入了几何特征生成器，提供了 RBF（径向基函数）特征、二面角（dihedrals）和方向特征（direction feature）的计算。这使得节点特征不再局限于单纯的展平坐标，而是融合了局部几何信息，为模型提供更多结构化信息。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>LLM Miscellaneous</title>
       <link>http://localhost:1313/post/2025-01-21-llm-miscellaneous/</link>
