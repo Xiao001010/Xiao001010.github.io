@@ -6,8 +6,15 @@
     <description>Recent content on Hao Xu Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Apr 2025 12:39:34 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 19 May 2025 00:00:00 +0100</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 19 May 2025 00:00:00 +0100</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h1 id=&#34;xu-hao&#34;&gt;Xu Hao&lt;/h1&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;Algorithm Engineer | High Performance Computing Specialist&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/%E5%BE%90%E6%B5%A9CV.pdf&#34;&gt;Detailed PDF Resume&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;basic-information&#34;&gt;Basic Information&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Gender&lt;/strong&gt;: Male&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Age&lt;/strong&gt;: 24&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Contact&lt;/strong&gt;: 18913-028-323&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email&lt;/strong&gt;: &lt;a href=&#34;mailto:haoxu.live@outlook.com&#34;&gt;haoxu.live@outlook.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;&#xA;&lt;h3 id=&#34;university-of-edinburgh-qs-27-edinburgh-uk&#34;&gt;University of Edinburgh (QS #27), Edinburgh, UK&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;MSc in High Performance Computing with Data Science&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;Sep 2024 – Aug 2025&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Core courses: Thread Programming (OpenMP), Advanced Message-Passing Programming (MPI), Accelerated Systems: Principles and Practice (CUDA), HPC Architecture, Performance Programming, Large-Scale Machine Learning, Fundamentals of Data Management, Practical Software Development.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;university-of-sussex-brighton-uk&#34;&gt;University of Sussex, Brighton, UK&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;BSc in Computer Science &amp;amp; Artificial Intelligence (2+2)&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;Sep 2022 – Jun 2024&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Datawhale AI春训营SAIS Medicine</title>
       <link>http://localhost:1313/post/2025-04-13-sais-medicine/</link>
@@ -140,13 +147,6 @@
       <pubDate>Sun, 13 Oct 2024 00:31:14 +0100</pubDate>
       <guid>http://localhost:1313/post/test/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;“Yeah It&amp;rsquo;s on. ”&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;hello-world&#34;&gt;Hello World!&lt;/h2&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Sun, 13 Oct 2024 00:07:07 +0100</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>&lt;h1 id=&#34;hao-xu&#34;&gt;Hao Xu&lt;/h1&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;High Performance Computing with Data Science postgraduate student at the University of Edinburgh&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/Hao_Xu_CV.pdf&#34;&gt;Detailed PDF Resume&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;academic-experience&#34;&gt;Academic Experience&lt;/h2&gt;&#xA;&lt;h3 id=&#34;university-of-edinburgh-edinburgh-uk&#34;&gt;University of Edinburgh, Edinburgh, UK&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;MSc in High Performance Computing with Data Science&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;Sept, 2024 - Sept 2025&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Modules (to be taken) are HPC related: Thread Programming, Message-Passing Programming, Advanced Message-Passing Programming, Performance Programming, HPC Architecture, Accelerated Systems: Principles and Practice.&lt;/li&gt;&#xA;&lt;li&gt;Machine Learning related modules (to be taken): Fundamentals of Data Management, High Performance Data Analytics, Machine Learning and Pattern Recognition, Machine Learning at Scale, Reinforcement Learning.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;university-of-sussex-brighton-uk&#34;&gt;University of Sussex, Brighton, UK&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;BSc in Computer Science &amp;amp; Artificial Intelligence (First Honor)&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;Sept, 2022 - June 2024&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
